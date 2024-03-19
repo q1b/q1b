@@ -1,0 +1,73 @@
+---
+export type Props = {
+    rounded?: boolean
+    sm?:boolean
+    list?:string[]
+}
+
+const {rounded, sm, list = ['Open Source Lover','Software Developer','Basketball Player'] } = Astro.props;
+---
+
+<div inert class={`${sm ? 'text-sm w-36 h-6' : 'w-44 h-8'} bg-indigo-600 shadow-md shadow-indigo-600/40 text-center overflow-hidden relative ${rounded ? 'rounded-full': 'rounded-lg'}`}>
+	<div id="rolling-container" class="w-full h-full absolute">
+		<strong class="top-[-100%] select-none text-white absolute flex items-center justify-center w-full h-full text-sm" aria-hidden="true">{ list[Math.floor(1)]}</strong>
+		<strong class="text-white absolute flex items-center justify-center w-full h-full text-sm">{list[Math.floor(0)]}</strong>
+	</div>
+</div>
+
+<script>
+    import { createRafEffect } from "@/lib/animation";
+    import { roundTo, getProgress, calcNext } from "@/lib/animation";
+    import { easeInOut, easeInOutSine  } from "@/lib/animation/easing-curves";
+
+    const container = document.getElementById('rolling-container');
+
+    let first = container.querySelector('strong:nth-child(1)');
+    let second = container.querySelector('strong:nth-child(2)');
+
+    /**
+	 * @param {number} n
+	 * @param {number} m
+	 */
+     function modulo(n:number, m:number) {
+		// handle negative numbers
+		return ((n % m) + m) % m;
+	}
+    
+    let current_count = 1;
+    let previous_count = 0;
+
+            let offset = 0;
+            let displayed_count = 0;
+            const list = ['Open Source Lover','Software Developer','Basketball Player','Yoga Instructor'];
+            
+            const { start, resume, restart, pause, isRunning } = createRafEffect(
+                (time) => {
+                    const progress = roundTo(getProgress(time, 1000), 4);
+
+                    displayed_count = calcNext({
+                        from: previous_count, 
+                        to: current_count, 
+                        easing: easeInOutSine, 
+                        progress
+                    });
+                    
+                    // offset = modulo(displayed_count, 1);
+                    container.style.transform = `translate(0, ${100 * progress}%)`;
+
+                    if (time >= 1000) {
+                        pause();
+                        setTimeout(() => {
+                            previous_count = current_count;
+                            current_count = current_count + 1;
+                            first.innerText =  list[current_count % list.length];
+                            second.innerText = list[previous_count % list.length];
+                            restart();
+                        },500)
+                    }
+                },
+                {
+                    immediate: true,
+                }
+            )
+</script>

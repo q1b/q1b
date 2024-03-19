@@ -1,16 +1,284 @@
 ---
+import Layout from "@/layouts/Layout.astro";
+import RollingBlock from "@/components/RollingBlock.astro";
+import TimeBlock from "@/components/web-components/time-block.astro";
+import type { CollectionEntry, DataEntryMap } from "astro:content";
+import { getEntry } from "astro:content";
+
+const profile = (
+  (await getEntry("profile", "default")) as CollectionEntry<"profile">
+).data;
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<section class="flex mt-12 flex-col items-center gap-y-4">
+      <div
+        class="flex bg-white dark:bg-slate-500/10 border border-slate-300 dark:border-slate-500/50 shadow-inner shadow-slate-200 dark:shadow-slate-700 rounded-full py-2 pl-2 pr-10 items-center gap-x-4 max-w-lg"
+      >
+        <div
+          id="background-circle"
+          class="relative z-0 flex items-center justify-center flex-shrink-0 size-28 sm:size-32 rounded-full"
+          style="
+                    background: radial-gradient(
+                        circle,
+                        hsla(231, 100%, 50%, 0.7) 0%,
+                        hsla(196, 100%, 50%, 1) 100%
+                    );
+                "
+        >
+          <div
+            id="photo"
+            class="relative z-10 rounded-full opacity-80 size-24 sm:size-28"
+            style=`
+                        box-shadow: 0px 0px 60px 1px hsla(210, 100%, 70%, 1);
+                        background-position: top center;
+                        background-size: cover;
+                        background-image: url('${profile.image.src}');`
+          >
+          </div>
+        </div>
+        <div class="py-2 flex flex-col self-stretch justify-between">
+          <h2
+            transition:name="full-name"
+            class="text-2xl sm:text-3xl overflow-auto line-clamp-1"
+          >
+            Sukhpreet Singh
+          </h2>
+          <RollingBlock sm rounded />
+          <div>
+            <p class="">
+              <span
+                class="py-0.5 px-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-500/50 dark:border-slate-500"
+              >
+                <TimeBlock />&nbsp;IST</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="flex flex-row gap-x-4">
+          <a
+            href={profile.links.email}
+            target="_blank"
+            rel="external"
+            class="group inline-flex tab-highlight-none items-center h-9 px-3 rounded-full
+                                text-sm font-semibold whitespace-nowrap
+                                border-2 box-border border-cyan-400
+                                dark:border-cyan-400
+                                bg-white
+								hover:bg-slate-100
+								
+                                dark:bg-gradient-to-tr
+                                dark:from-cyan-600 dark:to-cyan-800
+                                hover:from-cyan-100 hover:to-cyan-200
+                                
+                                dark:hover:from-cyan-500 dark:hover:to-cyan-700
+                                text-cyan-600
+                                hover:text-cyan-700
+                                
+                                dark:text-white/90
+                                dark:hover:text-white
+                                focus:outline-none
+                                focus:ring-2
+                                ring-offset-2
+                                focus:ring-cyan-500
+                                dark:ring-offset-slate-900
+                                dark:focus:ring-cyan-500"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              data-slot="icon"
+              class="w-5 h-5"
+            >
+              <path
+                d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
+              ></path>
+              <path
+                d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"
+              ></path>
+            </svg>
+
+            <span class="sr-only"> Personal Email Address</span>
+            <svg
+              class="overflow-visible ml-3 text-cyan-300 group-hover:text-cyan-400 dark:text-cyan-500 dark:group-hover:text-cyan-400"
+              width="3"
+              height="6"
+              viewBox="0 0 3 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M0 0L3 3L0 6"></path>
+            </svg>
+          </a>
+          <a
+            href={profile.links.linkedin}
+            target="_blank"
+            rel="external"
+            class="group inline-flex tab-highlight-none items-center h-9 px-3 rounded-full
+                                text-sm font-semibold whitespace-nowrap
+                                border-2 box-border border-blue-400
+                                dark:border-blue-400
+                                bg-white
+								hover:bg-slate-100
+								
+                                dark:bg-gradient-to-tr
+                                dark:from-blue-600 dark:to-blue-800
+                                hover:from-blue-100 hover:to-blue-200
+                                
+                                dark:hover:from-blue-500 dark:hover:to-blue-700
+                                text-blue-600
+                                hover:text-blue-700
+                                
+                                dark:text-white/90
+                                dark:hover:text-white
+                                focus:outline-none
+                                focus:ring-2
+                                ring-offset-2
+                                focus:ring-blue-500
+                                dark:ring-offset-slate-900
+                                dark:focus:ring-blue-500"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              ><path
+                d="M2 1C1.44772 1 1 1.44772 1 2V13C1 13.5523 1.44772 14 2 14H13C13.5523 14 14 13.5523 14 13V2C14 1.44772 13.5523 1 13 1H2ZM3.05 6H4.95V12H3.05V6ZM5.075 4.005C5.075 4.59871 4.59371 5.08 4 5.08C3.4063 5.08 2.925 4.59871 2.925 4.005C2.925 3.41129 3.4063 2.93 4 2.93C4.59371 2.93 5.075 3.41129 5.075 4.005ZM12 8.35713C12 6.55208 10.8334 5.85033 9.67449 5.85033C9.29502 5.83163 8.91721 5.91119 8.57874 6.08107C8.32172 6.21007 8.05265 6.50523 7.84516 7.01853H7.79179V6.00044H6V12.0047H7.90616V8.8112C7.8786 8.48413 7.98327 8.06142 8.19741 7.80987C8.41156 7.55832 8.71789 7.49825 8.95015 7.46774H9.02258C9.62874 7.46774 10.0786 7.84301 10.0786 8.78868V12.0047H11.9847L12 8.35713Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"></path></svg
+            >
+            <span class="sr-only"> Link to Linkedin</span>
+            <svg
+              class="overflow-visible ml-3 text-blue-300 group-hover:text-blue-400 dark:text-blue-500 dark:group-hover:text-blue-400"
+              width="3"
+              height="6"
+              viewBox="0 0 3 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M0 0L3 3L0 6"></path>
+            </svg>
+          </a>
+          <a
+            href={profile.links.x}
+            target="_blank"
+            rel="external"
+            class="group inline-flex tab-highlight-none items-center h-9 px-3 rounded-full
+                                text-sm font-semibold whitespace-nowrap
+                                border-2 box-border border-slate-500
+                                dark:border-slate-400
+                                bg-white
+								hover:bg-slate-100
+								
+                                dark:bg-gradient-to-tr
+                                dark:from-slate-800 dark:to-slate-950
+                                hover:from-blue-100 hover:to-blue-200
+                                
+                                dark:hover:from-slate-700 dark:hover:to-slate-900
+                                text-slate-800
+                                hover:text-slate-950
+                                
+                                dark:text-white/90
+                                dark:hover:text-white
+                                focus:outline-none
+                                focus:ring-2
+                                ring-offset-2
+                                focus:ring-slate-700
+                                dark:ring-offset-slate-900
+                                dark:focus:ring-slate-700"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 512 512"
+              ><path
+                fill="currentColor"
+                d="M389.2 48h70.6L305.6 224.2L487 464H345L233.7 318.6L106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"
+              ></path></svg
+            >
+            <span class="sr-only"> Link to X</span>
+            <svg
+              class="overflow-visible ml-3 text-slate-400 group-hover:text-slate-500 dark:text-slate-400 dark:group-hover:text-slate-200"
+              width="3"
+              height="6"
+              viewBox="0 0 3 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M0 0L3 3L0 6"></path>
+            </svg>
+          </a>
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="external"
+            class="group relative inline-flex tab-highlight-none items-center h-9 px-3 rounded-full
+                                    text-sm font-semibold whitespace-nowrap
+                                    
+                                    border-2 box-border border-slate-400
+                                    dark:border-slate-400
+                                    bg-white
+									hover:bg-slate-100
+                                    
+                                    text-slate-600
+                                    hover:text-slate-700
+                                    
+                                    dark:bg-slate-700
+                                    dark:hover:bg-slate-600
+                                    
+                                    dark:text-white/90
+                                    dark:hover:text-white
+                                    focus:outline-none
+                                    focus:ring-2
+                                    ring-offset-2
+                                    focus:ring-slate-500
+                                    dark:ring-offset-slate-900
+                                    dark:focus:ring-slate-500"
+          >
+            <svg
+              viewBox="0 0 28 28"
+              fill="#0F172A"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 fill-slate-1000 dark:fill-slate-200"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
+              ></path>
+            </svg>
+            <span class="sr-only">, utility-first fundamentals</span>
+            <svg
+              class="overflow-visible ml-3 text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
+              width="3"
+              height="6"
+              viewBox="0 0 3 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M0 0L3 3L0 6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+</Layout>

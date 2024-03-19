@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+
+    /* Dark Theme */
+    .dark {
+        --gray-0: 0 0% 0%;
+        /* Pure */
+        --gray-1: 0 0% 7%;
+        /* App background */
+        --gray-2: 0 0% 10%;
+        /* Subtle background */
+        --gray-3: 0 0% 13%;
+        /* UI element background */
+        --gray-4: 0 0% 16%;
+        /* Hovered UI element background */
+        --gray-5: 0 0% 19%;
+        /* Active / Selected UI element background */
+        --gray-6: 0 0% 23%;
+        /* Subtle borders and separators */
+        --gray-7: 0 0% 28%;
+        /* UI element border and focus rings */
+        --gray-8: 0 0% 38%;
+        /* Hovered UI element border */
+        --gray-9: 0 0% 43%;
+        /* Solid backgrounds */
+        --gray-10: 0 0% 48%;
+        /* Hovered solid backgrounds */
+        --gray-11: 0 0% 71%;
+        /* Low-contrast text */
+        --gray-12: 0 0% 93%;
+        /* High-contrast text */
+        --gray-13: 0 0% 97%;
+        /* Inverted */
+
+        /* Dark Theme Blue Shades */
+        --blue-0: 215deg 38% 5%;
+        --blue-1: 215deg 42% 9%;
+        --blue-2: 218deg 39% 11%;
+        --blue-3: 212deg 69% 16%;
+        --blue-4: 209deg 100% 19%;
+        --blue-5: 207deg 100% 23%;
+        --blue-6: 209deg 79% 30%;
+        --blue-7: 211deg 66% 37%;
+        --blue-8: 211deg 65% 45%;
+        --blue-9: 206deg 100% 50%;
+        --blue-10: 210deg 100% 62%;
+        --blue-11: 210deg 100% 72%;
+        --blue-12: 205deg 100% 88%;
+        --blue-13: 210deg 100% 100%;
+    }
+
+    /* Light Theme */
+    :root {
+        --gray-0: 0deg 0% 100%;
+        /* Pure */
+        --gray-1: 0deg 0% 99%;
+        /* App background */
+        --gray-2: 0deg 0% 98%;
+        /* Subtle background */
+        --gray-3: 0deg 0% 94%;
+        /* UI element background */
+        --gray-4: 0deg 0% 91%;
+        /* Hovered UI element background */
+        --gray-5: 0deg 0% 88%;
+        /* Active / Selected UI element background */
+        --gray-6: 0deg 0% 85%;
+        /* Subtle borders and separators */
+        --gray-7: 0deg 0% 81%;
+        /* UI element border and focus rings */
+        --gray-8: 0deg 0% 73%;
+        /* Hovered UI element border */
+        --gray-9: 0deg 0% 55%;
+        /* Solid backgrounds */
+        --gray-10: 0deg 0% 51%;
+        /* Hovered solid backgrounds */
+        --gray-11: 0deg 0% 39%;
+        /* Low-contrast text */
+        --gray-12: 0deg 0% 13%;
+        /* High-contrast text */
+        --gray-13: 0deg 0% 1%;
+        /* Inverted */
+
+        /* Light Theme Blue Shades */
+        --blue-0: 210deg 100% 100%;
+        --blue-1: 210deg 100% 99%;
+        --blue-2: 207deg 100% 98%;
+        --blue-3: 205deg 92% 95%;
+        --blue-4: 203deg 100% 92%;
+        --blue-5: 206deg 100% 88%;
+        --blue-6: 207deg 93% 83%;
+        --blue-7: 207deg 85% 76%;
+        --blue-8: 206deg 82% 65%;
+        --blue-9: 206deg 100% 50%;
+        --blue-10: 207deg 96% 48%;
+        --blue-11: 208deg 88% 43%;
+        --blue-12: 216deg 71% 23%;
+        --blue-13: 216deg 68% 17%;
+    }
+}

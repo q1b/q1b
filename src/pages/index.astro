@@ -264,11 +264,11 @@ const profile = ((await getEntry('profile', 'default')) as CollectionEntry<'prof
 		</div>
 		<div class="mt-12 flex flex-col items-center">
 			<h2 class="text-4xl">Projects</h2>
-			<ul class="mt-12 grid grid-cols-2 gap-6">
+			<ul class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
 				<li
 					class="rounded-2xl border bg-white px-3 pb-4 pt-2 shadow-xl shadow-slate-300/30 dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-950/20"
 				>
-					<div class="flex items-center justify-between">
+					<div class="flex flex-col justify-between lg:flex-row lg:items-center">
 						<h3 class="text-4xl text-blue-500 dark:text-sky-400">
 							<a
 								class="tab-highlight-none"
@@ -396,7 +396,7 @@ const profile = ((await getEntry('profile', 'default')) as CollectionEntry<'prof
 				<li
 					class="rounded-2xl border bg-white px-3 pb-4 pt-2 shadow-xl shadow-slate-300/30 dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-950/20"
 				>
-					<div class="flex items-center justify-between">
+					<div class="flex flex-col justify-between lg:flex-row lg:items-center">
 						<h3 class="text-4xl text-blue-500 dark:text-sky-400">
 							<a class="tab-highlight-none" href="https://bhuman.ai" target="_blank" rel="external">
 								MVP for bhuman.ai

@@ -1,211 +1,190 @@
 ---
-import { ViewTransitions } from "astro:transitions";
-import "../styles/root.css";
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/root.css';
 
 export type Image = {
-  src: string;
-  alt?: string;
+	src: string;
+	alt?: string;
 };
 
 export type SEOMetadata = {
-  name: string;
-  title: string;
-  description: string;
-  image?: Image;
-  canonicalURL: URL | string;
-  locale?: string;
+	name: string;
+	title: string;
+	description: string;
+	image?: Image;
+	canonicalURL: URL | string;
+	locale?: string;
 };
 
 export type OpenGraph = Partial<SEOMetadata> & {
-  type?: string;
+	type?: string;
 };
 
 export type Twitter = Partial<SEOMetadata> & {
-  handle?: string;
-  card?: "summary" | "summary_large_image";
+	handle?: string;
+	card?: 'summary' | 'summary_large_image';
 };
 
 export type Props = SEOMetadata & {
-  og?: OpenGraph;
-  twitter?: Twitter;
-  theme: string;
-  class: string;
-  extras?: { githubEditUrl?: string };
+	og?: OpenGraph;
+	twitter?: Twitter;
+	theme: string;
+	class: string;
+	extras?: { githubEditUrl?: string };
 };
 
 const {
-  name,
-  title,
-  class: className,
-  theme: themeColor,
-  description,
-  image: imageProp,
-  locale = "en",
-  canonicalURL,
-  extras,
+	name,
+	title,
+	class: className,
+	theme: themeColor,
+	description,
+	image: imageProp,
+	locale = 'en',
+	canonicalURL,
+	extras,
 } = Astro.props as Props;
 
 const image = imageProp && {
-  src: new URL(imageProp.src, Astro.site).toString(),
-  alt: imageProp.alt,
+	src: new URL(imageProp.src, Astro.site).toString(),
+	alt: imageProp.alt,
 };
 
 const og = {
-  name,
-  title,
-  description,
-  canonicalURL,
-  image,
-  locale,
-  type: "website",
-  ...Astro.props.og,
+	name,
+	title,
+	description,
+	canonicalURL,
+	image,
+	locale,
+	type: 'website',
+	...Astro.props.og,
 } satisfies OpenGraph;
 
 const twitter = {
-  name,
-  title,
-  description,
-  canonicalURL,
-  image,
-  locale,
-  card: "summary_large_image",
-  ...Astro.props.twitter,
+	name,
+	title,
+	description,
+	canonicalURL,
+	image,
+	locale,
+	card: 'summary_large_image',
+	...Astro.props.twitter,
 } satisfies Twitter;
 
-const ensureTrailingSlash = (url: string | URL) =>
-  url.toString().replace(/\/$/, "") + "/";
+const ensureTrailingSlash = (url: string | URL) => url.toString().replace(/\/$/, '') + '/';
 ---
 
 <!doctype html>
 <html lang="en" dir="ltr">
-  <head>
-    <!-- Global Metadata -->
-    <meta charset="UTF-8" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content={themeColor} />
+	<head>
+		<!-- Global Metadata -->
+		<meta charset="UTF-8" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content={themeColor} />
 
-    <link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 
-    <link rel="icon" href="/logo/favicon.ico" sizes="48x48" />
-    <link
-      rel="icon"
-      href="/logo/favicon.svg"
-      sizes="any"
-      type="image/svg+xml"
-    />
+		<link rel="icon" href="/logo/favicon.ico" sizes="48x48" />
+		<link rel="icon" href="/logo/favicon.svg" sizes="any" type="image/svg+xml" />
 
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      href="/rss.xml"
-      title="RSS"
-    />
+		<link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS" />
 
-    <!-- Page Metadata -->
-    <meta name="generator" content={Astro.generator} />
+		<!-- Page Metadata -->
+		<meta name="generator" content={Astro.generator} />
 
-    {
-      canonicalURL && (
-        <link rel="canonical" href={ensureTrailingSlash(canonicalURL)} />
-      )
-    }
-    <title>{title}</title>
-    <meta name="description" content={description} />
+		{canonicalURL && <link rel="canonical" href={ensureTrailingSlash(canonicalURL)} />}
+		<title>{title}</title>
+		<meta name="description" content={description} />
 
-    <!-- OpenGraph Tags -->
-    <meta property="og:title" content={og.title} />
-    <meta property="og:type" content={og.type} />
-    {
-      og.canonicalURL && (
-        <meta
-          property="og:url"
-          content={ensureTrailingSlash(og.canonicalURL)}
-        />
-      )
-    }
-    <meta property="og:locale" content={og.locale} />
-    <meta property="og:description" content={og.description} />
-    <meta property="og:site_name" content={og.name} />
-    {og.image && <meta property="og:image" content={og.image.src} />}
-    {og.image?.alt && <meta property="og:image:alt" content={og.image.alt} />}
+		<!-- OpenGraph Tags -->
+		<meta property="og:title" content={og.title} />
+		<meta property="og:type" content={og.type} />
+		{og.canonicalURL && <meta property="og:url" content={ensureTrailingSlash(og.canonicalURL)} />}
+		<meta property="og:locale" content={og.locale} />
+		<meta property="og:description" content={og.description} />
+		<meta property="og:site_name" content={og.name} />
+		{og.image && <meta property="og:image" content={og.image.src} />}
+		{og.image?.alt && <meta property="og:image:alt" content={og.image.alt} />}
 
-    <!-- Twitter Tags -->
-    {twitter.card && <meta name="twitter:card" content={twitter.card} />}
-    {twitter.handle && <meta name="twitter:site" content={twitter.handle} />}
+		<!-- Twitter Tags -->
+		{twitter.card && <meta name="twitter:card" content={twitter.card} />}
+		{twitter.handle && <meta name="twitter:site" content={twitter.handle} />}
 
-    <meta name="twitter:title" content={twitter.title} />
-    <meta name="twitter:description" content={twitter.description} />
-    {twitter.image && <meta name="twitter:image" content={twitter.image.src} />}
-    {
-      twitter.image?.alt && (
-        <meta name="twitter:image:alt" content={twitter.image.alt} />
-      )
-    }
-    <ViewTransitions />
-    <!-- On page load or when changing themes, best to add inline in `head` to avoid FOUC -->
-    <script is:inline>
-      const onClick = () => {
-        // flip current value
-        theme.value = theme.value === "light" ? "dark" : "light";
+		<meta name="twitter:title" content={twitter.title} />
+		<meta name="twitter:description" content={twitter.description} />
+		{twitter.image && <meta name="twitter:image" content={twitter.image.src} />}
+		{twitter.image?.alt && <meta name="twitter:image:alt" content={twitter.image.alt} />}
+		<ViewTransitions />
+		<!-- On page load or when changing themes, best to add inline in `head` to avoid FOUC -->
+		<script is:inline>
+			const onClick = () => {
+				// flip current value
+				theme.value = theme.value === 'light' ? 'dark' : 'light';
 
-        setPreference();
-      };
+				setPreference();
+			};
+			let id = null;
+			const getColorPreference = () => {
+				if ('theme' in localStorage) return localStorage.theme;
+				else return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			};
 
-      const getColorPreference = () => {
-        if ("theme" in localStorage) return localStorage.theme;
-        else
-          return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-      };
+			const setPreference = () => {
+				localStorage.setItem('theme', theme.value);
+				reflectPreference();
+			};
 
-      const setPreference = () => {
-        localStorage.setItem("theme", theme.value);
-        reflectPreference();
-      };
+			const reflectPreference = () => {
+				document.firstElementChild?.setAttribute('data-theme', theme.value);
 
-      const reflectPreference = () => {
-        document.firstElementChild?.setAttribute("data-theme", theme.value);
+				if (theme.value === 'dark') {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
 
-        if (theme.value === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
+				document.querySelector('#theme-toggle')?.setAttribute('aria-label', theme.value);
+			};
 
-        document
-          .querySelector("#theme-toggle")
-          ?.setAttribute("aria-label", theme.value);
-      };
+			const theme = {
+				value: getColorPreference() ?? 'light',
+			};
 
-      const theme = {
-        value: getColorPreference() ?? "light",
-      };
+			// set early so no page flashes / CSS is made aware
+			reflectPreference();
 
-      // set early so no page flashes / CSS is made aware
-      reflectPreference();
+			window.onload = () => {
+				// set on load so screen readers can see latest value on the button
+				reflectPreference();
 
-      window.onload = () => {
-        // set on load so screen readers can see latest value on the button
-        reflectPreference();
+				console.log('RUNNING');
+				// now this script can find and listen for clicks on the control
+				document.querySelector('#theme-toggle')?.addEventListener('click', onClick);
+			};
 
-        // now this script can find and listen for clicks on the control
-        document
-          .querySelector("#theme-toggle")
-          ?.addEventListener("click", onClick);
-      };
+			// sync with system changes
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches: isDark }) => {
+				theme.value = isDark ? 'dark' : 'light';
+				setPreference();
+			});
 
-      // sync with system changes
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", ({ matches: isDark }) => {
-          theme.value = isDark ? "dark" : "light";
-          setPreference();
-        });
-    </script>
-  </head>
-  <body class={className}>
-    <slot />
-  </body>
+			document.addEventListener('astro:before-swap', (ev) => {
+				ev.newDocument.firstElementChild?.setAttribute('data-theme', theme.value);
+
+				if (theme.value === 'dark') {
+					ev.newDocument.documentElement.classList.add('dark');
+				} else {
+					ev.newDocument.documentElement.classList.remove('dark');
+				}
+
+				ev.newDocument.querySelector('#theme-toggle')?.setAttribute('aria-label', theme.value);
+				ev.newDocument.querySelector('#theme-toggle')?.addEventListener('click', onClick, { passive: true });
+			});
+		</script>
+	</head>
+	<body class={className}>
+		<slot />
+	</body>
 </html>

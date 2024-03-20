@@ -1,45 +1,38 @@
 ---
-import { getEntry, type CollectionEntry } from "astro:content";
-import Wrapper from "./Wrapper.astro";
-import Logo from "@/components/Logo.astro";
-import ThemeButton from "@/lib/theme/Button.astro";
+import { getEntry, type CollectionEntry } from 'astro:content';
+import Wrapper from './Wrapper.astro';
+import Logo from '@/components/Logo.astro';
+import ThemeButton from '@/lib/theme/Button.astro';
+import HomeIcon from '@/components/icons/Home.astro';
+import Resume from '@/components/icons/Resume.astro';
+import ContentView from '@/components/icons/ContentView.astro';
 
 export type Props = {
-  title?: string;
-  description?: string;
-  image?: { src: string; alt: string };
-  pageType?: "article" | "website";
-  class?: string;
+	title?: string;
+	description?: string;
+	image?: { src: string; alt: string };
+	pageType?: 'article' | 'website';
+	class?: string;
 };
 
-const site = (
-  (await getEntry(
-    "site-settings",
-    "default",
-  )) as CollectionEntry<"site-settings">
-).data;
+const site = ((await getEntry('site-settings', 'default')) as CollectionEntry<'site-settings'>).data;
 
 // const profile = (
 //   (await getEntry("profile", "data")) as CollectionEntry<"profile">
 // ).data;
 
 const {
-  title = site.title,
-  description = site.description,
-  image = site.image,
-  pageType = "website",
-  class: className,
+	title = site.title,
+	description = site.description,
+	image = site.image,
+	pageType = 'website',
+	class: className,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.request.url, Astro.site);
 const currentPage = Astro.url.pathname;
 
-const rotatings = [
-  "Yoga Instructor",
-  "Software Developer",
-  "Basketball Player",
-  "Content Creator",
-];
+const rotatings = ['Yoga Instructor', 'Software Developer', 'Basketball Player', 'Content Creator'];
 ---
 
 <!-- <script>
@@ -53,42 +46,60 @@ const rotatings = [
   annotation.show();
 </script> -->
 <Wrapper
-  class={"px-4 py-6 min-h-screen bg-slate-100 text-slate-900 dark:text-white dark:bg-slate-900 flex flex-col items-center w-full " +
-    className}
-  name={title}
-  title={title}
-  description={description}
-  theme={"#1e293b"}
-  twitter={{ handle: "_q1b_" }}
-  og={{ type: pageType }}
-  canonicalURL={canonicalURL}
-  image={image}
+	class={'px-4 py-6 min-h-screen bg-slate-100 text-slate-900 dark:text-white dark:bg-slate-900 flex flex-col items-center w-full ' +
+		className}
+	name={title}
+	title={title}
+	description={description}
+	theme={'#1e293b'}
+	twitter={{ handle: '_q1b_' }}
+	og={{ type: pageType }}
+	canonicalURL={canonicalURL}
+	image={image}
 >
-  <header
-    class="shadow-sm bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-800 border w-full max-w-5xl rounded-full flex items-center justify-between h-12 px-2"
-  >
-    <div class="flex items-center gap-x-3">
-      <a href="/">
-        <Logo />
-      </a>
-      <h2
-        transition:persist="greetings"
-        id="greetings"
-        class="font-bold selection:bg-layer-6 w-max p-1 hidden sm:block"
-      >
-        Hello!
-      </h2>
-    </div>
-    <div class="flex gap-x-4 sm:gap-x-6 items-center">
-      <ThemeButton />
-      <nav class="flex items-center gap-x-4 pr-2">
-        <a href="/">Home</a>
-        <a href="/writings">Writings</a>
-        <a href="/resume">Resume</a>
-      </nav>
-    </div>
-  </header>
-  <!-- {
+	<header class="flex h-12 w-full max-w-5xl items-center justify-between rounded-full px-2">
+		<div class="flex items-center gap-x-3">
+			<a href="/">
+				<Logo />
+			</a>
+			<h2
+				transition:persist="greetings"
+				id="greetings"
+				class="selection:bg-layer-6 hidden w-max p-1 font-bold sm:block"
+			>
+			</h2>
+		</div>
+		<div class="flex items-center gap-x-4 sm:gap-x-6">
+			<ThemeButton />
+			<nav class="flex items-center gap-x-2">
+				<a
+					aria-current={currentPage === '/' ? 'true' : 'false'}
+					href="/"
+					class="group flex scale-[0.98] select-none items-center gap-x-1 rounded-full border border-slate-200 bg-slate-400/10 px-2 py-1 transition-all hover:scale-100 hover:border-slate-300 hover:bg-slate-50 active:scale-[0.96] aria-[current='true']:scale-100 aria-[current='true']:bg-blue-500 aria-[current='true']:text-white dark:border-slate-700 dark:hover:bg-slate-800 dark:aria-[current='true']:bg-blue-500"
+				>
+					<HomeIcon size="xs" />
+					<span>Home</span>
+				</a>
+				<a
+					aria-current={currentPage === '/writings' ? 'true' : 'false'}
+					href="/writings"
+					class="group flex scale-[0.98] select-none items-center gap-x-1 rounded-full border border-slate-200 bg-slate-400/10 px-2 py-1 transition-all hover:scale-100 hover:border-slate-300 hover:bg-slate-50 active:scale-[0.96] aria-[current='true']:scale-100 aria-[current='true']:bg-blue-500 aria-[current='true']:text-white dark:border-slate-700 dark:hover:bg-slate-800 dark:aria-[current='true']:bg-blue-500"
+				>
+					<ContentView size="sm" />
+					<span>Writings</span>
+				</a>
+				<a
+					aria-current={currentPage === '/resume' ? 'true' : 'false'}
+					href="/resume"
+					class="group flex scale-[0.98] select-none items-center gap-x-1 rounded-full border border-slate-200 bg-slate-400/10 px-2 py-1 transition-all hover:scale-100 hover:border-slate-300 hover:bg-slate-50 active:scale-[0.96] aria-[current='true']:scale-100 aria-[current='true']:bg-blue-500 aria-[current='true']:text-white dark:border-slate-700 dark:hover:bg-slate-800 dark:aria-[current='true']:bg-blue-500"
+				>
+					<Resume size="sm" />
+					<span>Resume</span>
+				</a>
+			</nav>
+		</div>
+	</header>
+	<!-- {
     currentPage !== "/" && (
       <a
         href="/"
@@ -98,61 +109,59 @@ const rotatings = [
       </a>
     )
   } -->
-  <slot />
-  <footer class="flex gap-x-4 mt-auto">
-    <div
-      class="w-full bg-gradient-to-tr from-indigo-700/50 to-indigo-400/80 dark:from-slate-500/50 dark:to-slate-700/70 dark:shadow-sm max-w-3xl pl-4 pr-8 pt-4 pb-4 rounded-lg flex flex-col sm:flex-row gap-4 justify-between"
-    >
-      <div class="flex flex-col gap-y-4">
-        <h2 class="text-3xl mb-1 text-white font-bold font-robotic">
-          Sukhpreet Singh
-        </h2>
-        <h4 class="text-xl text-white/80 font-semibold font-robotic">
-          Open Source, Self Motivated <br /> Front-end Developer
-        </h4>
-      </div>
-      <div class="flex flex-row gap-x-8 gap-y-3 xs:flex-col sm:flex-row">
-        <div class="font-robotic">
-          <h2
-            style="text-shadow: 0px 0px 1px #0007;"
-            class="text-indigo-600 dark:text-slate-400 mb-1 text-sm font-semibold"
-          >
-            Sitemap
-          </h2>
-          <ul
-            class="text-white font-medium dark:text-white/80 dark:font-normal flex flex-col gap-y-1 ml-1 pl-2 border-l-2 border-indigo-500 dark:border-slate-500"
-          >
-            <li>
-              <a
-                href="/writings"
-                class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
-                title="Link to Learnings"
-              >
-                Writings
-              </a>
-            </li>
-            <li>
-              <a
-                href="/resume"
-                class="group inline-flex items-center justify-center gap-x-1 xs:gap-x-2"
-                title="Link to Resume"
-              >
-                Resume
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="font-robotic max-[332px]:hidden">
-          <h2
-            style="text-shadow: 0px 0px 1px #0007;"
-            class="text-indigo-600 dark:text-slate-400 mb-1 text-sm font-semibold"
-          >
-            Social Links
-          </h2>
-          <ul
-            class="text-white font-medium dark:text-white/80 dark:font-normal flex flex-col gap-y-1 ml-1 pl-2 border-l-2 border-indigo-500 dark:border-slate-500"
-          >
-            <!-- {
+	<slot />
+	<footer class="mt-auto flex gap-x-4">
+		<div
+			class="flex w-full max-w-3xl flex-col justify-between gap-4 rounded-lg bg-gradient-to-tr from-indigo-700/50 to-indigo-400/80 pb-4 pl-4 pr-8 pt-4 sm:flex-row dark:from-slate-500/50 dark:to-slate-700/70 dark:shadow-sm"
+		>
+			<div class="flex flex-col gap-y-4">
+				<h2 class="font-robotic mb-1 text-3xl font-bold text-white">Sukhpreet Singh</h2>
+				<h4 class="font-robotic text-xl font-semibold text-white/80">
+					Open Source, Self Motivated <br /> Front-end Developer
+				</h4>
+			</div>
+			<div class="xs:flex-col flex flex-row gap-x-8 gap-y-3 sm:flex-row">
+				<div class="font-robotic">
+					<h2
+						style="text-shadow: 0px 0px 1px #0007;"
+						class="mb-1 text-sm font-semibold text-indigo-600 dark:text-slate-400"
+					>
+						Sitemap
+					</h2>
+					<ul
+						class="ml-1 flex flex-col gap-y-1 border-l-2 border-indigo-500 pl-2 font-medium text-white dark:border-slate-500 dark:font-normal dark:text-white/80"
+					>
+						<li>
+							<a
+								href="/writings"
+								class="xs:gap-x-2 group inline-flex items-center justify-center gap-x-1"
+								title="Link to Learnings"
+							>
+								Writings
+							</a>
+						</li>
+						<li>
+							<a
+								href="/resume"
+								class="xs:gap-x-2 group inline-flex items-center justify-center gap-x-1"
+								title="Link to Resume"
+							>
+								Resume
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="font-robotic max-[332px]:hidden">
+					<h2
+						style="text-shadow: 0px 0px 1px #0007;"
+						class="mb-1 text-sm font-semibold text-indigo-600 dark:text-slate-400"
+					>
+						Social Links
+					</h2>
+					<ul
+						class="ml-1 flex flex-col gap-y-1 border-l-2 border-indigo-500 pl-2 font-medium text-white dark:border-slate-500 dark:font-normal dark:text-white/80"
+					>
+						<!-- {
               profile.links.map(({ platform, link }) => {
                 return (
                   <li>
@@ -168,10 +177,10 @@ const rotatings = [
                 );
               })
             } -->
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class=""></div>
-  </footer>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class=""></div>
+	</footer>
 </Wrapper>

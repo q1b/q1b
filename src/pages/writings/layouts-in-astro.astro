@@ -1,27 +1,95 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { Code } from "astro:components";
 ---
+
 <Layout>
-<main class="w-full max-w-5xl">
-    <div class="mt-16">
-        <div class="flex flex-wrap gap-4 justify-between items-center">
-            <h2 class="text-4xl sm:text-6xl text-indigo-400">Writing</h2>
-            <span
-                class="text-xl sm:text-2xl px-2 sm:px-3 py-1 sm:py-2 rounded-full border border-slate-500/20"
-                >22nd March 2024</span
+    <main class="w-full max-w-5xl">
+        <div class="mt-16">
+            <div class="flex flex-wrap gap-4 justify-between items-center">
+                <h2 class="text-2xl sm:text-4xl text-indigo-400">Writing</h2>
+                <span
+                    class="text-base sm:text-xl px-2 sm:px-3 py-1 sm:py-2 rounded-full border border-slate-500/20"
+                >
+                    22nd March 2024
+                </span>
+            </div>
+            <h1
+                class="text-6xl font-semibold text-pretty sm:text-8xl text-slate-600 dark:text-slate-200 mt-8"
             >
+                Layouts in Astro
+            </h1>
         </div>
-        <h1 class="text-6xl text-pretty sm:text-8xl text-slate-600 dark:text-slate-200 mt-8">
-            Layouts in Astro
-        </h1>
-    </div>
-    <div class="mt-16">
-        <h2 class="text-3xl text-slate-600 dark:text-slate-300">Summary</h2>
-        <p
-            class="text-xl text-slate-500 dark:text-slate-400 mt-2 max-w-prose"
-        >
-            Understanding how to use layout efficiently in Astro, helps you with better structuring of your codebase allowing you to leverage same structure, optimising for SEO and producing a more maintainable website along with you can use it as entry point for loading third party script, accross your website!
-        </p>
-    </div>
+        <div class="mt-16">
+            <h2 class="text-3xl text-slate-600 dark:text-slate-300">Summary</h2>
+            <p
+                class="text-xl text-slate-500 dark:text-slate-400 mt-2 max-w-prose"
+            >
+                Understanding how to use layout efficiently in Astro, helps you
+                with better structuring of your codebase allowing you to
+                leverage same structure, optimising for SEO and producing a more
+                maintainable website along with you can use it as entry point
+                for loading third party script, accross your website!
+            </p>
+        </div>
+        <div class="mt-12">
+            <h3 class="text-2xl text-slate-700 dark:text-slate-200">
+                Layouts are used for:
+            </h3>
+            <ul
+                class="flex list-disc list-inside flex-col gap-y-6 mt-6 text-slate-600 dark:text-slate-300 text-3xl pl-6"
+            >
+                <li class="">Structuring the skeleton of your website</li>
+                <li class="">
+                    As a Entry point for third party script loading
+                </li>
+                <li class="">
+                    Meta Details of your website such as Title, Description,
+                    Cover Image ...
+                </li>
+                <li class="">
+                    Preloading Fonts, Initializing Service Workers for PWAs
+                </li>
+            </ul>
+        </div>
+        <div class="mt-12 pb-4 flex flex-col items-center">
+            <div class="w-full max-w-fit">
+                <h2 class="text-2xl mb-6">
+                    Layout Structure of a Basic Website
+                </h2>
+                <Code
+                    code={`---
+import Footer from '../components/Footer.astro';
+const { title } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Posts</a>
+      <a href="#">Contact</a>
+    </nav>
+    <h1>{title}</h1>
+    <article>
+      <slot /> <!-- your content is injected here -->
+    </article>
+    <Footer />
+  </body>
+</html>
+`}
+                    lang="astro"
+                    class="rounded-md px-3 max-w-fit py-2"
+                    theme={"nord"}
+                />
+                <span class="relative top-2 dark:text-slate-400 text-slate-600"
+                    >Example Taken from official Astro docs</span
+                >
+            </div>
+        </div>
     </main>
 </Layout>

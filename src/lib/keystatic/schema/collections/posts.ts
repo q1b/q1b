@@ -8,7 +8,7 @@ export const posts = collection({
 	format: {
 		contentField: 'content',
 	},
-	path: 'src/contentposts/*',
+	path: 'src/content/posts/*',
 	slugField: 'title',
 	schema: {
 		title: fields.slug({

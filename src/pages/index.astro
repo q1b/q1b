@@ -2,7 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import RollingBlock from '@/components/RollingBlock.astro';
 import TimeBlock from '@/components/web-components/time-block.astro';
-import type { CollectionEntry, DataEntryMap } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 
 //Icons
@@ -431,7 +431,7 @@ const profile = ((await getEntry('profile', 'default')) as CollectionEntry<'prof
 						from scratch.
 					</p>
 						<div class="flex flex-col sm:flex-row gap-4 mt-4">
-						<a
+							<a
 							href="/project/BHumanAI-MVP"
 							class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
                                     rounded-full border-2 border-slate-200

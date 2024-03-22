@@ -1,16 +1,18 @@
 {
-    "extends": "astro/tsconfigs/strict",
-    "compilerOptions": {
-        "strictNullChecks": true,
-        "types": [
-            "@cloudflare/workers-types/2023-07-01"
-        ],
-        "baseUrl": ".",
-        "allowJs": true,
-        "paths": {
-            "@/*": [
-                "src/*"
-            ],
-        }
-    }
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "types": [
+      "@cloudflare/workers-types/2023-07-01"
+    ],
+    "baseUrl": "/Users/sukhpreetsingh/apps/q1b-v4",
+    "allowJs": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

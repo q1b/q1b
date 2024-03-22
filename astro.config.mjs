@@ -3,14 +3,16 @@ import cloudflare from "@astrojs/cloudflare";
 import tailwind from "@astrojs/tailwind";
 import markdoc from "@astrojs/markdoc";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  site: 'http://locahost:3000/',
+  site: 'https://sukhpreet.dev',
   adapter: cloudflare({
     runtime: {
-      mode: "local",
-    },
+      mode: "local"
+    }
   }),
-  integrations: [tailwind(), markdoc()]
+  integrations: [tailwind(), markdoc(), react()]
 });

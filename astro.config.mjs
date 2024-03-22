@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 import cloudflare from "@astrojs/cloudflare";
-
 import tailwind from "@astrojs/tailwind";
+
+import markdoc from "@astrojs/markdoc";
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,5 +13,5 @@ export default defineConfig({
       mode: "local"
     }
   }),
-  integrations: [tailwind()]
+  integrations: [tailwind(), markdoc()]
 });

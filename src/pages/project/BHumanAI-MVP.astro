@@ -1,0 +1,296 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import msgImg from "./msg.png";
+import documentImg from "./document.png";
+---
+
+<Layout>
+	<main class="w-full max-w-5xl">
+		<div class="mt-16">
+			<div class="flex justify-between items-center">
+				<h2 class="text-6xl text-indigo-400">Project</h2>
+				<span
+					class="text-2xl px-3 py-2 rounded-full border border-slate-500/20"
+					>March to July 2022</span
+				>
+			</div>
+			<h1 class="text-8xl text-slate-600 dark:text-slate-200 mt-8">
+				Minimal Viable Product for BhumanAI
+			</h1>
+		</div>
+		<div class="mt-16">
+			<h2 class="text-3xl text-slate-600 dark:text-slate-300">Summary</h2>
+			<p
+				class="text-xl text-slate-500 dark:text-slate-400 mt-2 max-w-prose"
+			>
+				Generating Multiple Videos with Lip-Sync Support from Single
+				Source Video, in which the timestamps are specified by user and
+				the text to be spoken by the character in the video is mapped to
+				a recorded audio and the output video contains replaced audio
+				and lip-synced character.
+			</p>
+		</div>
+		<div class="mt-12">
+			<h3 class="text-2xl">
+				As a Front-end Developer, I was responsible for the following
+				tasks:
+			</h3>
+			<ul
+				class="flex flex-col gap-y-6 mt-6 text-slate-600 dark:text-slate-300 text-xl pl-6"
+			>
+				<li>
+					Implementing Video Recorder on Web along with User can
+					upload a video
+				</li>
+				<li>
+					Builting a CSV Editor for User to label the recorded audio
+					to the specified timestamps
+				</li>
+				<li>
+					Workspace, Folder and File Structure implementation using
+					solid-js store and axios for API calls to backend
+				</li>
+				<li>
+					Building a timeline for selecting variables and mapping them
+					to different timestamps in the Video Panel
+				</li>
+			</ul>
+		</div>
+		<div class="mt-12">
+			<h2 class="text-2xl">Used:</h2>
+			<ul
+				class="flex mt-6 gap-4 flex-wrap text-slate-600 dark:text-slate-300 text-xl pl-6"
+			>
+				<li>TypeScript Programming Language</li>
+				<li>Solid-js Front-end Web Framework</li>
+				<li>Tailwindcss as a CSS Framework</li>
+				<li>Axios for handling the REST API Calls</li>
+			</ul>
+		</div>
+		<div class="my-16">
+			<h2 class="text-3xl mb-12">
+				Raw Prototyping Videos of the Platform
+			</h2>
+			<div class="grid grid-cols-2 gap-12">
+				<div
+					class="rounded-md"
+					style="position: relative; padding-bottom: 56.07613469985358%; height: 0;"
+				>
+					<iframe
+						src="https://www.loom.com/embed/369b9cf64e754a1b9a3a319d18ae8b19?sid=b291114a-7d18-4c32-b8af-2a1dee7c7a4e"
+						frameborder="0"
+						webkitallowfullscreen
+						mozallowfullscreen
+						allowfullscreen
+						style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+					></iframe>
+				</div>
+				<div
+					class="rounded-md"
+					style="position: relative; padding-bottom: 56.22254758418741%; height: 0;"
+				>
+					<iframe
+						src="https://www.loom.com/embed/f5f32d46097e433fb6ab6592d4526aac?sid=db76cdc3-b337-4d89-bc3e-2d6c0b96f60d"
+						frameborder="0"
+						webkitallowfullscreen
+						mozallowfullscreen
+						allowfullscreen
+						style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+					></iframe>
+				</div>
+			</div>
+		</div>
+
+		<div class="my-16">
+			<h2 class="text-3xl mb-12">
+				Testimonials from the CEO of Bhuman.ai
+			</h2>
+			<Image
+				class="rounded-xl max-w-xl shadow"
+				src={msgImg}
+				alt="Testimonials"
+			/>
+		</div>
+		<!-- https://solid-spreadsheet.vercel.app/ -->
+		<p class="mt-12 text-xl max-w-prose text-slate-600 dark:text-slate-300">
+			concluding, the amount of work and in short time shipping something
+			to production helped me to better understand the startup culture of
+			being a small family, working alongside team, collaborating with
+			others and focused on our goals, it's usually burn out days which
+			made the weekends fun for me, spending time on some of my
+			side-projects!
+		</p>
+		<div class="mb-28 mt-12 inline-flex items-center gap-x-4">
+			<button
+				class="show tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
+						rounded-full border-2 border-slate-200
+						bg-white px-3 text-sm
+						font-semibold
+						text-slate-600
+						ring-offset-2
+						hover:bg-slate-50
+						hover:text-slate-700
+						focus:outline-none
+						focus:ring-2
+						focus:ring-slate-500
+						dark:border-slate-700
+						dark:bg-slate-800/50
+						dark:text-white/95
+						dark:ring-offset-slate-900
+						dark:hover:bg-slate-800
+						dark:hover:text-white
+						dark:focus:ring-slate-500"
+			>
+				<svg
+					class="fill-slate-100 h-6 w-6 dark:fill-slate-200"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+					><path
+						fill="currentColor"
+						d="M5.75 3h8.5A2.75 2.75 0 0 1 17 5.75v3.651a2.98 2.98 0 0 0-1-.36V5.75A1.75 1.75 0 0 0 14.25 4h-8.5A1.75 1.75 0 0 0 4 5.75v8.5c0 .966.784 1.75 1.75 1.75h5.3c-.033.162-.05.329-.05.5c0 .167.013.334.038.5H5.75A2.75 2.75 0 0 1 3 14.25v-8.5A2.75 2.75 0 0 1 5.75 3Zm3.75 7h3.764a2.997 2.997 0 0 0-.593 1H9.5a.5.5 0 0 1 0-1Zm0 3h3.17c.132.373.336.711.594 1H9.5a.5.5 0 0 1 0-1Zm-2-5.75a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0ZM6.75 11a.75.75 0 1 0 0-1.5a.75.75 0 0 0 0 1.5Zm0 3a.75.75 0 1 0 0-1.5a.75.75 0 0 0 0 1.5ZM9.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Zm8 5a2 2 0 1 1-4 0a2 2 0 0 1 4 0Zm1.5 4.5c0 1.245-1 2.5-3.5 2.5S12 17.75 12 16.5a1.5 1.5 0 0 1 1.5-1.5h4a1.5 1.5 0 0 1 1.5 1.5Z"
+					></path></svg
+				>
+				<span class="ml-1">Letter of Recommendation</span>
+				<svg
+					class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
+					width="3"
+					height="6"
+					viewBox="0 0 3 6"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M0 0L3 3L0 6"></path>
+				</svg>
+			</button>
+
+			<a
+				href="https://github.com/q1b/platform/tree/beta"
+				target="_blank"
+				rel="external"
+				class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
+						rounded-full border-2 border-slate-200
+						bg-white px-3 text-sm
+						font-semibold
+						text-slate-600
+						ring-offset-2
+						hover:bg-slate-50
+						hover:text-slate-700
+						focus:outline-none
+						focus:ring-2
+						focus:ring-slate-500
+						dark:border-slate-700
+						dark:bg-slate-800/50
+						dark:text-white/95
+						dark:ring-offset-slate-900
+						dark:hover:bg-slate-800
+						dark:hover:text-white
+						dark:focus:ring-slate-500"
+			>
+				<svg
+					viewBox="0 0 28 28"
+					fill="#0F172A"
+					xmlns="http://www.w3.org/2000/svg"
+					class="fill-slate-1000 h-4 w-4 dark:fill-slate-200"
+				>
+					<path
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
+					></path>
+				</svg>
+				<span class="ml-1">Check Github Repo</span>
+				<svg
+					class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
+					width="3"
+					height="6"
+					viewBox="0 0 3 6"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M0 0L3 3L0 6"></path>
+				</svg>
+			</a>
+		</div>
+	</main>
+	<dialog id="dialog">
+		<div class="relative overflow-auto">
+			<Image
+				class="min-w-full max-w-prose h-[638px]"
+				src={documentImg}
+				alt="Testimonials"
+			/>
+			<button></button>
+			<button
+				type="button"
+				class="hidden group absolute close top-4 right-4 justify-center p-0.5 text-sm font-medium rounded-md border border-transparent sm:inline-flex focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 navItem bg-slate-100 ring-offset-rose-700 hover:bg-white focus-visible:ring-rose-600"
+			>
+				<span class="relative">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-8 w-8
+								  text-cyan-800
+								  group-hover:opacity-0 group-hover:scale-0
+								group-focus:opacity-0 group-focus:scale-0
+								  transition-[opacity,transform] duration-700"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+						></path>
+					</svg>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="absolute h-6 w-6
+									  text-rose-500
+									  opacity-0 scale-50 top-1 left-1
+									   group-hover:opacity-100 group-hover:scale-100
+					  group-focus:opacity-100 group-focus:scale-100
+									  transition-[opacity,transform] duration-700"
+						viewBox="0 0 20 20"
+						fill="currentColor"
+					>
+						<path
+							fill-rule="evenodd"
+							d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+							clip-rule="evenodd"></path>
+					</svg>
+				</span>
+			</button>
+		</div>
+	</dialog>
+	<script is:inline data-astro-rerun>
+		const dialogElem = document.getElementById("dialog");
+		const showBtn = document.querySelector(".show");
+		const closeBtn = document.querySelector(".close");
+		document.getElementById("dialog").addEventListener("click", (event) => {
+			let rect = event.target.getBoundingClientRect();
+			if (
+				rect.left > event.clientX ||
+				rect.right < event.clientX ||
+				rect.top > event.clientY ||
+				rect.bottom < event.clientY
+			) {
+				window.dialog.close();
+			}
+		});
+		showBtn.addEventListener("click", () => {
+			dialogElem.showModal();
+		});
+
+		closeBtn.addEventListener("click", () => {
+			dialogElem.close();
+		});
+	</script>
+</Layout>

@@ -1,10 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Code } from "astro:components";
+import Code from "@/components/Code.astro";
+export const prerender = true;
 ---
 
 <Layout>
-    <main class="w-full max-w-5xl">
+    <main class="w-full max-w-5xl mb-10">
         <div class="mt-16">
             <div class="flex flex-wrap gap-4 justify-between items-center">
                 <h2 class="text-2xl sm:text-4xl text-indigo-400">Writing</h2>
@@ -83,8 +84,6 @@ const { title } = Astro.props;
 </html>
 `}
                     lang="astro"
-                    class="rounded-md px-3 max-w-fit py-2"
-                    theme={"nord"}
                 />
                 <span class="relative top-2 dark:text-slate-400 text-slate-600"
                     >Example Taken from official Astro docs</span

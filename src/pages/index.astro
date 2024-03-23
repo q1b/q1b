@@ -16,320 +16,451 @@ import LibSql from '@/components/icons/logos/LibSql.astro';
 const profile = ((await getEntry('profile', 'default')) as CollectionEntry<'profile'>).data;
 ---
 
-<Layout>
-	<main class="mt-12 flex w-full max-w-5xl flex-col pb-24">
-		<div class="flex flex-col items-center gap-y-4">
-			<div
-				class="flex max-w-lg items-center gap-x-4 rounded-full border border-slate-300 bg-white py-2 pl-2 pr-10 shadow-inner shadow-slate-200 dark:border-slate-500/50 dark:bg-slate-500/10 dark:shadow-slate-700"
-			>
+<Layout class='relative w-full dark:bg-slate-950 bg-slate-100  dark:bg-grid-slate-100/[0.2] bg-grid-slate-400/[0.2] flex items-center justify-center'>
+		{/* Radial gradient for the container to give a faded look */}
+		<div class="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-slate-950 bg-slate-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+		<main class="mt-12 flex w-full max-w-5xl flex-col pb-24">
+			<div class="flex flex-col items-center gap-y-4">
 				<div
-					id="background-circle"
-					class="relative z-0 flex size-28 flex-shrink-0 items-center justify-center rounded-full sm:size-32"
-					style="
-                    background: radial-gradient(
-                        circle,
-                        hsla(231, 100%, 50%, 0.7) 0%,
-                        hsla(196, 100%, 50%, 1) 100%
-                    );
-                "
+					class="flex max-w-lg items-center gap-x-4 rounded-full border border-slate-300 bg-white py-2 pl-2 pr-10 shadow-inner shadow-slate-200 dark:border-slate-500/50 dark:bg-slate-500/10 dark:shadow-slate-700"
 				>
 					<div
-						id="photo"
-						class="relative z-10 size-24 rounded-full opacity-80 sm:size-28"
-						style=`
-                        box-shadow: 0px 0px 60px 1px hsla(210, 100%, 70%, 1);
-                        background-position: top center;
-                        background-size: cover;
-                        background-image: url('${profile.image.src}');`
+						id="background-circle"
+						class="relative z-0 flex size-28 flex-shrink-0 items-center justify-center rounded-full sm:size-32"
+						style="
+						background: radial-gradient(
+							circle,
+							hsla(231, 100%, 50%, 0.7) 0%,
+							hsla(196, 100%, 50%, 1) 100%
+						);
+					"
 					>
-					</div>
-				</div>
-				<div class="flex flex-col justify-between self-stretch py-2">
-					<h2 transition:name="full-name" class="line-clamp-1 overflow-auto text-2xl sm:text-3xl">
-						Sukhpreet Singh
-					</h2>
-					<RollingBlock sm rounded />
-					<div>
-						<p class="">
-							<span
-								class="rounded-full border border-slate-500/50 bg-slate-100 px-1 py-0.5 dark:border-slate-500 dark:bg-slate-800"
-							>
-								<TimeBlock />&nbsp;IST</span
-							>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div>
-				<div class="flex flex-row gap-x-4">
-					<a
-						href={profile.links.email}
-						target="_blank"
-						rel="external"
-						class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
-                                rounded-full border-2 border-cyan-400
-                                bg-white px-3 text-sm
-                                font-semibold
-                                text-cyan-600
-								ring-offset-2
-                                hover:bg-slate-100
-                                hover:from-cyan-100 hover:to-cyan-200
-                                hover:text-cyan-700 focus:outline-none
-                                focus:ring-2 focus:ring-cyan-500
-                                dark:border-cyan-400
-                                dark:bg-gradient-to-tr
-                                dark:from-cyan-600
-                                dark:to-cyan-800
-                                dark:text-white/90
-                                dark:ring-offset-slate-900
-                                dark:hover:from-cyan-500
-                                dark:hover:to-cyan-700
-                                dark:hover:text-white
-                                dark:focus:ring-cyan-500"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 16 16"
-							fill="currentColor"
-							data-slot="icon"
-							class="h-5 w-5"
+						<div
+							id="photo"
+							class="relative z-10 size-24 rounded-full opacity-80 sm:size-28"
+							style=`
+							box-shadow: 0px 0px 60px 1px hsla(210, 100%, 70%, 1);
+							background-position: top center;
+							background-size: cover;
+							background-image: url('${profile.image.src}');`
 						>
-							<path
-								d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
-							></path>
-							<path
-								d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"
-							></path>
-						</svg>
-
-						<span class="sr-only"> Personal Email Address</span>
-						<svg
-							class="ml-3 overflow-visible text-cyan-300 group-hover:text-cyan-400 dark:text-cyan-500 dark:group-hover:text-cyan-400"
-							width="3"
-							height="6"
-							viewBox="0 0 3 6"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M0 0L3 3L0 6"></path>
-						</svg>
-					</a>
-					<a
-						href={profile.links.linkedin}
-						target="_blank"
-						rel="external"
-						class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
-                                rounded-full border-2 border-blue-400
-                                bg-white px-3 text-sm
-                                font-semibold
-                                text-blue-600
-								ring-offset-2
-                                hover:bg-slate-100
-                                hover:from-blue-100 hover:to-blue-200
-                                hover:text-blue-700 focus:outline-none
-                                focus:ring-2 focus:ring-blue-500
-                                dark:border-blue-400
-                                dark:bg-gradient-to-tr
-                                dark:from-blue-600
-                                dark:to-blue-800
-                                dark:text-white/90
-                                dark:ring-offset-slate-900
-                                dark:hover:from-blue-500
-                                dark:hover:to-blue-700
-                                dark:hover:text-white
-                                dark:focus:ring-blue-500"
-					>
-						<svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-							><path
-								d="M2 1C1.44772 1 1 1.44772 1 2V13C1 13.5523 1.44772 14 2 14H13C13.5523 14 14 13.5523 14 13V2C14 1.44772 13.5523 1 13 1H2ZM3.05 6H4.95V12H3.05V6ZM5.075 4.005C5.075 4.59871 4.59371 5.08 4 5.08C3.4063 5.08 2.925 4.59871 2.925 4.005C2.925 3.41129 3.4063 2.93 4 2.93C4.59371 2.93 5.075 3.41129 5.075 4.005ZM12 8.35713C12 6.55208 10.8334 5.85033 9.67449 5.85033C9.29502 5.83163 8.91721 5.91119 8.57874 6.08107C8.32172 6.21007 8.05265 6.50523 7.84516 7.01853H7.79179V6.00044H6V12.0047H7.90616V8.8112C7.8786 8.48413 7.98327 8.06142 8.19741 7.80987C8.41156 7.55832 8.71789 7.49825 8.95015 7.46774H9.02258C9.62874 7.46774 10.0786 7.84301 10.0786 8.78868V12.0047H11.9847L12 8.35713Z"
-								fill="currentColor"
-								fill-rule="evenodd"
-								clip-rule="evenodd"></path></svg
-						>
-						<span class="sr-only"> Link to Linkedin</span>
-						<svg
-							class="ml-3 overflow-visible text-blue-300 group-hover:text-blue-400 dark:text-blue-500 dark:group-hover:text-blue-400"
-							width="3"
-							height="6"
-							viewBox="0 0 3 6"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M0 0L3 3L0 6"></path>
-						</svg>
-					</a>
-					<a
-						href={profile.links.x}
-						target="_blank"
-						rel="external"
-						class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
-                                rounded-full border-2 border-slate-500
-                                bg-white px-3 text-sm
-                                font-semibold
-                                text-slate-800
-								ring-offset-2
-                                hover:bg-slate-100
-                                hover:from-blue-100 hover:to-blue-200
-                                hover:text-slate-950 focus:outline-none
-                                focus:ring-2 focus:ring-slate-700
-                                dark:border-slate-400
-                                dark:bg-gradient-to-tr
-                                dark:from-slate-800
-                                dark:to-slate-950
-                                dark:text-white/90
-                                dark:ring-offset-slate-900
-                                dark:hover:from-slate-700
-                                dark:hover:to-slate-900
-                                dark:hover:text-white
-                                dark:focus:ring-slate-700"
-					>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"
-							><path
-								fill="currentColor"
-								d="M389.2 48h70.6L305.6 224.2L487 464H345L233.7 318.6L106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"
-							></path></svg
-						>
-						<span class="sr-only"> Link to X</span>
-						<svg
-							class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-400 dark:group-hover:text-slate-200"
-							width="3"
-							height="6"
-							viewBox="0 0 3 6"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M0 0L3 3L0 6"></path>
-						</svg>
-					</a>
-					<a
-						href={profile.links.github}
-						target="_blank"
-						rel="external"
-						class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
-                                    rounded-full border-2 border-slate-400
-                                    bg-white px-3 text-sm
-                                    font-semibold
-                                    text-slate-600
-									ring-offset-2
-                                    hover:bg-slate-100
-                                    hover:text-slate-700
-                                    focus:outline-none
-                                    focus:ring-2
-                                    focus:ring-slate-500
-                                    dark:border-slate-400
-                                    dark:bg-slate-700
-                                    dark:text-white/90
-                                    dark:ring-offset-slate-900
-                                    dark:hover:bg-slate-600
-                                    dark:hover:text-white
-                                    dark:focus:ring-slate-500"
-					>
-						<svg
-							viewBox="0 0 28 28"
-							fill="#0F172A"
-							xmlns="http://www.w3.org/2000/svg"
-							class="fill-slate-1000 h-4 w-4 dark:fill-slate-200"
-						>
-							<path
-								fill-rule="evenodd"
-								clip-rule="evenodd"
-								d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
-							></path>
-						</svg>
-						<span class="sr-only">Github Profile LinK</span>
-						<svg
-							class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
-							width="3"
-							height="6"
-							viewBox="0 0 3 6"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M0 0L3 3L0 6"></path>
-						</svg>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="mt-12 flex flex-col items-center">
-			<h2 class="text-4xl">Projects</h2>
-			<ul class="mt-12 grid grid-cols-1 gap-12 sm:gap-6 md:gap-12 sm:grid-cols-2">
-				<li
-					class="flex flex-col rounded-2xl border bg-white px-3 pb-4 pt-2 shadow-xl shadow-slate-300/30 dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-950/20"
-				>
-					<div class="flex flex-col justify-between lg:flex-row lg:items-center">
-						<h3 class="text-4xl text-blue-500 dark:text-sky-400">
-							<a
-								class="tab-highlight-none"
-								href="https://ssu.osteopaths.in"
-								target="_blank"
-								rel="external"
-							>
-								ssu.osteopaths.in
-							</a>
-						</h3>
-						<div class="flex w-max items-center gap-x-2 rounded-full px-2.5 py-1">
-							<SvelteIcon height={22} />
-							<TailwindcssIcon height={20} />
-							<TypeScriptIcon height={24} />
-							<LibSql height={22} />
 						</div>
 					</div>
-					<h5 class="mb-3 mt-2 text-xl text-slate-700 dark:text-slate-200">
-						Appointment Scheduling, Full-Stack Web Application
-					</h5>
-					<div class="flex grow flex-col justify-between">
+					<div class="flex flex-col justify-between self-stretch py-2">
+						<h2 transition:name="full-name" class="line-clamp-1 overflow-auto text-2xl sm:text-3xl">
+							Sukhpreet Singh
+						</h2>
+						<RollingBlock sm rounded />
+						<div>
+							<p class="">
+								<span
+									class="rounded-full border border-slate-500/50 bg-slate-100 px-1 py-0.5 dark:border-slate-500 dark:bg-slate-800"
+								>
+									<TimeBlock />&nbsp;IST</span
+								>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="flex flex-row gap-x-4">
+						<a
+							href={profile.links.email}
+							target="_blank"
+							rel="external"
+							class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
+									rounded-full border-2 border-cyan-400
+									bg-white px-3 text-sm
+									font-semibold
+									text-cyan-600
+									ring-offset-2
+									hover:bg-slate-100
+									hover:from-cyan-100 hover:to-cyan-200
+									hover:text-cyan-700 focus:outline-none
+									focus:ring-2 focus:ring-cyan-500
+									dark:border-cyan-400
+									dark:bg-gradient-to-tr
+									dark:from-cyan-600
+									dark:to-cyan-800
+									dark:text-white/90
+									dark:ring-offset-slate-900
+									dark:hover:from-cyan-500
+									dark:hover:to-cyan-700
+									dark:hover:text-white
+									dark:focus:ring-cyan-500"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 16 16"
+								fill="currentColor"
+								data-slot="icon"
+								class="h-5 w-5"
+							>
+								<path
+									d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
+								></path>
+								<path
+									d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"
+								></path>
+							</svg>
+	
+							<span class="sr-only"> Personal Email Address</span>
+							<svg
+								class="ml-3 overflow-visible text-cyan-300 group-hover:text-cyan-400 dark:text-cyan-500 dark:group-hover:text-cyan-400"
+								width="3"
+								height="6"
+								viewBox="0 0 3 6"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M0 0L3 3L0 6"></path>
+							</svg>
+						</a>
+						<a
+							href={profile.links.linkedin}
+							target="_blank"
+							rel="external"
+							class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
+									rounded-full border-2 border-blue-400
+									bg-white px-3 text-sm
+									font-semibold
+									text-blue-600
+									ring-offset-2
+									hover:bg-slate-100
+									hover:from-blue-100 hover:to-blue-200
+									hover:text-blue-700 focus:outline-none
+									focus:ring-2 focus:ring-blue-500
+									dark:border-blue-400
+									dark:bg-gradient-to-tr
+									dark:from-blue-600
+									dark:to-blue-800
+									dark:text-white/90
+									dark:ring-offset-slate-900
+									dark:hover:from-blue-500
+									dark:hover:to-blue-700
+									dark:hover:text-white
+									dark:focus:ring-blue-500"
+						>
+							<svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+								><path
+									d="M2 1C1.44772 1 1 1.44772 1 2V13C1 13.5523 1.44772 14 2 14H13C13.5523 14 14 13.5523 14 13V2C14 1.44772 13.5523 1 13 1H2ZM3.05 6H4.95V12H3.05V6ZM5.075 4.005C5.075 4.59871 4.59371 5.08 4 5.08C3.4063 5.08 2.925 4.59871 2.925 4.005C2.925 3.41129 3.4063 2.93 4 2.93C4.59371 2.93 5.075 3.41129 5.075 4.005ZM12 8.35713C12 6.55208 10.8334 5.85033 9.67449 5.85033C9.29502 5.83163 8.91721 5.91119 8.57874 6.08107C8.32172 6.21007 8.05265 6.50523 7.84516 7.01853H7.79179V6.00044H6V12.0047H7.90616V8.8112C7.8786 8.48413 7.98327 8.06142 8.19741 7.80987C8.41156 7.55832 8.71789 7.49825 8.95015 7.46774H9.02258C9.62874 7.46774 10.0786 7.84301 10.0786 8.78868V12.0047H11.9847L12 8.35713Z"
+									fill="currentColor"
+									fill-rule="evenodd"
+									clip-rule="evenodd"></path></svg
+							>
+							<span class="sr-only"> Link to Linkedin</span>
+							<svg
+								class="ml-3 overflow-visible text-blue-300 group-hover:text-blue-400 dark:text-blue-500 dark:group-hover:text-blue-400"
+								width="3"
+								height="6"
+								viewBox="0 0 3 6"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M0 0L3 3L0 6"></path>
+							</svg>
+						</a>
+						<a
+							href={profile.links.x}
+							target="_blank"
+							rel="external"
+							class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
+									rounded-full border-2 border-slate-500
+									bg-white px-3 text-sm
+									font-semibold
+									text-slate-800
+									ring-offset-2
+									hover:bg-slate-100
+									hover:from-blue-100 hover:to-blue-200
+									hover:text-slate-950 focus:outline-none
+									focus:ring-2 focus:ring-slate-700
+									dark:border-slate-400
+									dark:bg-gradient-to-tr
+									dark:from-slate-800
+									dark:to-slate-950
+									dark:text-white/90
+									dark:ring-offset-slate-900
+									dark:hover:from-slate-700
+									dark:hover:to-slate-900
+									dark:hover:text-white
+									dark:focus:ring-slate-700"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"
+								><path
+									fill="currentColor"
+									d="M389.2 48h70.6L305.6 224.2L487 464H345L233.7 318.6L106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"
+								></path></svg
+							>
+							<span class="sr-only"> Link to X</span>
+							<svg
+								class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-400 dark:group-hover:text-slate-200"
+								width="3"
+								height="6"
+								viewBox="0 0 3 6"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M0 0L3 3L0 6"></path>
+							</svg>
+						</a>
+						<a
+							href={profile.links.github}
+							target="_blank"
+							rel="external"
+							class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
+										rounded-full border-2 border-slate-400
+										bg-white px-3 text-sm
+										font-semibold
+										text-slate-600
+										ring-offset-2
+										hover:bg-slate-100
+										hover:text-slate-700
+										focus:outline-none
+										focus:ring-2
+										focus:ring-slate-500
+										dark:border-slate-400
+										dark:bg-slate-700
+										dark:text-white/90
+										dark:ring-offset-slate-900
+										dark:hover:bg-slate-600
+										dark:hover:text-white
+										dark:focus:ring-slate-500"
+						>
+							<svg
+								viewBox="0 0 28 28"
+								fill="#0F172A"
+								xmlns="http://www.w3.org/2000/svg"
+								class="fill-slate-1000 h-4 w-4 dark:fill-slate-200"
+							>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
+								></path>
+							</svg>
+							<span class="sr-only">Github Profile LinK</span>
+							<svg
+								class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
+								width="3"
+								height="6"
+								viewBox="0 0 3 6"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M0 0L3 3L0 6"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="mt-12 flex flex-col items-center">
+				<h2 class="text-4xl font-bold relative z-10 bg-clip-text text-transparent bg-gradient-to-b from-blue-600 to-sky-600 dark:from-slate-200 dark:to-slate-500">
+    	    		Projects
+     	 		</h2>
+				<ul class="mt-12 grid grid-cols-1 gap-12 sm:gap-6 md:gap-12 sm:grid-cols-2">
+					<li
+						class="flex hover:z-10 flex-col rounded-2xl border bg-white px-3 pb-4 pt-2 shadow-xl shadow-slate-300/30 dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-950/20"
+					>
+						<div class="flex flex-col justify-between lg:flex-row lg:items-center">
+							<h3 class="text-4xl text-blue-500 dark:text-sky-400">
+								<a
+									class="tab-highlight-none"
+									href="https://ssu.osteopaths.in"
+									target="_blank"
+									rel="external"
+								>
+									ssu.osteopaths.in
+								</a>
+							</h3>
+							<div class="flex w-max items-center gap-x-2 rounded-full px-2.5 py-1">
+								<SvelteIcon height={22} />
+								<TailwindcssIcon height={20} />
+								<TypeScriptIcon height={24} />
+								<LibSql height={22} />
+							</div>
+						</div>
+						<h5 class="mb-3 mt-2 text-xl text-slate-700 dark:text-slate-200">
+							Appointment Scheduling, Full-Stack Web Application
+						</h5>
+						<div class="flex grow flex-col justify-between">
+							<p class="text-slate-600 dark:text-slate-300">
+								In our university we have Students who are going to be specialised in Osteopathy in upcoming
+								years, for them to achieve this task, they give other students Session in order to get
+								better without any charges, yet this task can be automated and improved.
+							</p>
+							<div class="flex flex-col sm:flex-row gap-4 mt-4">
+								<a
+									href="https://ssu.osteopaths.in"
+									target="_blank"
+									rel="external"
+									class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
+										rounded-full border-2 border-slate-200
+										bg-white px-3 text-sm
+										font-semibold
+										text-slate-600
+										ring-offset-2
+										hover:bg-slate-50
+										hover:text-slate-700
+										focus:outline-none
+										focus:ring-2
+										focus:ring-slate-500
+										dark:border-slate-700
+										dark:bg-slate-800/50
+										dark:text-white/95
+										dark:ring-offset-slate-900
+										dark:hover:bg-slate-800
+										dark:hover:text-white
+										dark:focus:ring-slate-500
+										justify-between
+										"
+								>
+								<span class="flex items-center">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48"
+										><path
+											fill="currentColor"
+											d="M34 14c5.523 0 10 4.477 10 10c0 5.43-4.327 9.848-9.72 9.996L34 34h-5.75a1.25 1.25 0 0 1-.128-2.494l.128-.006H34a7.5 7.5 0 0 0 .243-14.996L34 16.5h-5.75a1.25 1.25 0 0 1-.128-2.493L28.25 14H34Zm-14.25 0a1.25 1.25 0 0 1 .128 2.494l-.128.006H14a7.5 7.5 0 0 0-.243 14.996L14 31.5h5.75a1.25 1.25 0 0 1 .128 2.493L19.75 34H14C8.477 34 4 29.523 4 24c0-5.43 4.327-9.848 9.72-9.996L14 14h5.75ZM13 22.75h22a1.25 1.25 0 0 1 .128 2.494L35 25.25H13a1.25 1.25 0 0 1-.128-2.494L13 22.75h22h-22Z"
+										></path></svg
+									>
+									<span class="ml-1">URL Link</span>
+								</span>
+									<svg
+										class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
+										width="3"
+										height="6"
+										viewBox="0 0 3 6"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path d="M0 0L3 3L0 6"></path>
+									</svg>
+								</a>
+	
+								<a
+									href="https://github.com/osteopathy/ssu.osteopaths.in"
+									target="_blank"
+									rel="external"
+									class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
+										rounded-full border-2 border-slate-200
+										bg-white px-3 text-sm
+										font-semibold
+										text-slate-600
+										ring-offset-2
+										hover:bg-slate-50
+										hover:text-slate-700
+										focus:outline-none
+										focus:ring-2
+										focus:ring-slate-500
+										dark:border-slate-700
+										dark:bg-slate-800/50
+										dark:text-white/95
+										dark:ring-offset-slate-900
+										dark:hover:bg-slate-800
+										dark:hover:text-white
+										dark:focus:ring-slate-500
+										justify-between
+										"
+								>
+								<span class="flex items-center">
+									<svg
+										viewBox="0 0 28 28"
+										fill="#0F172A"
+										xmlns="http://www.w3.org/2000/svg"
+										class="fill-slate-1000 h-4 w-4 dark:fill-slate-200"
+									>
+										<path
+											fill-rule="evenodd"
+											clip-rule="evenodd"
+											d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
+										></path>
+									</svg>
+									<span class="ml-1">Source Code</span>
+								</span>
+									<svg
+										class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
+										width="3"
+										height="6"
+										viewBox="0 0 3 6"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path d="M0 0L3 3L0 6"></path>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</li>
+	
+					<li
+						class="rounded-2xl hover:z-10 border bg-white px-3 pb-4 pt-2 shadow-xl shadow-slate-300/30 dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-950/20"
+					>
+						<div class="flex flex-col justify-between lg:flex-row lg:items-center">
+							<h3 class="text-4xl text-blue-500 dark:text-sky-400">
+								<a class="tab-highlight-none" href="/project/BHumanAI-MVP">
+									MVP for bhuman.ai
+								</a>
+							</h3>
+							<div class="flex w-max items-center gap-x-2 rounded-full px-2.5 py-1">
+								<SolidjsIcon height={22} />
+								<TailwindcssIcon height={20} />
+								<TypeScriptIcon height={24} />
+								<VitejsIcon height={24} />
+							</div>
+						</div>
+						<h5 class="mb-3 mt-2 text-xl text-slate-700 dark:text-slate-200">
+							Dynamic Video Generation for Marketing Campaigns
+						</h5>
 						<p class="text-slate-600 dark:text-slate-300">
-							In our university we have Students who are going to be specialised in Osteopathy in upcoming
-							years, for them to achieve this task, they give other students Session in order to get
-							better without any charges, yet this task can be automated and improved.
+							Generating Multiple Videos with Lip-Sync Support from Single Source Video, in which the
+							timestamps are specified by user and the text to be spoken by the character in the video is
+							recorded in audio format, and the output video contains replaced audio and lip-synced character.
+							Myself was sole, front-end developer during that time and got oppurtunity to built this platform
+							from scratch.
 						</p>
-						<div class="flex flex-col sm:flex-row gap-4 mt-4">
-							<a
-								href="https://ssu.osteopaths.in"
-								target="_blank"
-								rel="external"
+							<div class="flex flex-col sm:flex-row gap-4 mt-4">
+								<a
+								href="/project/BHumanAI-MVP"
 								class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
-                                    rounded-full border-2 border-slate-200
-                                    bg-white px-3 text-sm
-                                    font-semibold
-                                    text-slate-600
-                                    ring-offset-2
-                                    hover:bg-slate-50
-                                    hover:text-slate-700
-                                    focus:outline-none
-                                    focus:ring-2
-                                    focus:ring-slate-500
-                                    dark:border-slate-700
-                                    dark:bg-slate-800/50
-                                    dark:text-white/95
-                                    dark:ring-offset-slate-900
-                                    dark:hover:bg-slate-800
-                                    dark:hover:text-white
-                                    dark:focus:ring-slate-500
-									justify-between
-									"
+										rounded-full border-2 border-slate-200
+										bg-white px-3 text-sm
+										font-semibold
+										text-slate-600
+										ring-offset-2
+										hover:bg-slate-50
+										hover:text-slate-700
+										focus:outline-none
+										focus:ring-2
+										focus:ring-slate-500
+										dark:border-slate-700
+										dark:bg-slate-800/50
+										dark:text-white/95
+										dark:ring-offset-slate-900
+										dark:hover:bg-slate-800
+										dark:hover:text-white
+										dark:focus:ring-slate-500
+										justify-between
+										"
 							>
 							<span class="flex items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48"
-									><path
-										fill="currentColor"
-										d="M34 14c5.523 0 10 4.477 10 10c0 5.43-4.327 9.848-9.72 9.996L34 34h-5.75a1.25 1.25 0 0 1-.128-2.494l.128-.006H34a7.5 7.5 0 0 0 .243-14.996L34 16.5h-5.75a1.25 1.25 0 0 1-.128-2.493L28.25 14H34Zm-14.25 0a1.25 1.25 0 0 1 .128 2.494l-.128.006H14a7.5 7.5 0 0 0-.243 14.996L14 31.5h5.75a1.25 1.25 0 0 1 .128 2.493L19.75 34H14C8.477 34 4 29.523 4 24c0-5.43 4.327-9.848 9.72-9.996L14 14h5.75ZM13 22.75h22a1.25 1.25 0 0 1 .128 2.494L35 25.25H13a1.25 1.25 0 0 1-.128-2.494L13 22.75h22h-22Z"
-									></path></svg
-								>
-								<span class="ml-1">URL Link</span>
+								<DocumentIcon size={'xs'} />
+								<span class="ml-1">Read More</span>
 							</span>
 								<svg
 									class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
@@ -345,31 +476,31 @@ const profile = ((await getEntry('profile', 'default')) as CollectionEntry<'prof
 									<path d="M0 0L3 3L0 6"></path>
 								</svg>
 							</a>
-
+	
 							<a
-								href="https://github.com/osteopathy/ssu.osteopaths.in"
+								href="https://github.com/q1b/platform/tree/beta"
 								target="_blank"
 								rel="external"
 								class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
-                                    rounded-full border-2 border-slate-200
-                                    bg-white px-3 text-sm
-                                    font-semibold
-                                    text-slate-600
-                                    ring-offset-2
-                                    hover:bg-slate-50
-                                    hover:text-slate-700
-                                    focus:outline-none
-                                    focus:ring-2
-                                    focus:ring-slate-500
-                                    dark:border-slate-700
-                                    dark:bg-slate-800/50
-                                    dark:text-white/95
-                                    dark:ring-offset-slate-900
-                                    dark:hover:bg-slate-800
-                                    dark:hover:text-white
-                                    dark:focus:ring-slate-500
-									justify-between
-									"
+										rounded-full border-2 border-slate-200
+										bg-white px-3 text-sm
+										font-semibold
+										text-slate-600
+										ring-offset-2
+										hover:bg-slate-50
+										hover:text-slate-700
+										focus:outline-none
+										focus:ring-2
+										focus:ring-slate-500
+										dark:border-slate-700
+										dark:bg-slate-800/50
+										dark:text-white/95
+										dark:ring-offset-slate-900
+										dark:hover:bg-slate-800
+										dark:hover:text-white
+										dark:focus:ring-slate-500
+										justify-between
+										"
 							>
 							<span class="flex items-center">
 								<svg
@@ -401,135 +532,8 @@ const profile = ((await getEntry('profile', 'default')) as CollectionEntry<'prof
 								</svg>
 							</a>
 						</div>
-					</div>
-				</li>
-
-				<li
-					class="rounded-2xl border bg-white px-3 pb-4 pt-2 shadow-xl shadow-slate-300/30 dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-950/20"
-				>
-					<div class="flex flex-col justify-between lg:flex-row lg:items-center">
-						<h3 class="text-4xl text-blue-500 dark:text-sky-400">
-							<a class="tab-highlight-none" href="/project/BHumanAI-MVP">
-								MVP for bhuman.ai
-							</a>
-						</h3>
-						<div class="flex w-max items-center gap-x-2 rounded-full px-2.5 py-1">
-							<SolidjsIcon height={22} />
-							<TailwindcssIcon height={20} />
-							<TypeScriptIcon height={24} />
-							<VitejsIcon height={24} />
-						</div>
-					</div>
-					<h5 class="mb-3 mt-2 text-xl text-slate-700 dark:text-slate-200">
-						Dynamic Video Generation for Marketing Campaigns
-					</h5>
-					<p class="text-slate-600 dark:text-slate-300">
-						Generating Multiple Videos with Lip-Sync Support from Single Source Video, in which the
-						timestamps are specified by user and the text to be spoken by the character in the video is
-						recorded in audio format, and the output video contains replaced audio and lip-synced character.
-						Myself was sole, front-end developer during that time and got oppurtunity to built this platform
-						from scratch.
-					</p>
-						<div class="flex flex-col sm:flex-row gap-4 mt-4">
-							<a
-							href="/project/BHumanAI-MVP"
-							class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
-                                    rounded-full border-2 border-slate-200
-                                    bg-white px-3 text-sm
-                                    font-semibold
-                                    text-slate-600
-                                    ring-offset-2
-                                    hover:bg-slate-50
-                                    hover:text-slate-700
-                                    focus:outline-none
-                                    focus:ring-2
-                                    focus:ring-slate-500
-                                    dark:border-slate-700
-                                    dark:bg-slate-800/50
-                                    dark:text-white/95
-                                    dark:ring-offset-slate-900
-                                    dark:hover:bg-slate-800
-                                    dark:hover:text-white
-                                    dark:focus:ring-slate-500
-									justify-between
-									"
-						>
-						<span class="flex items-center">
-							<DocumentIcon size={'xs'} />
-							<span class="ml-1">Read More</span>
-						</span>
-							<svg
-								class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
-								width="3"
-								height="6"
-								viewBox="0 0 3 6"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M0 0L3 3L0 6"></path>
-							</svg>
-						</a>
-
-						<a
-							href="https://github.com/q1b/platform/tree/beta"
-							target="_blank"
-							rel="external"
-							class="tab-highlight-none group relative box-border inline-flex h-9 items-center whitespace-nowrap
-                                    rounded-full border-2 border-slate-200
-                                    bg-white px-3 text-sm
-                                    font-semibold
-                                    text-slate-600
-                                    ring-offset-2
-                                    hover:bg-slate-50
-                                    hover:text-slate-700
-                                    focus:outline-none
-                                    focus:ring-2
-                                    focus:ring-slate-500
-                                    dark:border-slate-700
-                                    dark:bg-slate-800/50
-                                    dark:text-white/95
-                                    dark:ring-offset-slate-900
-                                    dark:hover:bg-slate-800
-                                    dark:hover:text-white
-                                    dark:focus:ring-slate-500
-									justify-between
-									"
-						>
-						<span class="flex items-center">
-							<svg
-								viewBox="0 0 28 28"
-								fill="#0F172A"
-								xmlns="http://www.w3.org/2000/svg"
-								class="fill-slate-1000 h-4 w-4 dark:fill-slate-200"
-							>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
-								></path>
-							</svg>
-							<span class="ml-1">Source Code</span>
-						</span>
-							<svg
-								class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
-								width="3"
-								height="6"
-								viewBox="0 0 3 6"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M0 0L3 3L0 6"></path>
-							</svg>
-						</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</main>
+					</li>
+				</ul>
+			</div>
+		</main>
 </Layout>

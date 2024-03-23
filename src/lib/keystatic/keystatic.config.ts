@@ -1,31 +1,33 @@
-import { config as createConfig } from '@keystatic/core';
+import { config as createConfig, type GitHubConfig, type LocalConfig } from '@keystatic/core';
 
 import { links } from '@/lib/keystatic/schema/collections/links';
+import { tags } from '@/lib/keystatic/schema/collections/tags';
 import { posts } from '@/lib/keystatic/schema/collections/posts';
 import { about } from '@/lib/keystatic/schema/singletons/about';
 import { homepage } from '@/lib/keystatic/schema/singletons/homepage';
 
 
 
-// export const storage: LocalConfig["storage"] | GitHubConfig["storage"] =
-// 	process.env.NODE_ENV === "development"
-// 		? { kind: "local" }
-// 		: {
-// 				kind: "github",
-// 				repo: {
-// 					owner: "q1b",
-// 					name: "q1b",
-// 				},
-// 		  };
+export const storage: LocalConfig["storage"] | GitHubConfig["storage"] =
+	process.env.NODE_ENV === "development"
+		? { kind: "local" }
+		: {
+				kind: "github",
+				repo: {
+					owner: "q1b",
+					name: "q1b",
+				},
+		  };
 
 
 export const config = createConfig({
-	storage: {
-		kind: 'cloud'
+	ui: {
+		navigation: {
+			'Content': ['posts', 'links','tags'],
+			'Settings': ['homepage', 'about'],
+		},
 	},
-	cloud: {
-		project: 'persona/site',
-	},
+	storage,
 	singletons: {
 		homepage,
 		about,
@@ -33,5 +35,6 @@ export const config = createConfig({
 	collections: {
 		posts,
 		links,
+		tags
 	},
 });

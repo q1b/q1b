@@ -1,15 +1,18 @@
-import { singleton } from '@keystatic/core';
-
-import { content } from '@/lib/keystatic/schema/fields/content';
+import { fields, singleton } from '@keystatic/core';
 
 export const homepage = singleton({
 	label: 'Homepage',
-	entryLayout: 'content',
-	format: {
-		contentField: 'content',
-	},
-	path: 'src/content_homepage',
+	entryLayout: 'form',
+	path: 'src/content/_homepage',
 	schema: {
-		content,
+		title: fields.text({
+			label: 'Title',
+		}),
+		description: fields.text({
+			label: 'Description',
+		}),
+		image: fields.image({
+			label: 'Cover Image',
+		}),
 	},
 });

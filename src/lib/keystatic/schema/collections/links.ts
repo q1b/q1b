@@ -8,7 +8,7 @@ export const links = collection({
 	format: {
 		contentField: 'content',
 	},
-	path: 'src/contentlinks/*',
+	path: 'src/content/links/*',
 	slugField: 'title',
 	schema: {
 		title: fields.slug({

@@ -1,0 +1,18 @@
+---
+import TableOfContentsList from './table-of-content-list.astro';
+
+const { label, toc } = Astro.props;
+---
+
+{
+	toc && (
+		<starlight-toc data-min-h={toc.minHeadingLevel} data-max-h={toc.maxHeadingLevel}>
+			<nav class="shadow-lg rounded-lg dark:bg-slate-950/30 w-64 px-3 py-4" aria-labelledby="starlight__on-this-page">
+				<h2 id="starlight__on-this-page" class="mb-0.5 text-lg text-indigo-500 dark:text-indigo-400">{label}</h2>
+				<TableOfContentsList toc={toc.items} />
+			</nav>
+		</starlight-toc>
+	)
+}
+
+<script src="./starlight-toc"></script>

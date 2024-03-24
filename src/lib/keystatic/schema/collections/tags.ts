@@ -10,6 +10,6 @@ export const tags = collection({
             name: {
                 label: "Name",
             },
-        }),
+        })
     },
 });

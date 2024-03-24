@@ -1,5 +1,16 @@
 import { defineCollection, getEntry, z } from 'astro:content';
 
+const writings = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    tags: z.array(z.string()),
+    publishedAt: z.date(),
+    isDraft: z.boolean()
+  }),
+});
+
 const profile = defineCollection({
   type: "data",
   schema: z.object({
@@ -29,6 +40,10 @@ const site = defineCollection({
     }).optional(),
   }),
 });
+
+export const collections = {
+  writings
+}
 
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"

@@ -1,0 +1,80 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import TableOfContent from "@/components/web-components/table-of-content/table-of-content.astro";
+import { generateToC } from "@/lib/utils/generateTOC";
+import TableOfContentList from "@/components/web-components/table-of-content/table-of-content-list.astro";
+
+const { slug } = Astro.params;
+if (!slug) throw new Error("Slug not found");
+const post = await getEntry("writings", slug);
+
+if (!post) throw new Error("No post found for this slug");
+const { Content, headings } = await post.render();
+
+// Generate static pages
+export async function getStaticPaths() {
+    const writings = await getCollection("writings");
+    return writings.map((post) => ({ params: { slug: post.slug } }));
+}
+
+export const prerender = true;
+// console.log(generateToC())
+---
+
+<Layout title={post.data.title}>
+    <main class="w-full max-w-5xl mb-10">
+        <div class="mt-16">
+            <div class="flex flex-wrap gap-4 justify-between items-center">
+                <h2 class="text-2xl sm:text-4xl text-indigo-400">Writing</h2>
+                <span
+                    class="text-base sm:text-xl px-2 sm:px-3 py-1 sm:py-2 rounded-full border border-slate-500/20"
+                >
+                    {
+                        post.data.publishedAt.toLocaleDateString("en", {
+                            dateStyle: "long",
+                        })
+                    }
+                </span>
+            </div>
+            <h1
+                id="_top"
+                class="text-6xl font-semibold text-pretty sm:text-8xl text-slate-600 dark:text-slate-200 mt-8"
+            >
+                {post.data.title}
+            </h1>
+        </div>
+        <div class="mt-16">
+            <h2 class="text-3xl text-slate-600 dark:text-slate-300">Summary</h2>
+            <p
+                class="text-xl text-slate-500 dark:text-slate-400 mt-2 max-w-prose"
+            >
+                {post.data.summary}
+            </p>
+        </div>
+        <div class="flex relative">
+            <div
+                class="prose mt-12 dark:prose-dark w-full prose-base md:prose-lg"
+            >
+                <Content />
+            </div>
+            <aside class="grow shrink w-full sticky h-64 ml-4 top-12 right-0">
+                <TableOfContent
+                    label="Table of Content"
+                    toc={{
+                        maxHeadingLevel: 3,
+                        minHeadingLevel: 1,
+                        items: generateToC(headings,{
+                            title: post.data.title,
+                            maxHeadingLevel: 3,
+                            minHeadingLevel: 1,
+                        }),
+                    }}
+                />
+                <!-- <div class="border w-full h-full rounded-xl p-4">
+                    <h2>Table Of Content</h2>
+                </div> -->
+            </aside>
+        </div>
+    </main>
+</Layout>

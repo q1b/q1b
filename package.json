@@ -14,9 +14,10 @@
   "dependencies": {
     "@astrojs/check": "^0.5.9",
     "@astrojs/cloudflare": "^9.1.0",
-    "@astrojs/markdoc": "^0.9.2",
+    "@astrojs/mdx": "^2.2.1",
     "@astrojs/react": "^3.1.0",
     "@astrojs/tailwind": "^5.1.0",
+    "@codesandbox/sandpack-react": "^2.13.5",
     "@keystatic/astro": "^5.0.0",
     "@keystatic/core": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
@@ -24,6 +25,7 @@
     "@types/react-dom": "^18.2.22",
     "astro": "^4.5.6",
     "clsx": "^2.1.0",
+    "codehike": "^1.0.0-alpha.12",
     "mini-svg-data-uri": "^1.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -34,6 +36,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240314.0",
+    "@shikijs/transformers": "^1.2.0",
     "shiki": "^1.2.0",
     "wrangler": "^3.34.2"
   }

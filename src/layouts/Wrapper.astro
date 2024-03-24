@@ -190,13 +190,12 @@ const ensureTrailingSlash = (url: string | URL) => url.toString().replace(/\/$/,
 </html>
 <!-- Global Scripts -->
 <script>
-	import { navigate } from 'astro:transitions/client';
+	// import { navigate } from 'astro:transitions/client';
 	let stack = [];
 	window.addEventListener('keydown', (e) => {
 		stack.push(e.key)
 		if(stack.length > 9) stack.shift();
-		if(stack.join('') === 'keystatic'){
-			navigate('keystatic');
-		}
+		if(stack.join('') === 'gotocms') window.location = '/keystatic'
+		if(stack.join('') === 'gotohome') window.location = '/';
 	});
 </script>

@@ -1,11 +1,7 @@
 import { config as createConfig, type GitHubConfig, type LocalConfig } from '@keystatic/core';
 
-import { links } from '@/lib/keystatic/schema/collections/links';
 import { tags } from '@/lib/keystatic/schema/collections/tags';
-import { posts } from '@/lib/keystatic/schema/collections/posts';
-import { about } from '@/lib/keystatic/schema/singletons/about';
-import { homepage } from '@/lib/keystatic/schema/singletons/homepage';
-
+import { writings } from '@/lib/keystatic/schema/collections/writings';
 
 
 export const storage: LocalConfig["storage"] | GitHubConfig["storage"] =
@@ -23,18 +19,17 @@ export const storage: LocalConfig["storage"] | GitHubConfig["storage"] =
 export const config = createConfig({
 	ui: {
 		navigation: {
-			'Content': ['posts', 'links','tags'],
-			'Settings': ['homepage', 'about'],
+			'Content': ['writings', 'tags'],
 		},
+		brand: {
+			name: '- Personal Dashboard',
+			// @ts-ignore
+			mark: () => null,
+		}
 	},
 	storage,
-	singletons: {
-		homepage,
-		about,
-	},
 	collections: {
-		posts,
-		links,
+		writings,
 		tags
 	},
 });

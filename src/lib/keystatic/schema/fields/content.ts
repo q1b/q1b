@@ -1,12 +1,11 @@
 import { fields } from '@keystatic/core';
 
-import { componentBlocks } from '@/lib/keystatic/component-block';
-
-export const content = fields.document({
+export const content = fields.mdx({
 	label: 'Content',
-	componentBlocks,
-	formatting: true,
-	dividers: true,
-	links: true,
-	tables: true,
+	components: {
+	},
+	// formatting: true,
+	// dividers: true,
+	// links: true,
+	// tables: true,
 });

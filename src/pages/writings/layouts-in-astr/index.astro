@@ -34,11 +34,11 @@ export const prerender = true;
             </p>
         </div>
         <div class="mt-12">
-            <h3 class="text-2xl text-slate-700 dark:text-slate-200">
+            <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 dark:text-slate-200">
                 Layouts are used for:
             </h3>
             <ul
-                class="flex list-disc list-inside flex-col gap-y-6 mt-6 text-slate-600 dark:text-slate-300 text-3xl pl-6"
+                class="flex list-disc sm:list-inside flex-col gap-y-6 mt-6 text-slate-600 dark:text-slate-300 text-lg sm:text-xl md:text-2xl lg:text-3xl pl-6"
             >
                 <li class="">Structuring the skeleton of your website</li>
                 <li class="">
@@ -53,12 +53,33 @@ export const prerender = true;
                 </li>
             </ul>
         </div>
-        <div class="mt-12 pb-4 flex flex-col items-center">
+        <div class="mt-12">
+            <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 dark:text-slate-200">
+                Layouts are used for:
+            </h3>
+            <ul
+                class="flex list-disc sm:list-inside flex-col gap-y-6 mt-6 text-slate-600 dark:text-slate-300 text-lg sm:text-xl md:text-2xl lg:text-3xl pl-6"
+            >
+                <li class="">Structuring the skeleton of your website</li>
+                <li class="">
+                    As a Entry point for third party script loading
+                </li>
+                <li class="">
+                    Meta Details of your website such as Title, Description,
+                    Cover Image ...
+                </li>
+                <li class="">
+                    Preloading Fonts, Initializing Service Workers for PWAs
+                </li>
+            </ul>
+        </div>
+        <div class="mt-12 pb-4 flex flex-col">
             <div class="w-full max-w-fit">
-                <h2 class="text-2xl mb-6">
-                    Layout Structure of a Basic Website
-                </h2>
-                <Code
+                <details class="open:bg-white dark:open:bg-slate-900 open:ring-1 open:ring-black/5 dark:open:ring-white/10 open:shadow-lg p-6 rounded-lg" open>
+                    <summary class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 leading-6 text-slate-900 dark:text-white font-semibold select-none">
+                        Layout Structure of a Website
+                    </summary>
+                    <Code
                     code={`---
 import Footer from '../components/Footer.astro';
 const { title } = Astro.props;
@@ -85,9 +106,10 @@ const { title } = Astro.props;
 `}
                     lang="astro"
                 />
-                <span class="relative top-2 dark:text-slate-400 text-slate-600"
-                    >Example Taken from official Astro docs</span
-                >
+                <span class="relative top-2 dark:text-slate-400 text-slate-600">
+                    Example Taken from official Astro docs
+                </span>
+                  </details>
             </div>
         </div>
     </main>

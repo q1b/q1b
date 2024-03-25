@@ -1,0 +1,24 @@
+---
+import DocumentIcon from './icons/Document.astro';
+
+export type Props = {
+    tag: string;
+    height: number;
+}
+
+const { tag, height } = Astro.props;
+
+const components = await Astro.glob("@/components/icons/logos/*.astro");
+
+const getIcon = (name: string) => {
+    const icon = components.find(
+        (component) => component.default.name.toLowerCase() === name,
+    );
+    if (icon) return icon.default;
+    else return DocumentIcon;
+};
+
+const Icon = getIcon(tag);
+---
+
+<Icon height={height} />

@@ -16,7 +16,7 @@ import LibSql from '@/components/icons/logos/LibSql.astro';
 const profile = ((await getEntry('profile', 'default')) as CollectionEntry<'profile'>).data;
 ---
 
-<Layout class='relative w-full dark:bg-slate-950 bg-slate-100  dark:bg-grid-slate-100/[0.2] bg-grid-slate-400/[0.2] flex items-center justify-center'>
+<Layout class='relative w-full dark:bg-slate-950 bg-slate-100  dark:bg-grid-slate-800 bg-signal-white flex items-center justify-center'>
 		{/* Radial gradient for the container to give a faded look */}
 		<div class="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-slate-950 bg-slate-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 		<main class="mt-12 flex w-full max-w-5xl flex-col pb-24">
@@ -269,7 +269,7 @@ const profile = ((await getEntry('profile', 'default')) as CollectionEntry<'prof
 				<h2 class="text-4xl font-bold relative z-10 bg-clip-text text-transparent bg-gradient-to-b from-blue-600 to-sky-600 dark:from-slate-200 dark:to-slate-500">
     	    		Projects
      	 		</h2>
-				<ul class="mt-12 grid grid-cols-1 gap-12 sm:gap-6 md:gap-12 sm:grid-cols-2">
+				<ul class="mt-12 grid grid-cols-1 gap-12 sm:gap-6 md:gap-12 sm:grid-cols-2 max-md:z-10">
 					<li
 						class="flex hover:z-10 flex-col rounded-2xl border bg-white px-3 pb-4 pt-2 shadow-xl shadow-slate-300/30 dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-950/20"
 					>

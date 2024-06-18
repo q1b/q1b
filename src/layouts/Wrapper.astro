@@ -161,7 +161,7 @@ const ensureTrailingSlash = (url: string | URL) =>
 
 				setPreference();
 			};
-			let id = null;
+			
 			const getColorPreference = () => {
 				if ('theme' in localStorage) return localStorage.theme;
 				else return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';

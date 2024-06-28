@@ -35,6 +35,6 @@ export const calcNext = ({
     easing: EasingFunction,
     progress: number
 }) => {
-    const diff = from - to ?? 0;
+    const diff = from - to || 0;
     return to + diff * easing(progress)
 }

@@ -1,6 +1,6 @@
 import TypographyPlugin from '@tailwindcss/typography'
 import svgToDataUri from 'mini-svg-data-uri';
-import * as colors from "tailwindcss/colors"
+// import * as colors from "tailwindcss/colors"
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette"
 
 /** @type {import('tailwindcss').Config} */

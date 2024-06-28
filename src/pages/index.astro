@@ -5,7 +5,6 @@ import TimeBlock from "@/components/web-components/time-block.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection, getEntry } from "astro:content";
 import Tag from "@/components/Tag.astro";
-//Icons
 import DocumentIcon from "@/components/icons/Document.astro";
 import SvelteIcon from "@/components/icons/logos/Svelte.astro";
 import SolidjsIcon from "@/components/icons/logos/Solidjs.astro";
@@ -13,7 +12,7 @@ import VitejsIcon from "@/components/icons/logos/Vitejs.astro";
 import TailwindcssIcon from "@/components/icons/logos/Tailwindcss.astro";
 import TypeScriptIcon from "@/components/icons/logos/TypeScript.astro";
 import LibSql from "@/components/icons/logos/LibSql.astro";
-import ContentView from "@/components/icons/ContentView.astro";
+
 const profile = (
 	(await getEntry("profile", "default")) as CollectionEntry<"profile">
 ).data;
@@ -602,14 +601,13 @@ const writings = await getCollection("writings");
 				{
 					writings.map((writing) => {
 						return (
-							<div class="px-3 pt-3 pb-4 hover:z-10 flex flex-col bg-white hover:bg-white/80 dark:bg-slate-500/20 border border-slate-300 hover:border-slate-400 dark:border-slate-800 dark:hover:border-slate-700 rounded-lg">
+							<a href={`/writings/${writing.slug}`} class="px-3 pt-3 pb-4 hover:z-10 flex flex-col bg-white hover:bg-white/80 dark:bg-slate-500/20 dark:hover:bg-slate-500/30 border border-slate-300 hover:border-slate-400 dark:border-slate-800 dark:hover:border-slate-700 rounded-lg">
 								<div class="flex justify-between items-center">
-								<a
-									href={`/writings/${writing.slug}`}
+								<span
 									class="mb-1 text-lg sm:text-xl hover:underline underline-offset-2"
 								>
 									{writing.data.title}
-								</a>
+								</span>
 								<div class="flex w-max items-center gap-x-2">
 										{writing.data.tags.map((tag) => {
 											return (
@@ -621,7 +619,7 @@ const writings = await getCollection("writings");
 								<p class="text-sm sm:text-base text-slate-700 dark:text-slate-400 line-clamp-5">
 									{writing.data.summary}
 								</p>
-							</div>
+							</a>
 						);
 					})
 				}

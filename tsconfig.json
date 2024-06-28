@@ -5,7 +5,7 @@
     "types": [
       "@cloudflare/workers-types/2023-07-01"
     ],
-    "baseUrl": "/Users/sukhpreetsingh/apps/q1b-v4",
+    "baseUrl": ".",
     "allowJs": true,
     "paths": {
       "@/*": [

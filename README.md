@@ -5,7 +5,7 @@
 
 <div align="center">
 <span> <img src="https://api.iconify.design/fluent-emoji:smiling-face-with-sunglasses.svg?color=%23ffffff" height="42" >  <h1> Sukhpreet Singh  </h1> </span>
-<p>  Software developer, Designer, Basketball Player </p>
+<p>  Software Engineer </p>
 </div> 
 
 - 👀 I’m interested in [Software development](https://en.wikipedia.org/wiki/Software_development)

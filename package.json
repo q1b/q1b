@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
     "preview": "astro build && wrangler pages dev ./dist",
     "astro": "astro",
     "deploy": "astro build && wrangler pages deploy ./dist",
@@ -15,28 +15,17 @@
     "@astrojs/check": "^0.7.0",
     "@astrojs/cloudflare": "^11.0.1",
     "@astrojs/mdx": "^3.1.2",
-    "@astrojs/react": "^3.6.0",
     "@astrojs/tailwind": "^5.1.0",
-    "@codesandbox/sandpack-react": "^2.14.4",
-    "@keystatic/astro": "^5.0.0",
-    "@keystatic/core": "^0.5.23",
     "@tailwindcss/typography": "^0.5.13",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
     "astro": "^4.11.3",
     "clsx": "^2.1.1",
-    "codehike": "^1.0.0-beta.0",
     "mini-svg-data-uri": "^1.4.4",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.5.2",
-    "vscode-oniguruma": "^2.0.1"
+    "typescript": "^5.5.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240620.0",
-    "@shikijs/transformers": "^1.10.0",
     "shiki": "^1.10.0",
     "wrangler": "^3.62.0"
   }

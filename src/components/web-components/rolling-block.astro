@@ -1,0 +1,84 @@
+---
+import { cn } from "../../utils/cn";
+
+export type Props = {
+	sm?: boolean;
+	xs?: boolean;
+	list: string[];
+};
+
+const { sm, xs, list } = Astro.props;
+---
+
+<rolling-block
+	transition:name="rolling-container"
+	class={cn(
+		"bg-white border border-slate-300 dark:border-indigo-300 dark:bg-indigo-600 shadow-md shadow-slate-200 dark:shadow-indigo-600/40 text-center overflow-hidden relative rounded-full",
+		"w-44 h-8",
+		sm && "text-sm w-40 h-6",
+		xs && "text-xs w-40 h-5",
+	)}
+	data-list={JSON.stringify(list)}
+>
+	<div id="rolling-container" class="w-full h-full absolute">
+		<strong
+			class="top-[-100%] tracking-wider font-semibold select-none dark:text-white text-slate-950 absolute flex items-center justify-center w-full h-full text-sm"
+			aria-hidden="true">{list[Math.floor(1)]}</strong
+		>
+		<strong
+			class="dark:text-white text-slate-950 tracking-wider font-semibold absolute flex items-center justify-center w-full h-full text-sm"
+			>{list[Math.floor(0)]}</strong
+		>
+	</div>
+</rolling-block>
+
+<script>
+	import { animate } from "motion";
+	// Define the behaviour for our new type of HTML element.
+	class RollingBlock extends HTMLElement {
+		connectedCallback() {
+			const list = JSON.parse(this.dataset.list || "[]");
+			console.log(list);
+
+			let current_count = 1;
+			let previous_count = 0;
+
+			const container = this.querySelector("#rolling-container");
+			let first = container?.querySelector("strong:nth-child(1)");
+			let second = container?.querySelector("strong:nth-child(2)");
+
+			async function animateText() {
+				previous_count = current_count;
+				current_count = current_count + 1;
+				// @ts-ignore
+				first.innerText = list[current_count % list.length];
+				// @ts-ignore
+				second.innerText = list[previous_count % list.length];
+				animate(
+					"#rolling-container",
+					{
+						transform: ["translateY(0)", "translateY(100%)"],
+					},
+					{
+						duration: 1,
+						endDelay: 1,
+					},
+				).finished.then(() => animateText());
+			}
+
+			animate(
+				"#rolling-container",
+				{
+					transform: ["translateY(0)", "translateY(100%)"],
+				},
+				{
+					duration: 1,
+					endDelay: 1,
+				},
+			).finished.then(() => animateText());
+		}
+	}
+
+	// Tell the browser to use our AstroHeart class for <astro-heart> elements.
+	customElements.define("rolling-block", RollingBlock);
+</script>

@@ -1,84 +1,38 @@
 ---
-import { getEntry, type CollectionEntry } from "astro:content";
+import { cn } from "../utils/cn";
 import Wrapper from "./Wrapper.astro";
-import Logo from "@/components/Logo.astro";
-import ThemeButton from "@/lib/theme/Button.astro";
-import HomeIcon from "@/components/icons/Home.astro";
+import ThemeButton from "../components/ThemeButton.astro";
+import GridBackground from "../components/Backgrounds/GridBackground.astro";
+import GradientBackground from "../components/Backgrounds/GradientBackground.astro";
+import HomeIcon from "../assets/icons/Home.astro";
 
 export type Props = {
 	title?: string;
 	description?: string;
-	image?: { src: string; alt: string };
-	pageType?: "article" | "website";
-	class?: string;
+	className?: string;
 };
 
-const site = (
-	(await getEntry(
-		"site-settings",
-		"default",
-	)) as CollectionEntry<"site-settings">
-).data;
-
-// const profile = (
-//   (await getEntry("profile", "data")) as CollectionEntry<"profile">
-// ).data;
-
-const {
-	title = site.title,
-	description = site.description,
-	image = site.image,
-	pageType = "website",
-	class: className,
-} = Astro.props;
-
-const canonicalURL = new URL(Astro.request.url, Astro.site);
+const { title, description, className } = Astro.props;
 const currentPage = Astro.url.pathname;
-
-const rotatings = [
-	"Yoga Instructor",
-	"Software Developer",
-	"Basketball Player",
-	"Content Creator",
-];
-// TODO: add resume link
 ---
 
-<!-- <script>
-  import { annotate } from "rough-notation";
-  const e = document.querySelector("#greetings") as HTMLElement
-  const annotation = annotate(e, {
-    type: "highlight",
-    color: "#00bcf38b",
-    animationDuration: 500,
-  });
-  annotation.show();
-</script> -->
 <Wrapper
-	class={"px-4 py-6 min-h-screen bg-slate-100 text-slate-900 dark:text-white dark:bg-slate-900 flex flex-col items-center w-full " +
-		className}
-	name={title}
-	title={title}
-	description={description}
-	theme={"#1e293b"}
-	twitter={{ handle: "_q1b_" }}
-	og={{ type: pageType }}
-	canonicalURL={canonicalURL}
-	image={image}
+	title={ "" + title }
+	description={ "" + description }
+	class={cn(
+		"px-4 py-6 min-h-screen bg-background text-foreground flex flex-col items-center w-full",
+		className,
+	)}
 >
+	<GridBackground />
+	<GradientBackground />
 	<header
-		class="flex h-12 w-full max-w-5xl items-center justify-between rounded-full px-2 z-10"
+		class="flex h-12 w-full max-w-screen-xl items-center justify-between rounded-full px-2 z-10"
 	>
 		<div class="flex items-center gap-x-3">
 			<a href="/">
-				<Logo />
+				<!-- <Logo /> -->
 			</a>
-			<h2
-				transition:persist="greetings"
-				id="greetings"
-				class="selection:bg-layer-6 hidden w-max p-1 font-bold sm:block"
-			>
-			</h2>
 		</div>
 		<div class="flex items-center gap-x-4 sm:gap-x-6">
 			<ThemeButton />
@@ -86,43 +40,55 @@ const rotatings = [
 				<a
 					aria-current={currentPage === "/" ? "true" : "false"}
 					href="/"
-					class="group flex scale-[0.98] select-none items-center gap-x-1 rounded-full border border-slate-200 bg-slate-400/10 px-2 py-1 transition-all hover:scale-100 hover:border-slate-300 hover:bg-slate-50 active:scale-[0.96] aria-[current='true']:scale-100 aria-[current='true']:bg-blue-500 aria-[current='true']:text-white dark:border-slate-700 dark:hover:bg-slate-800 dark:aria-[current='true']:bg-blue-500"
+					class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
+                            aria-[current='true']:border-0
+                            aria-[current='true']:bg-black
+                            aria-[current='true']:text-white
+                            dark:aria-[current='true']:from-white dark:aria-[current='true']:to-white
+                            dark:aria-[current='true']:text-black
+							rounded-full border-2 border-slate-400
+							bg-white px-2 pr-3 text-sm
+							font-semibold
+							text-slate-600
+							ring-offset-2
+							hover:bg-slate-50
+							hover:from-slate-100 hover:to-slate-200
+							hover:text-slate-700 focus:outline-none
+							focus:ring-2 focus:ring-slate-500
+							dark:border-slate-400
+							dark:bg-gradient-to-tr
+							dark:from-slate-600
+							dark:to-slate-800
+							dark:text-white/90
+							dark:ring-offset-slate-900
+							dark:hover:from-slate-500
+							dark:hover:to-slate-700
+							dark:hover:text-white
+							dark:focus:ring-slate-500"
 				>
 					<HomeIcon size="xs" />
-					<span>Home</span>
+					<span class="sr-only"> Link to Homepage</span>
+					<span class="ml-1.5">Home</span>
+					<svg
+						class="ml-3 overflow-visible text-slate-300 group-hover:text-slate-400 dark:text-slate-500 dark:group-hover:text-slate-400"
+						width="3"
+						height="6"
+						viewBox="0 0 3 6"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M0 0L3 3L0 6"></path>
+					</svg>
 				</a>
-				<!-- <a
-					aria-current={currentPage.includes('/writings') ? 'true' : 'false'}
-					href="/writings"
-					class="group flex scale-[0.98] select-none items-center gap-x-1 rounded-full border border-slate-200 bg-slate-400/10 px-2 py-1 transition-all hover:scale-100 hover:border-slate-300 hover:bg-slate-50 active:scale-[0.96] aria-[current='true']:scale-100 aria-[current='true']:bg-blue-500 aria-[current='true']:text-white dark:border-slate-700 dark:hover:bg-slate-800 dark:aria-[current='true']:bg-blue-500"
-				>
-					<ContentView size="sm" />
-					<span>Writings</span>
-				</a> -->
-				<!-- <a
-					aria-current={currentPage === '/resume' ? 'true' : 'false'}
-					href="/resume"
-					class="group flex scale-[0.98] select-none items-center gap-x-1 rounded-full border border-slate-200 bg-slate-400/10 px-2 py-1 transition-all hover:scale-100 hover:border-slate-300 hover:bg-slate-50 active:scale-[0.96] aria-[current='true']:scale-100 aria-[current='true']:bg-blue-500 aria-[current='true']:text-white dark:border-slate-700 dark:hover:bg-slate-800 dark:aria-[current='true']:bg-blue-500"
-				>
-					<Resume size="sm" />
-					<span>Resume</span>
-				</a> -->
 			</nav>
 		</div>
 	</header>
-	<!-- {
-    currentPage !== "/" && (
-      <a
-        href="/"
-        class="group my-4 w-max p-2 flex items-center gap-x-2 text-slate-600 dark:text-slate-400 hover:text-blue-400 dark:hover:text-indigo-400 font-bold dark:font-normal"
-      >
-        home
-      </a>
-    )
-  } -->
 	<slot />
-	<div class="py-10"></div>
-	<footer class="mt-auto flex gap-x-4 z-10">
+	<div class="py-20"></div>
+	<footer class="mt-auto z-10 flex gap-x-4">
 		<div
 			class="flex w-full max-w-3xl flex-col justify-between gap-4 rounded-lg bg-gradient-to-tr from-indigo-700/50 to-indigo-400/80 pb-4 pl-4 pr-8 pt-4 sm:flex-row dark:from-slate-500/50 dark:to-slate-700/70 dark:shadow-sm"
 		>
@@ -131,7 +97,7 @@ const rotatings = [
 					Sukhpreet Singh
 				</h2>
 				<h4 class="font-robotic text-xl font-semibold text-white/80">
-					Open Source, Self Motivated <br /> Front-end Developer
+					Open Source, Self Motivated <br /> Software Developer
 				</h4>
 			</div>
 			<div class="xs:flex-col flex flex-row gap-x-8 gap-y-3 sm:flex-row">

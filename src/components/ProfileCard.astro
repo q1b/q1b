@@ -1,0 +1,54 @@
+---
+import RollingBlock from "../components/web-components/rolling-block.astro";
+import TimeBlock from "../components/web-components/time-block.astro";
+import profileImage from "../assets/images/profile/image.jpeg";
+import homepage from "../content/singletons/homepage/index.json"
+---
+
+<div
+	transition:name="profile-card"
+	inert
+	class="z-10 flex items-center rounded-full border border-slate-400 bg-white/10 backdrop-contrast-125 supports-backdrop-blur:backdrop-blur-sm py-2 px-2 shadow-inner shadow-slate-200 dark:border-slate-500/50 dark:bg-slate-500/10 dark:shadow-slate-700"
+>
+	<div
+		transition:name="photo"
+		id="background-circle"
+		class="relative z-0 flex size-28 flex-shrink-0 items-center justify-center rounded-full sm:size-32"
+		style="
+					background: radial-gradient(
+						circle,
+						hsla(231, 100%, 50%, 0.7) 0%,
+						hsla(196, 100%, 50%, 1) 100%
+					);
+				"
+	>
+		<div
+			id="photo"
+			class="relative z-10 size-24 rounded-full opacity-80 sm:size-28"
+			style=`
+						box-shadow: 0px 0px 60px 1px hsla(210, 100%, 70%, 1);
+						background-position: top center;
+						background-size: cover;
+						background-image: url('${profileImage.src}');`
+		>
+		</div>
+	</div>
+	<div class="flex ml-4 flex-col justify-between self-stretch py-2">
+		<h2
+			transition:name="full-name"
+			class="line-clamp-1 text-slate-950 [text-shadow:0px_1px_2px_#13151a61;] dark:[text-shadow:0px_1px_2px_#fff4;] dark:text-white overflow-auto text-2xl sm:text-3xl"
+		>
+			Sukhpreet Singh
+		</h2>
+		<RollingBlock list={homepage.highlights} sm />
+		<div>
+			<span
+				class="rounded-full border text-slate-950 dark:text-white border-slate-500/50 bg-slate-100 px-1 py-0.5 dark:border-slate-500 dark:bg-slate-800"
+				title="Current TimeBlock"
+			>
+				<TimeBlock />&nbsp;IST
+			</span>
+		</div>
+	</div>
+	<div class="basic-6 sm:ml-2 min-[356px]:w-6 grow shrink"></div>
+</div>

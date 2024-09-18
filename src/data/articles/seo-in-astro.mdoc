@@ -1,0 +1,159 @@
+---
+title: Layouts in Astro
+subtitle: |- 
+    Understanding how to define SEO efficiently in Astro, helps you with better
+    search indexing of your website, also going to cover how to built a SEO Astro
+    Component
+summary: |-
+    Understanding how to define SEO efficiently in Astro, helps you with better
+    search indexing of your website, also going to cover how to built a SEO Astro
+    Component
+visible: true
+pubDate: 2024-03-23
+tags:
+  - astro
+---
+## SEO ( Search Engine Optimization )
+
+* Social Discovery of your Content
+
+* Web Crawler know about the content of website
+
+* Describe data present on the Page, through Meta tags such as title, description
+
+* Display useful information on Social Media Platforms
+
+### Describe data on the Page
+
+[Open Graph protocol](https://ogp.me/) is used to describe data on a page, [Twitter card tags](https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started#opengraph) look similar to Open Graph tags, and are based on the same conventions as the Open Graph protocol, through which you can display useful information onto the social media platforms such as Discord, Whatsapp, Facebook and others
+
+Open Graph tags
+
+```html
+<html>
+  <head>
+    <title>The Rock (1996)</title>
+    <meta property="og:title" content="The Rock" />
+    <meta property="og:type" content="video.movie" />
+    <meta property="og:url" content="https://imdb.com/title/tt0117500/" />
+    <meta property="og:image" content="https://imdb.com/images/rock.jpg" />
+    ...
+  </head>
+  ...
+</html>
+```
+
+It is easy to generate a Twitter card without duplicating tags and data. When the Twitter card processor looks for tags on a page, it first checks for the Twitter-specific property, and if not present, falls back to the supported Open Graph property. so we don't need to include extra meta tags
+
+```html
+<html>
+  <head>
+    <title>The Rock (1996)</title>
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@nytimesbits" />
+    <meta name="twitter:creator" content="@nickbilton" />
+
+    <meta property="og:title" content="The Rock" />
+    <meta property="og:type" content="video.movie" />
+    <meta property="og:url" content="https://imdb.com/title/tt0117500/" />
+    <meta property="og:image" content="https://imdb.com/images/rock.jpg" />
+    ...
+  </head>
+  ...
+</html>
+```
+
+Now, extract it into a `SEO.astro` component
+
+```astro
+---
+const { title, description, image, twitterHandle, type, url } = Astro.props;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<meta name="twitter:card" content={title} />
+<meta name="twitter:site" content={twitterHandle} />
+<meta name="twitter:creator" content={twitterHandle} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={url} />
+{image && <meta property="og:image" content={image} /> }
+```
+
+Create a Layout in `src/layouts/Layout.astro` and define the default values for title, description, type, Cover Image and canonicalURL for our website,
+
+```astro
+---
+const {
+ title = 'Website Title',
+ description = 'Description of Website',
+ type = 'website',
+ image = null,
+} = Astro.props;
+const twitterHandle = "@q1b";
+const canonicalURL = new URL(Astro.request.url, Astro.site);
+---
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <SEO 
+         title={title} 
+         description={description} 
+         type={type}
+         twitterHandle={twitterHandle}
+         image={image}
+         url={canonicalURL}
+    />
+  </head>
+  ...
+</html>
+```
+
+in our above code snippet we are using `Astro.site`, you need to configure your hosted site url, in your `astro.config.mjs` in order to pass google lighthouse scores
+
+```ts
+export default defineConfig({
+  site: 'https://sukhpreet.dev'
+  ...
+})
+```
+
+## Structuring the skeleton of your website
+
+Webpages can and will look pretty different from one another, but they all tend to share similar standard components:
+
+* header →[`<header>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header)
+
+* navigation bar → [`<nav>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav)
+
+* main content → [`<main>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) with various content subsections represented by [`<article>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article), [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section), and [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) elements
+
+* sidebar → [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside); often placed inside [`<main>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main)
+
+* footer → [`<footer>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer)
+
+Below, example is just `html` we haven't written any code related to astro
+
+```astro
+<html>
+  ...
+  <body>
+    <header></header>
+    <main>
+      <slot/> <!-- your content is injected here -->
+    </main>
+    <footer>
+      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+    </footer>
+  </body>
+</html>
+```
+
+## Bonus Tip for SEO
+
+Along with Open Graph tags and Twitter Card tags, you can check how you can change your search appearance in google search using [JSON-LD](https://json-ld.org), for learning more you can check this [link](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)

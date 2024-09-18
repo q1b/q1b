@@ -1,27 +1,27 @@
-<!-- Wrap the component elements in our custom element “astro-heart”. -->
+<!-- Wrap the component elements in our custom element “time-block”. -->
 <time-block>
-    {
-        new Date().toLocaleTimeString("en", {
-            timeZone: "Asia/Kolkata",
-            hour12: false,
-        })
-    }
+	{
+		new Date().toLocaleTimeString("en", {
+			timeZone: "Asia/Kolkata",
+			hour12: false,
+		})
+	}
 </time-block>
 
 <script>
-    // Define the behaviour for our new type of HTML element.
-    class TimeBlock extends HTMLElement {
-        constructor() {
-            super();
-            setInterval(() => {
-                this.innerText = new Date().toLocaleTimeString("en", {
-                    timeZone: "Asia/Kolkata",
-                    hour12: false,
-                });
-            }, 1000);
-        }
-    }
+	// Define the behaviour for our new type of HTML element.
+	class TimeBlock extends HTMLElement {
+		constructor() {
+			super();
+			setInterval(() => {
+				this.innerText = new Date().toLocaleTimeString("en", {
+					timeZone: "Asia/Kolkata",
+					hour12: false,
+				});
+			}, 1000);
+		}
+	}
 
-    // Tell the browser to use our AstroHeart class for <astro-heart> elements.
-    customElements.define("time-block", TimeBlock);
+	// Tell the browser to use our AstroHeart class for <time-block> elements.
+	customElements.define("time-block", TimeBlock);
 </script>

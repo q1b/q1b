@@ -1,14 +1,16 @@
-const PAGE_TITLE_ID = '_top' 
+const PAGE_TITLE_ID = "_top";
 
 export class StarlightTOC extends HTMLElement {
-	private _current = this.querySelector('a[aria-current="true"]') as HTMLAnchorElement | null;
-	private minH = parseInt(this.dataset.minH || '2', 10);
-	private maxH = parseInt(this.dataset.maxH || '3', 10);
+	private _current = this.querySelector(
+		'a[aria-current="true"]',
+	) as HTMLAnchorElement | null;
+	private minH = parseInt(this.dataset.minH || "2", 10);
+	private maxH = parseInt(this.dataset.maxH || "3", 10);
 
 	protected set current(link: HTMLAnchorElement) {
 		if (link === this._current) return;
-		if (this._current) this._current.removeAttribute('aria-current');
-		link.setAttribute('aria-current', 'true');
+		if (this._current) this._current.removeAttribute("aria-current");
+		link.setAttribute("aria-current", "true");
 		this._current = link;
 	}
 
@@ -16,7 +18,7 @@ export class StarlightTOC extends HTMLElement {
 		super();
 
 		/** All the links in the table of contents. */
-		const links = [...this.querySelectorAll('a')];
+		const links = [...this.querySelectorAll("a")];
 
 		/** Test if an element is a table-of-contents heading. */
 		const isHeading = (el: Element): el is HTMLHeadingElement => {
@@ -34,7 +36,9 @@ export class StarlightTOC extends HTMLElement {
 		};
 
 		/** Walk up the DOM to find the nearest heading. */
-		const getElementHeading = (el: Element | null): HTMLHeadingElement | null => {
+		const getElementHeading = (
+			el: Element | null,
+		): HTMLHeadingElement | null => {
 			if (!el) return null;
 			const origin = el;
 			while (el) {
@@ -58,7 +62,10 @@ export class StarlightTOC extends HTMLElement {
 				if (!isIntersecting) continue;
 				const heading = getElementHeading(target);
 				if (!heading) continue;
-				const link = links.find((link) => link.hash === '#' + encodeURIComponent(heading.id));
+				const link = links.find(
+					(link) =>
+						link.hash === "#" + encodeURIComponent(heading.id),
+				);
 				if (link) {
 					this.current = link;
 					break;
@@ -69,19 +76,24 @@ export class StarlightTOC extends HTMLElement {
 		// Observe elements with an `id` (most likely headings) and their siblings.
 		// Also observe direct children of `.content` to include elements before
 		// the first heading.
-		const toObserve = document.querySelectorAll('main [id], main [id] ~ *, main .content > *');
+		const toObserve = document.querySelectorAll(
+			"main [id], main [id] ~ *, main .content > *",
+		);
 
 		let observer: IntersectionObserver | undefined;
 		const observe = () => {
 			if (observer) observer.disconnect();
-			observer = new IntersectionObserver(setCurrent, { rootMargin: this.getRootMargin() });
+			observer = new IntersectionObserver(setCurrent, {
+				rootMargin: this.getRootMargin(),
+			});
 			toObserve.forEach((h) => observer!.observe(h));
 		};
 		observe();
 
-		const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+		const onIdle =
+			window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
 		let timeout: NodeJS.Timeout;
-		window.addEventListener('resize', () => {
+		window.addEventListener("resize", () => {
 			// Disable intersection observer while window is resizing.
 			if (observer) observer.disconnect();
 			clearTimeout(timeout);
@@ -90,9 +102,12 @@ export class StarlightTOC extends HTMLElement {
 	}
 
 	private getRootMargin(): `-${number}px 0% ${number}px` {
-		const navBarHeight = document.querySelector('header')?.getBoundingClientRect().height || 0;
+		const navBarHeight =
+			document.querySelector("header")?.getBoundingClientRect().height ||
+			0;
 		// `<summary>` only exists in mobile ToC, so will fall back to 0 in large viewport component.
-		const mobileTocHeight = this.querySelector('summary')?.getBoundingClientRect().height || 0;
+		const mobileTocHeight =
+			this.querySelector("summary")?.getBoundingClientRect().height || 0;
 		/** Start intersections at nav height + 2rem padding. */
 		const top = navBarHeight + mobileTocHeight + 32;
 		/** End intersections `53px` later. This is slightly more than the maximum `margin-top` in Markdown content. */
@@ -102,4 +117,4 @@ export class StarlightTOC extends HTMLElement {
 	}
 }
 
-customElements.define('starlight-toc', StarlightTOC);
+customElements.define("starlight-toc", StarlightTOC);

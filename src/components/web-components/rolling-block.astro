@@ -38,7 +38,6 @@ const { sm, xs, list } = Astro.props;
 	class RollingBlock extends HTMLElement {
 		connectedCallback() {
 			const list = JSON.parse(this.dataset.list || "[]");
-			console.log(list);
 
 			let current_count = 1;
 			let previous_count = 0;

@@ -5,6 +5,7 @@ import PencilIcon from "../assets/icons/Pencil.astro";
 import Layout from "../layouts/Layout.astro";
 import ProfileCard from "../components/ProfileCard.astro";
 import homepage from "../content/singletons/homepage/index.json";
+import profile from "../content/singletons/profile/index.json";
 import { getCollection } from "astro:content";
 
 const projects = (await getCollection("projects")).filter(
@@ -137,7 +138,7 @@ const articles = (await getCollection("articles")).filter(
 					</svg>
 				</a> -->
 				<a
-					href="#"
+					href={profile.linkedInURL}
 					target="_blank"
 					rel="external"
 					class="mr-2 tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
@@ -239,7 +240,7 @@ const articles = (await getCollection("articles")).filter(
 					</svg>
 				</a> -->
 				<a
-					href="#"
+					href={profile.githubURL}
 					target="_blank"
 					rel="external"
 					class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap

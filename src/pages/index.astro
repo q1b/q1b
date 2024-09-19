@@ -1,7 +1,6 @@
 ---
 import MaskBackground from "../components/Backgrounds/MaskBackground.astro";
 import ContentViewIcon from "../assets/icons/ContentView.astro";
-import PencilIcon from "../assets/icons/Pencil.astro";
 import Layout from "../layouts/Layout.astro";
 import ProfileCard from "../components/ProfileCard.astro";
 import homepage from "../content/singletons/homepage/index.json";
@@ -487,7 +486,7 @@ const articles = (await getCollection("articles")).filter(
 		<script>
 			import { inView } from "motion"
 			import {annotate} from 'rough-notation';
-			const e = document.querySelector('#projects');
+			const e = document.querySelector('#projects') as HTMLElement;
 			inView('#projects-container', () => {
 				const annotation = annotate(e, { type: 'underline', color: '#008FFF' });
 				annotation.show();

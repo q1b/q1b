@@ -5,12 +5,12 @@ const storage: LocalConfig["storage"] | GitHubConfig["storage"] =
 	process.env.NODE_ENV === "development"
 		? { kind: "local" }
 		: {
-			kind: "github",
-			repo: {
-				owner: "q1b",
-				name: "q1b",
-			},
-		};
+				kind: "github",
+				repo: {
+					owner: "q1b",
+					name: "q1b",
+				},
+			};
 
 export const markdocConfig = fields.markdoc.createMarkdocConfig({});
 
@@ -183,19 +183,17 @@ export default config({
 								startDate: fields.date({ label: "Start Date" }),
 								endDate: fields.date({ label: "End Date" }),
 								thumbnail: fields.object({
-									'16/9': fields.image({
+									"16/9": fields.image({
 										label: "16/9 Aspect Ratio Image",
-										directory:
-											"src/assets/images/projects",
+										directory: "src/assets/images/projects",
 										// Use the @assets path alias
 										// publicPath: '@assets/images/articles/'
 										publicPath:
 											"/src/assets/images/projects/",
 									}),
-									'1/1': fields.image({
+									"1/1": fields.image({
 										label: "1/1 Aspect Ratio Image",
-										directory:
-											"src/assets/images/projects",
+										directory: "src/assets/images/projects",
 										// Use the @assets path alias
 										// publicPath: '@assets/images/articles/'
 										publicPath:

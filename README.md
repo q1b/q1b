@@ -1,16 +1,15 @@
 <div id="top"></div>
 
-
 <!-- ---------------------------------------------------------------------------------------- -->
 
 <div align="center">
 <span> <img src="https://api.iconify.design/fluent-emoji:smiling-face-with-sunglasses.svg?color=%23ffffff" height="42" >  <h1> Sukhpreet Singh  </h1> </span>
 <p>  Software Engineer </p>
-</div> 
+</div>
 
-- 👀 I’m interested in [Software development](https://en.wikipedia.org/wiki/Software_development)
-- 🌱 I’m currently learning FullStack Web Development
-- 📫 Skilled in TypeScript, Tailwindcss, Sveltekit, Vuejs, Reactjs
+-   👀 I’m interested in [Software development](https://en.wikipedia.org/wiki/Software_development)
+-   🌱 I’m currently learning FullStack Web Development
+-   📫 Skilled in TypeScript, Tailwindcss, Sveltekit, Vuejs, Reactjs
 
 <br>
 
@@ -47,4 +46,4 @@
 </table>
 </div>
      
-</details>         
+</details>

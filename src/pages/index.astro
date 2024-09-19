@@ -330,13 +330,13 @@ const articles = (await getCollection("articles")).filter((article) => article.d
 						<div>
 							<h2 class="text-slate-700 hover:underline decoration-wavy underline-offset-4 dark:text-white text-2xl font-bold">{project.title}</h2>
 						</div>
-						<p class="text-slate-600 mt-2 dark:text-white font-bold line-clamp-3">{project.shortDescription}</p>
+						<p class="text-slate-600 mt-2 dark:text-white font-bold">{project.shortDescription}</p>
 					</li>
 				))}
 			</ul>
-			<!-- <ul class="flex flex-col gap-y-2 mt-4 w-full p-4">
-				<li class="p-8 text-slate-950 dark:text-slate-100 aspect-square rounded-2xl sm:aspect-video w-full bg-slate-100/50 dark:bg-slate-900/50 dark:backdrop-contrast-125 backdrop-blur-sm border border-white dark:border-cyan-300/20 shadow-2xl shadow-indigo-600/40 dark:shadow-slate-500/40">
-					<h2 class="text-xl font-bold">Appointment Scheduling Web Application</h2>
+			<!-- <ul class="flex flex-col max-w-xl gap-y-2 mt-4 w-full">
+				<li class="relative text-slate-950 dark:text-slate-100 aspect-square rounded-2xl sm:aspect-video w-full h-full bg-slate-100/50 dark:bg-slate-900/50 dark:backdrop-contrast-125 backdrop-blur-sm border border-white dark:border-cyan-300/20 shadow-2xl shadow-indigo-600/40 dark:shadow-slate-500/40">
+					<img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-full object-cover absolute inset-0" />
 				</li>
 				<li class="text-slate-950 dark:text-slate-100">
 					Project 2
@@ -353,14 +353,15 @@ const articles = (await getCollection("articles")).filter((article) => article.d
 				<button class="px-2 rounded-full py-0.5 bg-blue-100 text-blue-700 dark:bg-slate-400 dark:text-white">Small</button>
 			</div> -->
 			<ul class="flex flex-col items-center gap-y-4 mt-8 max-w-xl">
+			{articles.map(({ data: article }) => (
 				<li class="">
-				{articles.map(({ data: article }) => (
+
 					<div>
 						<h2 class="text-slate-700 hover:underline decoration-wavy underline-offset-4 dark:text-white text-2xl font-bold">{article.title}</h2>
 					</div>
 					<p class="text-slate-600 mt-2 dark:text-white font-bold line-clamp-3">{article.summary}</p>
-				))}
 				</li>
+				))}
 			</ul>
 		</div>
 	</main>

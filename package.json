@@ -4,7 +4,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "astro dev",
-		"admin": "next dev admin",
+		"admin": "next dev ./admin-2",
 		"admin:build": "next build admin",
 		"start": "astro dev",
 		"build": "astro check && astro build",
@@ -16,6 +16,7 @@
 		"@astrojs/check": "^0.9.3",
 		"@astrojs/cloudflare": "^11.0.4",
 		"@astrojs/markdoc": "^0.11.4",
+		"@astrojs/sitemap": "^3.1.6",
 		"@astrojs/tailwind": "^5.1.0",
 		"@fontsource/borel": "^5.1.0",
 		"@fontsource/inter": "^5.1.0",

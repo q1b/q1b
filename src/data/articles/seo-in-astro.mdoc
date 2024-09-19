@@ -1,6 +1,6 @@
 ---
-title: Layouts in Astro
-subtitle: |- 
+title: SEO in Astro
+subtitle: |-
     Understanding how to define SEO efficiently in Astro, helps you with better
     search indexing of your website, also going to cover how to built a SEO Astro
     Component
@@ -101,9 +101,9 @@ const canonicalURL = new URL(Astro.request.url, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <SEO 
-         title={title} 
-         description={description} 
+    <SEO
+         title={title}
+         description={description}
          type={type}
          twitterHandle={twitterHandle}
          image={image}

@@ -1,6 +1,6 @@
 {
 	"name": "Sukhpreet Singh",
-	"email_address": "sukhpreetben10@gmail.com",
+	"email_address": "",
 	"image": "/src/assets/images/profile/image.jpeg",
 	"worksFor": {
 		"discriminant": false
@@ -12,6 +12,6 @@
 		}
 	],
 	"githubURL": "https://github.com/q1b",
-	"xURL": "https://x.com/_q1b_",
+	"xURL": "",
 	"linkedInURL": "https://linkedin.com/in/q1b"
 }

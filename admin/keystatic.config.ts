@@ -5,12 +5,12 @@ const storage: LocalConfig["storage"] | GitHubConfig["storage"] =
 	process.env.NODE_ENV === "development"
 		? { kind: "local" }
 		: {
-				kind: "github",
-				repo: {
-					owner: "q1b",
-					name: "q1b",
-				},
-			};
+			kind: "github",
+			repo: {
+				owner: "q1b",
+				name: "q1b",
+			},
+		};
 
 export const markdocConfig = fields.markdoc.createMarkdocConfig({});
 

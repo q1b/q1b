@@ -1,0 +1,24 @@
+.content {
+  max-width: 70ch;
+  padding: 3rem 1rem;
+  margin: auto;
+  line-height: 1.75;
+  font-size: 1.25rem;
+  font-family: sans-serif;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  margin: 1rem 0 1rem;
+}
+
+.content p,
+.content ul,
+.content ol {
+  margin-bottom: 1rem;
+  color: #1d1d1d;
+}

@@ -4,8 +4,8 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "astro dev",
-		"admin": "next dev ./admin-2",
-		"admin:build": "next build admin",
+		"admin": "remix vite:dev admin",
+		"admin:build": "remix vite:build admin",
 		"start": "astro dev",
 		"build": "astro check && astro build",
 		"preview": "astro preview",
@@ -21,6 +21,7 @@
 		"@fontsource/borel": "^5.1.0",
 		"@fontsource/inter": "^5.1.0",
 		"@radix-ui/colors": "^3.0.0",
+		"@remix-run/dev": "^2.12.0",
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
 		"astro": "^4.15.6",

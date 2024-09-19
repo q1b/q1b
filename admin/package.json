@@ -10,17 +10,19 @@
 		"typecheck": "tsc"
 	},
 	"dependencies": {
+		"@keystatic/core": "^0.5.35",
+		"@keystatic/remix": "^5.0.0",
 		"@markdoc/markdoc": "^0.4.0",
 		"@remix-run/css-bundle": "^2.9.2",
 		"@remix-run/node": "^2.9.2",
 		"@remix-run/react": "^2.9.2",
 		"@remix-run/serve": "^2.9.2",
+		"@vercel/remix": "^2.12.0",
 		"isbot": "^3.6.8",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"vite": "^5.2.12",
-		"@keystatic/core": "^0.5.35",
-		"@keystatic/remix": "^5.0.0"
+		"vite-tsconfig-paths": "^5.0.1"
 	},
 	"devDependencies": {
 		"@remix-run/dev": "^2.9.2",

@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import PostHog from '../components/Posthog.astro'
 import "../assets/global.css";
 
 export type Props = {
@@ -127,6 +128,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 					?.addEventListener("click", onClick, { passive: true });
 			});
 		</script>
+		<PostHog />
 		<script>
 			import { animate } from "motion";
 			window.animate = animate;

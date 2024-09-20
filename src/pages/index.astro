@@ -519,16 +519,16 @@ const articles = (await getCollection("articles")).filter(
 				<li class="">
 					<div>
 						<h2
-							class="text-slate-700 dark:text-white text-2xl font-bold w-full flex justify-between items-center"
+							class="text-slate-700 dark:text-white text-2xl font-bold w-full flex justify-between items-center relative"
 						>
 							<span>Founding Frontend Developer</span>
-							<span class="flex gap-x-2 items-center">
+							<span class="flex gap-x-2 items-center absolute right-0 top-9 min-[488px]:top-1">
 								<SolidjsIcon height={24} />
 								<TypeScriptIcon height={24} />
 								<TailwindcssIcon height={16} />
 							</span>
 						</h2>
-						<div class="flex flex-col gap-y-1 mt-1">
+						<div class="flex flex-col gap-y-1 mt-1 pl-0.5">
 							<span
 								class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2"
 							>
@@ -575,16 +575,11 @@ const articles = (await getCollection("articles")).filter(
 						</div>
 					</div>
 					<p class="text-slate-600 mt-2 dark:text-white font-medium">
-						During my time at Bhuman, I was responsible for the
-						development of frontend of the application. Working in a
-						small team within a startup environment was an enriching
-						experience. Task Assigned to me was aimed to create
-						multiple clones from one videos with goal of
-						personalizing it for thier audience, making them feel
-						like it's just recorded for them, improving engagement
-						and retention. For Which in-built video editor, csv
-						editor and integrating them with Rest APIs all done by
-						us.
+						During my time at Bhuman, I was responsible for the development of the front end of the application.
+						Working within a remote startup environment was an enriching experience.
+						The task Assigned to me was aimed to create multiple clones from one video to personalize it for their audience,
+						making them feel like it's just recorded for them, and improving engagement and retention.
+						For Which in-built video editor, CSV editor and integrating them with Rest APIs are all done by us.
 					</p>
 					<div
 						class="flex flex-wrap w-full dark:text-white text-slate-700 gap-3 items-center mt-4"
@@ -679,19 +674,25 @@ const articles = (await getCollection("articles")).filter(
 			</ul> -->
 		</div>
 		<script>
-			import { inView } from "motion";
+			import { inView, animate } from "motion";
 			import { annotate } from "rough-notation";
 			const e = document.querySelector("#work-experience") as HTMLElement;
 			inView("#work-experience-container", () => {
-				const annotation = annotate(e, {
-					type: "underline",
-					color: "#008FFF",
-				});
-				annotation.show();
+				setTimeout(() => {
+					const annotation = annotate(e, {
+						type: "underline",
+						color: "#008FFF",
+					});
+					annotation.show();
+				},200)
+			}, {
+				// top/right/bottom/left.
+				margin: "0px 0px -100px 0px"
 			});
 		</script>
-		<div class="mt-24 flex z-10 flex-col items-center w-full p-2">
+		<div id="articles-container" class="mt-24 flex z-10 flex-col items-center w-full p-2">
 			<h2
+				id="articles"
 				class="text-4xl font-bold dark:text-slate-100 text-blue-700 font-cursive [text-shadow:0px_2px_4px_#008FFF44,0px_2px_8px_#fffa] dark:[text-shadow:0px_2px_4px_#fff1,0px_0px_8px_#fff2]"
 			>
 				Articles
@@ -717,5 +718,22 @@ const articles = (await getCollection("articles")).filter(
 				}
 			</ul>
 		</div>
+		<script>
+			import { inView } from "motion";
+			import { annotate } from "rough-notation";
+			const e = document.querySelector("#articles") as HTMLElement;
+			inView("#articles-container", () => {
+				setTimeout(() => {
+					const annotation = annotate(e, {
+						type: "underline",
+						color: "#008FFF",
+					});
+					annotation.show();
+				},200)
+			}, {
+				// top/right/bottom/left.
+				margin: "0px 0px -100px 0px"
+			});
+		</script>
 	</main>
 </Layout>

@@ -694,185 +694,186 @@ const youtubeVideos = (await getCollection("youtube-videos"));
 				margin: "0px 0px -100px 0px"
 			});
 		</script>
-
-		<div
-			id="youtube-videos-container"
-			class="mt-12 flex z-10 flex-col items-center w-full p-2"
-		>
-			<h2
-				id="youtube-videos"
-				class="text-4xl font-bold dark:text-slate-100 text-blue-700 font-cursive [text-shadow:0px_2px_4px_#008FFF44,0px_2px_8px_#fffa] dark:[text-shadow:0px_2px_4px_#fff1,0px_0px_8px_#fff2]"
+		{youtubeVideos.length !== 0 && (
+			<div
+				id="youtube-videos-container"
+				class="mt-12 flex z-10 flex-col items-center w-full p-2"
 			>
-				YouTube Videos
-			</h2>
-			<!-- <ul class="flex flex-col items-center gap-y-4 mt-8 max-w-xl">
-				<li class="">
-					<div>
-						<h2
-							class="text-slate-700 dark:text-white text-2xl font-bold w-full flex justify-between items-center relative"
-						>
-							<span>Learning</span>
-							<span class="flex gap-x-2 items-center absolute right-0 top-9 min-[488px]:top-1">
-								<SvelteIcon height={24} />
-							</span>
-						</h2>
-						<div class="flex flex-col gap-y-1 mt-1 pl-0.5">
-							<span
-								class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2"
+				<h2
+					id="youtube-videos"
+					class="text-4xl font-bold dark:text-slate-100 text-blue-700 font-cursive [text-shadow:0px_2px_4px_#008FFF44,0px_2px_8px_#fffa] dark:[text-shadow:0px_2px_4px_#fff1,0px_0px_8px_#fff2]"
+				>
+					YouTube Videos
+				</h2>
+				<!-- <ul class="flex flex-col items-center gap-y-4 mt-8 max-w-xl">
+					<li class="">
+						<div>
+							<h2
+								class="text-slate-700 dark:text-white text-2xl font-bold w-full flex justify-between items-center relative"
 							>
-								<span title="Company Name">Bhuman</span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="6"
-									height="6"
-									viewBox="0 0 24 24"
-									fill="currentColor"
-									stroke="currentColor"
-									><circle cx="12" cy="12" r="10"
-									></circle></svg
+								<span>Learning</span>
+								<span class="flex gap-x-2 items-center absolute right-0 top-9 min-[488px]:top-1">
+									<SvelteIcon height={24} />
+								</span>
+							</h2>
+							<div class="flex flex-col gap-y-1 mt-1 pl-0.5">
+								<span
+									class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2"
 								>
-								<span title="Employment Type">Full-time</span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="6"
-									height="6"
-									viewBox="0 0 24 24"
-									fill="currentColor"
-									stroke="currentColor"
-									><circle cx="12" cy="12" r="10"
-									></circle></svg
+									<span title="Company Name">Bhuman</span>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="6"
+										height="6"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										stroke="currentColor"
+										><circle cx="12" cy="12" r="10"
+										></circle></svg
+									>
+									<span title="Employment Type">Full-time</span>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="6"
+										height="6"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										stroke="currentColor"
+										><circle cx="12" cy="12" r="10"
+										></circle></svg
+									>
+									<span title="Location Type">Remote Work</span>
+								</span>
+								<span
+									class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2"
 								>
-								<span title="Location Type">Remote Work</span>
-							</span>
-							<span
-								class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2"
-							>
-								<span>March 2022 - July 2022</span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="6"
-									height="6"
-									viewBox="0 0 24 24"
-									fill="currentColor"
-									stroke="currentColor"
-									><circle cx="12" cy="12" r="10"
-									></circle></svg
-								>
-								<span>5 Months</span>
-							</span>
+									<span>March 2022 - July 2022</span>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="6"
+										height="6"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										stroke="currentColor"
+										><circle cx="12" cy="12" r="10"
+										></circle></svg
+									>
+									<span>5 Months</span>
+								</span>
+							</div>
 						</div>
-					</div>
-					<p class="text-slate-600 mt-2 dark:text-white font-medium">
-						During my time at Bhuman, I was responsible for the front-end development of the application.
-						Working within a remote startup environment was an enriching experience.
-						The task Assigned to me was aimed to create multiple clones from one video to personalize it for their audience,
-						making them feel like it's just recorded for them, and improving engagement and retention.
-						For Which in-built video editor, CSV editor and integrating them with Rest APIs are all done by us.
-					</p>
-					<div
-						class="flex flex-wrap w-full dark:text-white text-slate-700 gap-3 items-center mt-4"
-					>
-						<a
-							href="#"
-							class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
-							tab-highlight-none box-border whitespace-nowrap
-								rounded-full px-1
-								ring-offset-2 focus:outline-none
-								focus:ring-2 focus:ring-slate-200
-								dark:ring-offset-slate-900
-								dark:focus:ring-slate-200"
+						<p class="text-slate-600 mt-2 dark:text-white font-medium">
+							During my time at Bhuman, I was responsible for the front-end development of the application.
+							Working within a remote startup environment was an enriching experience.
+							The task Assigned to me was aimed to create multiple clones from one video to personalize it for their audience,
+							making them feel like it's just recorded for them, and improving engagement and retention.
+							For Which in-built video editor, CSV editor and integrating them with Rest APIs are all done by us.
+						</p>
+						<div
+							class="flex flex-wrap w-full dark:text-white text-slate-700 gap-3 items-center mt-4"
 						>
-							<svg
-								viewBox="0 0 28 28"
-								fill="#0F172A"
-								xmlns="http://www.w3.org/2000/svg"
-								class="fill-slate-900 h-4 w-4 dark:fill-slate-200"
+							<a
+								href="#"
+								class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
+								tab-highlight-none box-border whitespace-nowrap
+									rounded-full px-1
+									ring-offset-2 focus:outline-none
+									focus:ring-2 focus:ring-slate-200
+									dark:ring-offset-slate-900
+									dark:focus:ring-slate-200"
 							>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
-								></path>
-							</svg>
-							<span>Github Repo</span>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								class="size-4"
+								<svg
+									viewBox="0 0 28 28"
+									fill="#0F172A"
+									xmlns="http://www.w3.org/2000/svg"
+									class="fill-slate-900 h-4 w-4 dark:fill-slate-200"
+								>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
+									></path>
+								</svg>
+								<span>Github Repo</span>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 16 16"
+									fill="currentColor"
+									class="size-4"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
+										clip-rule="evenodd"></path>
+								</svg>
+							</a>
+							<a
+								href="https://bhuman.ai"
+								target="_blank"
+								class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
+								tab-highlight-none box-border whitespace-nowrap
+									rounded-full px-1
+									ring-offset-2 focus:outline-none
+									focus:ring-2 focus:ring-slate-200
+									dark:ring-offset-slate-900
+									dark:focus:ring-slate-200"
 							>
-								<path
-									fill-rule="evenodd"
-									d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
-									clip-rule="evenodd"></path>
-							</svg>
-						</a>
-						<a
-							href="https://bhuman.ai"
-							target="_blank"
-							class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
-							tab-highlight-none box-border whitespace-nowrap
-								rounded-full px-1
-								ring-offset-2 focus:outline-none
-								focus:ring-2 focus:ring-slate-200
-								dark:ring-offset-slate-900
-								dark:focus:ring-slate-200"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								class="size-4"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M8.914 6.025a.75.75 0 0 1 1.06 0 3.5 3.5 0 0 1 0 4.95l-2 2a3.5 3.5 0 0 1-5.396-4.402.75.75 0 0 1 1.251.827 2 2 0 0 0 3.085 2.514l2-2a2 2 0 0 0 0-2.828.75.75 0 0 1 0-1.06Z"
-									clip-rule="evenodd"></path>
-								<path
-									fill-rule="evenodd"
-									d="M7.086 9.975a.75.75 0 0 1-1.06 0 3.5 3.5 0 0 1 0-4.95l2-2a3.5 3.5 0 0 1 5.396 4.402.75.75 0 0 1-1.251-.827 2 2 0 0 0-3.085-2.514l-2 2a2 2 0 0 0 0 2.828.75.75 0 0 1 0 1.06Z"
-									clip-rule="evenodd"></path>
-							</svg>
-							<span> Bhuman.ai </span>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								class="size-4"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
-									clip-rule="evenodd"></path>
-							</svg>
-						</a>
-					</div>
-				</li>
-			</ul> -->
-			<ul class="flex flex-col max-w-xl gap-y-2 mt-12 w-full">
-			{youtubeVideos.map(({data: youTubeVideo}) => (
-				<li class="relative text-slate-950 dark:text-slate-100 rounded-2xl aspect-video w-full h-full bg-slate-100/50 dark:bg-slate-900/50 dark:backdrop-contrast-125 backdrop-blur-sm border border-white dark:border-cyan-300/20 shadow-2xl shadow-indigo-600/40 dark:shadow-slate-500/40">
-					<YouTube id={youTubeVideo.URL} class="w-full h-full object-cover absolute inset-0" />
-				</li>
-			))}
-			</ul>
-		</div>
-		<script>
-			import { inView } from "motion";
-			import { annotate } from "rough-notation";
-			const e = document.querySelector("#youtube-videos") as HTMLElement;
-			inView("#youtube-videos-container", () => {
-				setTimeout(() => {
-					const annotation = annotate(e, {
-						type: "underline",
-						color: "#008FFF",
-					});
-					annotation.show();
-				},200)
-			}, {
-				margin: "0px 0px -100px 0px"
-			});
-		</script>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 16 16"
+									fill="currentColor"
+									class="size-4"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M8.914 6.025a.75.75 0 0 1 1.06 0 3.5 3.5 0 0 1 0 4.95l-2 2a3.5 3.5 0 0 1-5.396-4.402.75.75 0 0 1 1.251.827 2 2 0 0 0 3.085 2.514l2-2a2 2 0 0 0 0-2.828.75.75 0 0 1 0-1.06Z"
+										clip-rule="evenodd"></path>
+									<path
+										fill-rule="evenodd"
+										d="M7.086 9.975a.75.75 0 0 1-1.06 0 3.5 3.5 0 0 1 0-4.95l2-2a3.5 3.5 0 0 1 5.396 4.402.75.75 0 0 1-1.251-.827 2 2 0 0 0-3.085-2.514l-2 2a2 2 0 0 0 0 2.828.75.75 0 0 1 0 1.06Z"
+										clip-rule="evenodd"></path>
+								</svg>
+								<span> Bhuman.ai </span>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 16 16"
+									fill="currentColor"
+									class="size-4"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
+										clip-rule="evenodd"></path>
+								</svg>
+							</a>
+						</div>
+					</li>
+				</ul> -->
+				<ul class="flex flex-col max-w-xl gap-y-2 mt-12 w-full">
+				{youtubeVideos.map(({data: youTubeVideo}) => (
+					<li class="relative text-slate-950 dark:text-slate-100 rounded-2xl aspect-video w-full h-full bg-slate-100/50 dark:bg-slate-900/50 dark:backdrop-contrast-125 backdrop-blur-sm border border-white dark:border-cyan-300/20 shadow-2xl shadow-indigo-600/40 dark:shadow-slate-500/40">
+						<YouTube id={youTubeVideo.URL} class="w-full h-full object-cover absolute inset-0" />
+					</li>
+				))}
+				</ul>
+			</div>
+			<script>
+				import { inView } from "motion";
+				import { annotate } from "rough-notation";
+				const e = document.querySelector("#youtube-videos") as HTMLElement;
+				inView("#youtube-videos-container", () => {
+					setTimeout(() => {
+						const annotation = annotate(e, {
+							type: "underline",
+							color: "#008FFF",
+						});
+						annotation.show();
+					},200)
+				}, {
+					margin: "0px 0px -100px 0px"
+				});
+			</script>
+		)}
 
 		<div id="articles-container" class="mt-24 flex z-10 flex-col items-center w-full p-2">
 			<h2

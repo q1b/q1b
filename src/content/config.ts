@@ -13,6 +13,16 @@ const articles = defineCollection({
 	}),
 });
 
+const youTubeVideos = defineCollection({
+	loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/youtube_videos" }),
+	schema: z.object({
+		label: z.string(),
+		summary: z.string().optional(),
+		URL: z.string(),
+		tags: z.array(z.string()).optional(),
+	}),
+})
+
 const categories = defineCollection({
 	loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/categories" }),
 	schema: z.object({
@@ -40,4 +50,4 @@ const projects = defineCollection({
 	}),
 });
 
-export const collections = { articles, tags, categories, projects };
+export const collections = { articles, tags, categories, projects, 'youtube-videos': youTubeVideos };

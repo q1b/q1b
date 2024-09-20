@@ -5,12 +5,12 @@ const storage: LocalConfig["storage"] | GitHubConfig["storage"] =
 	process.env.NODE_ENV === "development"
 		? { kind: "local" }
 		: {
-				kind: "github",
-				repo: {
-					owner: "q1b",
-					name: "q1b",
-				},
-			};
+			kind: "github",
+			repo: {
+				owner: "q1b",
+				name: "q1b",
+			},
+		};
 
 export const markdocConfig = fields.markdoc.createMarkdocConfig({});
 
@@ -300,6 +300,9 @@ export default config({
 			label: "Webpages",
 			slugField: "path",
 			path: "src/data/webpages/*",
+			format: {
+				data: "json",
+			},
 			schema: {
 				path: fields.slug({ name: { label: "Path" } }),
 				title: fields.text({ label: "Title" }),
@@ -310,5 +313,25 @@ export default config({
 				keywords: fields.array(fields.text({ label: "Keywords" })),
 			},
 		}),
+		youTubeVideos: collection({
+			label: "YouTube Videos",
+			slugField: "label",
+			path: "src/data/youtube_videos/*",
+			format: {
+				data: "json",
+			},
+			schema: {
+				label: fields.slug({ name: { label: "Label" } }),
+				summary: fields.text({
+					label: "Summary",
+					multiline: true,
+				}),
+				URL: fields.url({ label: "URL" }),
+				tags: fields.multiRelationship({
+					label: "Tags",
+					collection: "tags",
+				}),
+			},
+		})
 	},
 });

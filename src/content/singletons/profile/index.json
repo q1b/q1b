@@ -1,17 +1,16 @@
 {
-	"name": "Sukhpreet Singh",
-	"email_address": "",
-	"image": "/src/assets/images/profile/image.jpeg",
-	"worksFor": {
-		"discriminant": false
-	},
-	"knowsAbout": [
-		{
-			"name": "web development",
-			"public": true
-		}
-	],
-	"githubURL": "https://github.com/q1b",
-	"xURL": "",
-	"linkedInURL": "https://linkedin.com/in/q1b"
+  "name": "Sukhpreet Singh",
+  "image": "/src/assets/images/profile/image.jpeg",
+  "worksFor": {
+    "discriminant": false
+  },
+  "knowsAbout": [
+    {
+      "name": "web development",
+      "public": true
+    }
+  ],
+  "githubURL": "https://github.com/q1b",
+  "linkedInURL": "https://linkedin.com/in/q1b",
+  "resumePDF": "/src/assets/files/resume/resumePDF.pdf"
 }

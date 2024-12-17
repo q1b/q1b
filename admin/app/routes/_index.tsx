@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader() {
-	const posts = await reader.collections.posts.all();
+	const posts = await reader.collections.articles.all()
 	return json({ posts });
 }
 

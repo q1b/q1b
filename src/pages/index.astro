@@ -31,7 +31,7 @@ const youtubeVideos = (await getCollection("youtube-videos"));
 			<div class="flex flex-row items-center">
 				<div class="flex items-center">
 					<a
-						href="#"
+						href={profile.resumePDF ?? "#"}
 						target="_blank"
 						rel="external"
 						class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap

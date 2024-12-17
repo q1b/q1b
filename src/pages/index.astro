@@ -88,7 +88,7 @@ const youtubeVideos = (await getCollection("youtube-videos"));
 					</svg>
 				</div>
 				{
-					profile?.email_address && (
+					("email_address" in profile && typeof profile.email_address === 'string') && (
 						<a
 							href={profile.email_address}
 							target="_blank"
@@ -201,7 +201,7 @@ const youtubeVideos = (await getCollection("youtube-videos"));
 					)
 				}
 				{
-					profile?.xURL && (
+					"xURL" in profile && typeof profile.xURL === 'string' && (
 						<a
 							href={profile.xURL}
 							target="_blank"

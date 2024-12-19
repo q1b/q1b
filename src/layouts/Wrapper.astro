@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from 'astro:transitions';
 import PostHog from '../components/Posthog.astro'
 import "../assets/global.css";
 
@@ -42,7 +42,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<meta property="twitter:description" content={description} />
 		{ogImageURL && <meta property="twitter:image" content={ogImageURL} />}
 
-		<ViewTransitions />
+		<ClientRouter />
 		<!-- On page load or when changing themes, best to add inline in `head` to avoid FOUC -->
 		<script is:inline>
 			const onClick = () => {

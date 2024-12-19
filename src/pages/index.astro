@@ -2,7 +2,6 @@
 import MaskBackground from "../components/Backgrounds/MaskBackground.astro";
 import ContentViewIcon from "../assets/icons/ContentView.astro";
 import SolidjsIcon from "../assets/icons/logos/Solidjs.astro";
-import SvelteIcon from "../assets/icons/logos/Svelte.astro";
 import TypeScriptIcon from "../assets/icons/logos/TypeScript.astro";
 import TailwindcssIcon from "../assets/icons/logos/Tailwindcss.astro";
 import Layout from "../layouts/Layout.astro";
@@ -11,6 +10,10 @@ import homepage from "../content/singletons/homepage/index.json";
 import profile from "../content/singletons/profile/index.json";
 import { getCollection } from "astro:content";
 import { YouTube } from "astro-embed"
+
+interface CustomDataFile {
+  default: string;
+}
 
 const projects = (await getCollection("projects")).filter(
 	(project) => project.data.visible,
@@ -21,6 +24,11 @@ const articles = (await getCollection("articles")).filter(
 );
 
 const youtubeVideos = (await getCollection("youtube-videos"));
+
+const resumes = import.meta.glob<CustomDataFile>("/src/assets/files/resume/*.pdf");
+if (!resumes[profile.resumePDF]) throw new Error(`"${profile.resumePDF}" does not exist in glob: "/src/assets/files/resume/*.pdf"`);
+const resume = await resumes[profile.resumePDF]()
+console.log(resume.default)
 ---
 
 <Layout title={homepage.title} description={homepage.description}>
@@ -31,7 +39,7 @@ const youtubeVideos = (await getCollection("youtube-videos"));
 			<div class="flex flex-row items-center">
 				<div class="flex items-center">
 					<a
-						href={profile.resumePDF ?? "#"}
+						href={resume.default ?? "#"}
 						target="_blank"
 						rel="external"
 						class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap

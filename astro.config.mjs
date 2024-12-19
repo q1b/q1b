@@ -8,13 +8,12 @@ import markdoc from "@astrojs/markdoc";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://sukhpreet.dev",
-	output: "hybrid",
+	output: "server",
 	adapter: cloudflare({
 		imageService: "passthrough",
 	}),
 	experimental: {
-		contentIntellisense: true,
-		contentLayer: true,
+		contentIntellisense: true
 	},
 	integrations: [
 		tailwind({

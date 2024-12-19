@@ -1,6 +1,5 @@
 import { blueDark, blue, red, redDark } from "@radix-ui/colors";
 import svgToTinyDataUri from "mini-svg-data-uri";
-// @ts-expect-error - Tailwind CSS Colors is not typed
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";

@@ -8,7 +8,7 @@
 		"admin:build": "remix vite:build admin",
 		"start": "astro dev",
 		"build": "astro check && astro build",
-		"preview": "astro preview",
+		"preview": "wrangler pages dev ./dist",
 		"astro": "astro",
 		"format": "prettier --write ."
 	},

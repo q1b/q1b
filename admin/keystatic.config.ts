@@ -24,7 +24,7 @@ export default config({
 	singletons: {
 		homepage: singleton({
 			label: "Homepage",
-			path: "src/content/singletons/homepage/",
+			path: "src/singletons/homepage/",
 			format: {
 				data: "json",
 			},
@@ -54,7 +54,7 @@ export default config({
 		}),
 		person: singleton({
 			label: "Profile",
-			path: "src/content/singletons/profile/",
+			path: "src/singletons/profile/",
 			format: {
 				data: "json",
 			},
@@ -105,6 +105,7 @@ export default config({
 		}),
 	},
 	collections: {
+		// webpages
 		projects: collection({
 			label: "Projects",
 			slugField: "title",

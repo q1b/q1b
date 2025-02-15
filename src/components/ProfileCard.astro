@@ -1,8 +1,8 @@
 ---
 import RollingBlock from "../components/web-components/rolling-block.astro";
 import TimeBlock from "../components/web-components/time-block.astro";
-import profile from "../content/singletons/profile/index.json";
-import homepage from "../content/singletons/homepage/index.json";
+import profile from "../singletons/profile/index.json";
+import homepage from "../singletons/homepage/index.json";
 
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/images/profile/*.{jpeg,jpg,png,gif,webp}");
 if (!images[profile.image]) throw new Error(`"${profile.image}" does not exist in glob: "/src/assets/images/profile/*.{jpeg,jpg,png,gif,webp}"`);

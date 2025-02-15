@@ -6,8 +6,8 @@ import TypeScriptIcon from "../assets/icons/logos/TypeScript.astro";
 import TailwindcssIcon from "../assets/icons/logos/Tailwindcss.astro";
 import Layout from "../layouts/Layout.astro";
 import ProfileCard from "../components/ProfileCard.astro";
-import homepage from "../content/singletons/homepage/index.json";
-import profile from "../content/singletons/profile/index.json";
+import homepage from "../singletons/homepage/index.json";
+import profile from "../singletons/profile/index.json";
 import { getCollection } from "astro:content";
 import { YouTube } from "astro-embed"
 
@@ -28,7 +28,6 @@ const youtubeVideos = (await getCollection("youtube-videos"));
 const resumes = import.meta.glob<CustomDataFile>("/src/assets/files/resume/*.pdf");
 if (!resumes[profile.resumePDF]) throw new Error(`"${profile.resumePDF}" does not exist in glob: "/src/assets/files/resume/*.pdf"`);
 const resume = await resumes[profile.resumePDF]()
-console.log(resume.default)
 ---
 
 <Layout title={homepage.title} description={homepage.description}>

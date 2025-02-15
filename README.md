@@ -1,7 +1,5 @@
 <div id="top"></div>
 
-<!-- ---------------------------------------------------------------------------------------- -->
-
 <div align="center">
 <span> <img src="https://api.iconify.design/fluent-emoji:smiling-face-with-sunglasses.svg?color=%23ffffff" height="42" >  <h1> Sukhpreet Singh  </h1> </span>
 <p>  Software Engineer </p>

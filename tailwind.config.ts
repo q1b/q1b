@@ -1,4 +1,4 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
+import theme from "tailwindcss/defaultTheme";
 
 import type { Config } from "tailwindcss";
 
@@ -21,7 +21,7 @@ const config = {
 			},
 			fontFamily: {
 				cursive: ["Borel", "cursive"],
-				sans: ["Inter", ...fontFamily.sans],
+				sans: ["Inter", ...theme.fontFamily.sans],
 			},
 		},
 	},

@@ -16,7 +16,10 @@ export default defineConfig({
 		contentIntellisense: true
 	},
 	vite: {
-		plugins: [tailwindcss()]
+		plugins: [
+			// @ts-expect-error Plugin is working fine, some typescript errors
+			tailwindcss()
+		]
 	},
 	integrations: [
 		markdoc(),

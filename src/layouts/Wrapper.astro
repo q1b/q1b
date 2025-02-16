@@ -8,9 +8,10 @@ export type Props = {
 	description: string;
 	class?: string;
 	ogImageURL?: string;
+	style?: Record<string, string>;
 };
 
-const { title, description, ogImageURL, class: className = "" } = Astro.props;
+const { title, description, ogImageURL, class: className = "", style = {} } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -26,7 +27,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link rel="icon" href="/logo/favicon.svg" sizes="any" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="/logo/apple-touch-icon-180x180.png" />
 		<link rel="mask-icon" href="/logo/maskable-icon-512x512.png" color="#000000" />
-		
+
 		<meta name="generator" content={Astro.generator} />
 
 		{canonicalURL && <link rel="canonical" href={canonicalURL} />}
@@ -139,7 +140,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			window.animate = animate;
 		</script>
 	</head>
-	<body class={className}>
+	<body class={className} style={style}>
 		<slot />
 	</body>
 </html>

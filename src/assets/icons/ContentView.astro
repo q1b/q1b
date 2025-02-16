@@ -16,7 +16,7 @@ const { size = "xs" } = Astro.props;
 <span class="flex items-center justify-center">
 	<!-- Outline Icon fluent:home-32-regular -->
 	<svg
-		class="group-aria-[current='true']:hidden group-hover:hidden"
+		class="group-aria-current:hidden group-hover:hidden"
 		xmlns="http://www.w3.org/2000/svg"
 		width={sizeToPx[size]}
 		height={sizeToPx[size]}
@@ -29,7 +29,7 @@ const { size = "xs" } = Astro.props;
 	</svg>
 	<!-- Solid Icon fluent:home-32-filled -->
 	<svg
-		class="hidden group-aria-[current='true']:block group-hover:block"
+		class="hidden group-aria-current:block group-hover:block"
 		xmlns="http://www.w3.org/2000/svg"
 		width={sizeToPx[size]}
 		height={sizeToPx[size]}

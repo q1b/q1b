@@ -15,7 +15,7 @@ const { toc, isMobile = false, depth = 0 } = Astro.props;
 		toc.map((heading) => (
 			<li>
 				<a
-					class="aria-[current='true']:bg-slate-500/50 hover:bg-slate-500/20"
+					class="aria-current:bg-slate-500/50 hover:bg-slate-500/20"
 					href={"#" + heading.slug}
 				>
 					<span>{heading.text}</span>
@@ -77,6 +77,6 @@ const { toc, isMobile = false, depth = 0 } = Astro.props;
 		mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNCAxNCc+PHBhdGggZD0nTTEwLjkxNCA0LjIwNmEuNTgzLjU4MyAwIDAgMC0uODI4IDBMNS43NCA4LjU1NyAzLjkxNCA2LjcyNmEuNTk2LjU5NiAwIDAgMC0uODI4Ljg1N2wyLjI0IDIuMjRhLjU4My41ODMgMCAwIDAgLjgyOCAwbDQuNzYtNC43NmEuNTgzLjU4MyAwIDAgMCAwLS44NTdaJy8+PC9zdmc+Cg==");
 		-webkit-mask-repeat: no-repeat;
 		mask-repeat: no-repeat;
-		flex-shrink: 0;
+		shrink: 0;
 	}
 </style>

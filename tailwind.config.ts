@@ -1,13 +1,9 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
-import F from "@tailwindcss/forms";
-import T from "@tailwindcss/typography";
-import { themePreset } from "./tailwind.theme";
+
 import type { Config } from "tailwindcss";
 
 const config = {
-	presets: [themePreset],
 	content: ["./src/**/*.{html,js,astro,ts}"],
-	safelist: ["dark"],
 	darkMode: "selector",
 	theme: {
 		container: {
@@ -29,7 +25,6 @@ const config = {
 			},
 		},
 	},
-	plugins: [F, T],
 } satisfies Config;
 
 export default config;

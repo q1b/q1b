@@ -3,22 +3,25 @@ export type Props = {};
 ---
 
 <div
+	style={{
+		'--color-transparent': 'transparent',
+		'--white-gradient': 'repeating-linear-gradient(100deg, var(--color-white) 0%,var(--color-white) 7%,var(--color-transparent) 10%, var(--color-transparent) 12%, var(--color-white) 16%)',
+		'--dark-gradient': 'repeating-linear-gradient(100deg, var(--color-black) 0%,var(--color-black) 7%,var(--color-transparent) 10%,var(--color-transparent) 12%,var(--color-black) 16%)',
+		'--aurora': 'repeating-linear-gradient(100deg,var(--color-blue-100) 10%,var(--color-indigo-200) 15%,var(--color-blue-400) 20%,var(--color-sky-500) 25%,var(--color-blue-300) 30%)',
+		'--dark-aurora': 'repeating-linear-gradient(100deg,var(--color-green-500) 10%,var(--color-cyan-300) 15%,var(--color-teal-300) 20%,var(--color-orange-200) 25%,var(--color-green-400) 30%)'
+	}}
 	class={`-z-10 absolute w-full
-            [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
-            [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)]
-            [--aurora:repeating-linear-gradient(100deg,var(--blue-100)_10%,var(--indigo-200)_15%,var(--blue-400)_20%,var(--sky-500)_25%,var(--blue-300)_30%)]
-            dark:[--aurora:repeating-linear-gradient(100deg,var(--green-500)_10%,var(--cyan-300)_15%,var(--teal-300)_20%,var(--orange-200)_25%,var(--green-400)_30%)]
             [background-image:var(--white-gradient),var(--aurora)]
-            dark:[background-image:var(--dark-gradient),var(--aurora)]
-            md:[background-size:300%,_200%]
-            sm:[background-size:900%,_400%]
-            [background-size:1800%,_800%]
+            dark:[background-image:var(--dark-gradient),var(--dark-aurora)]
+            md:[background-size:300%,200%]
+            sm:[background-size:900%,400%]
+            [background-size:1800%,800%]
             [background-position:50%_50%,50%_50%]
             filter blur-[10px] invert dark:invert-0
             after:content-[""] after:absolute after:inset-0 after:[background-image:var(--white-gradient),var(--aurora)]
-            after:dark:[background-image:var(--dark-gradient),var(--aurora)]
+            dark:after:[background-image:var(--dark-gradient),var(--aurora)]
             after:[background-size:200%,_100%]
             after:animate-aurora after:[background-attachment:fixed] after:mix-blend-difference
-            pointer-events-none inset-0 opacity-50 will-change-transform [mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`}
+            pointer-events-none inset-0 opacity-30 transition-color duration-500 dark:duration-200 will-change-[transform,_background-color [mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`}
 >
 </div>

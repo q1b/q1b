@@ -4,7 +4,6 @@ import Wrapper from "./Wrapper.astro";
 import ThemeButton from "../components/ThemeButton.astro";
 import GridBackground from "../components/Backgrounds/GridBackground.astro";
 import GradientBackground from "../components/Backgrounds/GradientBackground.astro";
-import HomeIcon from "../assets/icons/Home.astro";
 import Logo from '../components/Logo.astro';
 
 export type Props = {
@@ -14,7 +13,7 @@ export type Props = {
 };
 
 const { title, description, className } = Astro.props;
-const currentPage = Astro.url.pathname;
+// const currentPage = Astro.url.pathname;
 ---
 
 <Wrapper

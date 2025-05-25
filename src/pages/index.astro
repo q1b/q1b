@@ -1,5 +1,4 @@
 ---
-import MaskBackground from "../components/Backgrounds/MaskBackground.astro";
 import ContentViewIcon from "../assets/icons/ContentView.astro";
 import SolidjsIcon from "../assets/icons/logos/Solidjs.astro";
 import TypeScriptIcon from "../assets/icons/logos/TypeScript.astro";
@@ -31,7 +30,7 @@ const resume = await resumes[profile.resumePDF]()
 ---
 
 <Layout title={homepage.title} description={homepage.description}>
-	<MaskBackground />
+	<!-- <MaskBackground /> -->
 	<main class="flex mt-8 sm:mt-0 w-full max-w-5xl flex-col">
 		<div class="flex flex-col relative items-center gap-y-4">
 			<ProfileCard />

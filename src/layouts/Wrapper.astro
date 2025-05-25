@@ -1,146 +1,158 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import PostHog from '../components/Posthog.astro'
+import { ClientRouter } from "astro:transitions";
+import PostHog from "../components/Posthog.astro";
 import "../assets/global.css";
 
 export type Props = {
-	title: string;
-	description: string;
-	class?: string;
-	ogImageURL?: string;
-	style?: Record<string, string>;
+  title: string;
+  description: string;
+  class?: string;
+  ogImageURL?: string;
+  style?: Record<string, string>;
 };
 
-const { title, description, ogImageURL, class: className = "", style = {} } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const {
+  title,
+  description,
+  ogImageURL,
+  class: className = "",
+  style = {},
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.request.url, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en" dir="ltr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="sitemap" href="/sitemap-index.xml" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-		<link rel="icon" href="/logo/favicon.ico" sizes="48x48">
-		<link rel="icon" href="/logo/favicon.svg" sizes="any" type="image/svg+xml">
-		<link rel="apple-touch-icon" href="/logo/apple-touch-icon-180x180.png" />
-		<link rel="mask-icon" href="/logo/maskable-icon-512x512.png" color="#000000" />
+    <link rel="icon" href="/logo/favicon.ico" sizes="48x48" />
+    <link
+      rel="icon"
+      href="/logo/favicon.svg"
+      sizes="any"
+      type="image/svg+xml"
+    />
+    <link rel="apple-touch-icon" href="/logo/apple-touch-icon-180x180.png" />
+    <link
+      rel="mask-icon"
+      href="/logo/maskable-icon-512x512.png"
+      color="#000000"
+    />
 
-		<meta name="generator" content={Astro.generator} />
+    <meta name="generator" content={Astro.generator} />
 
-		{canonicalURL && <link rel="canonical" href={canonicalURL} />}
-		<title>{title}</title>
-		<meta name="description" content={description} />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    <title>{title}</title>
+    <meta name="description" content={description} />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={canonicalURL} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		{ogImageURL && <meta property="og:image" content={ogImageURL} />}
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {ogImageURL && <meta property="og:image" content={ogImageURL} />}
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={canonicalURL} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		{ogImageURL && <meta property="twitter:image" content={ogImageURL} />}
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    {ogImageURL && <meta property="twitter:image" content={ogImageURL} />}
 
-		<ClientRouter />
-		<!-- On page load or when changing themes, best to add inline in `head` to avoid FOUC -->
-		<script is:inline>
-			const onClick = () => {
-				// flip current value
-				theme.value = theme.value === "light" ? "dark" : "light";
+    <ClientRouter />
+    <!-- On page load or when changing themes, best to add inline in `head` to avoid FOUC -->
+    <script is:inline>
+      const onClick = () => {
+        // flip current value
+        theme.value = theme.value === "light" ? "dark" : "light";
 
-				setPreference();
-			};
+        setPreference();
+      };
 
-			const getColorPreference = () => {
-				if ("theme" in localStorage) return localStorage.theme;
-				else
-					return window.matchMedia("(prefers-color-scheme: dark)")
-						.matches
-						? "dark"
-						: "light";
-			};
+      const getColorPreference = () => {
+        if ("theme" in localStorage) return localStorage.theme;
+        else
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+      };
 
-			const setPreference = () => {
-				localStorage.setItem("theme", theme.value);
-				reflectPreference();
-			};
+      const setPreference = () => {
+        localStorage.setItem("theme", theme.value);
+        reflectPreference();
+      };
 
-			const reflectPreference = () => {
-				document.firstElementChild?.setAttribute(
-					"data-theme",
-					theme.value,
-				);
+      const reflectPreference = () => {
+        document.firstElementChild?.setAttribute("data-theme", theme.value);
 
-				if (theme.value === "dark") {
-					document.documentElement.classList.add("dark");
-				} else {
-					document.documentElement.classList.remove("dark");
-				}
+        if (theme.value === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
 
-				document
-					.querySelector("#theme-toggle")
-					?.setAttribute("aria-label", theme.value);
-			};
+        document
+          .querySelector("#theme-toggle")
+          ?.setAttribute("aria-label", theme.value);
+      };
 
-			const theme = {
-				value: getColorPreference() ?? "light",
-			};
+      const theme = {
+        value: getColorPreference() ?? "light",
+      };
 
-			// set early so no page flashes / CSS is made aware
-			reflectPreference();
+      // set early so no page flashes / CSS is made aware
+      reflectPreference();
 
-			window.onload = () => {
-				// set on load so screen readers can see latest value on the button
-				reflectPreference();
+      window.onload = () => {
+        // set on load so screen readers can see latest value on the button
+        reflectPreference();
 
-				// now this script can find and listen for clicks on the control
-				document
-					.querySelector("#theme-toggle")
-					?.addEventListener("click", onClick);
-			};
+        // now this script can find and listen for clicks on the control
+        document
+          .querySelector("#theme-toggle")
+          ?.addEventListener("click", onClick);
+      };
 
-			// sync with system changes
-			window
-				.matchMedia("(prefers-color-scheme: dark)")
-				.addEventListener("change", ({ matches: isDark }) => {
-					theme.value = isDark ? "dark" : "light";
-					setPreference();
-				});
+      // sync with system changes
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", ({ matches: isDark }) => {
+          theme.value = isDark ? "dark" : "light";
+          setPreference();
+        });
 
-			document.addEventListener("astro:before-swap", (ev) => {
-				ev.newDocument.firstElementChild?.setAttribute(
-					"data-theme",
-					theme.value,
-				);
+      document.addEventListener("astro:before-swap", (ev) => {
+        ev.newDocument.firstElementChild?.setAttribute(
+          "data-theme",
+          theme.value,
+        );
 
-				if (theme.value === "dark") {
-					ev.newDocument.documentElement.classList.add("dark");
-				} else {
-					ev.newDocument.documentElement.classList.remove("dark");
-				}
+        if (theme.value === "dark") {
+          ev.newDocument.documentElement.classList.add("dark");
+        } else {
+          ev.newDocument.documentElement.classList.remove("dark");
+        }
 
-				ev.newDocument
-					.querySelector("#theme-toggle")
-					?.setAttribute("aria-label", theme.value);
-				ev.newDocument
-					.querySelector("#theme-toggle")
-					?.addEventListener("click", onClick, { passive: true });
-			});
-		</script>
-		<PostHog />
-		<script>
-			import { animate } from "motion";
-			window.animate = animate;
-		</script>
-	</head>
-	<body class={className} style={style}>
-		<slot />
-	</body>
+        ev.newDocument
+          .querySelector("#theme-toggle")
+          ?.setAttribute("aria-label", theme.value);
+        ev.newDocument
+          .querySelector("#theme-toggle")
+          ?.addEventListener("click", onClick, { passive: true });
+      });
+    </script>
+    <PostHog />
+    <script>
+      import { animate } from "motion";
+      window.animate = animate;
+    </script>
+  </head>
+  <body class={className} style={style}>
+    <slot />
+  </body>
 </html>

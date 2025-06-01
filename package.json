@@ -12,15 +12,15 @@
     "@astrojs/cloudflare": "^12.5.3",
     "@astrojs/markdoc": "^0.15.0",
     "@astrojs/sitemap": "^3.4.0",
-    "@tailwindcss/vite": "^4.1.7",
-    "astro": "^5.8.0",
+    "@tailwindcss/vite": "^4.1.8",
+    "astro": "^5.8.1",
     "astro-embed": "^0.9.0",
     "clsx": "^2.1.1",
     "mini-svg-data-uri": "^1.4.4",
-    "motion": "^12.12.2",
+    "motion": "^12.15.0",
     "rough-notation": "^0.5.1",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "prettier": "3.5.3",

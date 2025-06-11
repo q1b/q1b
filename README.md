@@ -5,7 +5,7 @@
 <p>  Software Engineer </p>
 </div>
 
--   👀 I’m interested in [Software development](https://en.wikipedia.org/wiki/Software_development)
+-   👀 I’m in [Software development](https://en.wikipedia.org/wiki/Software_development)
 -   🌱 I’m currently learning FullStack Web Development
 -   📫 Skilled in TypeScript, Tailwindcss, Sveltekit, Vuejs, Reactjs
 

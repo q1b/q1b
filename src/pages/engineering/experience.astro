@@ -2,6 +2,10 @@
 import EngineeringLayout from "../../layouts/EngineeringLayout.astro";
 import profile from "../../singletons/profile/index.json";
 
+const resumes = import.meta.glob("/src/assets/files/resume/*.pdf");
+if (!resumes[profile.resumePDF]) throw new Error(`"${profile.resumePDF}" does not exist in glob: "/src/assets/files/resume/*.pdf"`);
+const resume = await resumes[profile.resumePDF]();
+
 // Sample experience data - this can be extended with a separate data source
 const experiences = [
   {
@@ -130,9 +134,9 @@ const skills = [
       </p>
       <div class="flex gap-4 justify-center flex-wrap">
         <a
-          href={profile.resumePDF}
+          href={resume.default ?? "#"}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="external"
           class="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
         >
           Download Resume

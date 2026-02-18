@@ -8,7 +8,6 @@ const projects = (await getCollection("projects")).filter(
 );
 
 const majorProjects = projects.filter((p) => p.data.isMajorProject);
-const recentProjects = projects.slice(0, 4);
 
 const engineeringProfile = profile.engineering;
 ---

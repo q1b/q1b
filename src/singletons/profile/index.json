@@ -12,5 +12,18 @@
   ],
   "githubURL": "https://github.com/q1b",
   "linkedInURL": "https://linkedin.com/in/q1b",
-  "resumePDF": "/src/assets/files/resume/resumePDF.pdf"
+  "resumePDF": "/src/assets/files/resume/resumePDF.pdf",
+  "engineering": {
+    "title": "Software Engineer",
+    "subtitle": "Full-stack developer passionate about building elegant solutions",
+    "bio": "Experienced software engineer with a focus on web development, open source contributions, and problem-solving. Dedicated to writing clean, maintainable code and creating user-centered applications.",
+    "instagramURL": "https://instagram.com/vishnuans"
+  },
+  "yoga": {
+    "title": "Yoga & Meditation Teacher",
+    "subtitle": "Guiding others toward wellness through yoga and mindfulness",
+    "bio": "Certified yoga instructor and meditation facilitator dedicated to sharing the transformative practices of yoga and mindfulness. Creating a welcoming community for practitioners of all levels to explore inner peace and physical well-being.",
+    "image": "/src/assets/images/profile/gurudev.jpg",
+    "email": "yoga@example.com"
+  }
 }

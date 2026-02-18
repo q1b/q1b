@@ -1,0 +1,153 @@
+---
+import EngineeringLayout from "../../layouts/EngineeringLayout.astro";
+import profile from "../../singletons/profile/index.json";
+
+const resumes = import.meta.glob("/src/assets/files/resume/*.pdf");
+if (!resumes[profile.resumePDF]) throw new Error(`"${profile.resumePDF}" does not exist in glob: "/src/assets/files/resume/*.pdf"`);
+const resume = await resumes[profile.resumePDF]();
+
+// Sample experience data - this can be extended with a separate data source
+const experiences = [
+  {
+    title: "Software Engineer",
+    company: "Tech Company",
+    period: "2023 - Present",
+    description: "Building scalable web applications with React and TypeScript",
+    skills: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+  },
+  {
+    title: "Full Stack Developer",
+    company: "Digital Agency",
+    period: "2022 - 2023",
+    description: "Developed and maintained client projects using modern web technologies",
+    skills: ["Next.js", "Tailwind CSS", "JavaScript", "MongoDB"],
+  },
+  {
+    title: "Junior Developer",
+    company: "Startup",
+    period: "2021 - 2022",
+    description: "Contributed to product development and infrastructure improvements",
+    skills: ["React", "Node.js", "HTML/CSS", "Git"],
+  },
+];
+
+const skills = [
+  { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Astro", "Svelte"] },
+  { category: "Backend", items: ["Node.js", "Express", "PostgreSQL", "MongoDB", "GraphQL"] },
+  { category: "Tools", items: ["Git", "Docker", "CI/CD", "AWS", "Vercel"] },
+  { category: "Soft Skills", items: ["Problem Solving", "Communication", "Leadership", "Collaboration"] },
+];
+---
+
+<EngineeringLayout
+  title="Work Experience"
+  description="Professional background and career journey"
+>
+  <main class="flex mt-8 sm:mt-0 w-full max-w-4xl flex-col gap-8">
+    <!-- Hero Section -->
+    <section class="text-center py-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-950 dark:text-slate-50 mb-4">
+        Work Experience
+      </h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300">
+        My professional journey in software engineering
+      </p>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="space-y-6">
+      <h2 class="text-3xl font-bold text-slate-950 dark:text-slate-50">
+        Career History
+      </h2>
+      {experiences.map((exp, index) => (
+        <div class="rounded-lg border-2 border-blue-200 dark:border-blue-700 bg-white dark:bg-blue-900/30 p-6 relative">
+          {index !== experiences.length - 1 && (
+            <div class="absolute -bottom-7 left-6 w-1 h-6 bg-blue-300 dark:bg-blue-700"></div>
+          )}
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-bold text-slate-950 dark:text-slate-50">
+                {exp.title}
+              </h3>
+              <p class="text-lg text-blue-600 dark:text-blue-300 font-semibold">
+                {exp.company}
+              </p>
+            </div>
+            <span class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-2 md:mt-0">
+              {exp.period}
+            </span>
+          </div>
+          <p class="text-slate-700 dark:text-slate-300 mb-4">
+            {exp.description}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {exp.skills.map((skill) => (
+              <span class="text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-900 dark:text-blue-100 px-3 py-1 rounded">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- Skills Section -->
+    <section class="space-y-6">
+      <h2 class="text-3xl font-bold text-slate-950 dark:text-slate-50">
+        Skills & Expertise
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {skills.map((skillGroup) => (
+          <div class="rounded-lg border-2 border-blue-200 dark:border-blue-700 bg-white dark:bg-blue-900/30 p-6">
+            <h3 class="text-xl font-bold text-slate-950 dark:text-slate-50 mb-4">
+              {skillGroup.category}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {skillGroup.items.map((skill) => (
+                <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-lg text-sm font-medium">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="rounded-lg border-2 border-blue-200 dark:border-blue-700 bg-white dark:bg-blue-900/30 p-6">
+      <h2 class="text-2xl font-bold text-slate-950 dark:text-slate-50 mb-4">
+        Education
+      </h2>
+      <p class="text-slate-700 dark:text-slate-300">
+        Continuous learning through online courses, certifications, and hands-on project work. I stay updated with the latest technologies and best practices in software engineering.
+      </p>
+    </section>
+
+    <!-- Download Resume -->
+    <section class="rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700 p-8 text-white text-center">
+      <h2 class="text-2xl font-bold mb-4">
+        Want to Know More?
+      </h2>
+      <p class="mb-6">
+        Download my resume for detailed information about my qualifications and experience.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a
+          href={resume.default ?? "#"}
+          target="_blank"
+          rel="external"
+          class="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+        >
+          Download Resume
+        </a>
+        <a
+          href="/contact"
+          class="px-6 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
+        >
+          Get in Touch
+        </a>
+      </div>
+    </section>
+  </main>
+</EngineeringLayout>

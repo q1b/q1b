@@ -1,0 +1,101 @@
+---
+import YogaLayout from "../../layouts/YogaLayout.astro";
+import { getCollection } from "astro:content";
+
+const teachings = (await getCollection("teachings")).filter(
+  (teaching) => teaching.data.visible,
+);
+
+const sortedTeachings = teachings.sort((a, b) => {
+  const dateA = a.data.pubDate ? new Date(a.data.pubDate).getTime() : 0;
+  const dateB = b.data.pubDate ? new Date(b.data.pubDate).getTime() : 0;
+  return dateB - dateA;
+});
+---
+
+<YogaLayout
+  title="Teachings & Articles"
+  description="Wisdom and insights on yoga, meditation, and mindful living"
+>
+  <main class="flex mt-8 sm:mt-0 w-full max-w-4xl flex-col gap-8">
+    <!-- Hero Section -->
+    <section class="text-center py-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-amber-950 dark:text-amber-50 mb-4">
+        Teachings & Articles
+      </h1>
+      <p class="text-lg text-amber-700 dark:text-amber-300">
+        Explore wisdom, insights, and practical guidance for yoga and mindful living
+      </p>
+    </section>
+
+    <!-- Teachings List -->
+    <section class="space-y-6">
+      {sortedTeachings.length > 0 ? (
+        sortedTeachings.map((teaching) => (
+          <article class="rounded-lg border-2 border-amber-200 dark:border-amber-700 bg-white dark:bg-amber-900/30 p-8 hover:shadow-lg transition-shadow">
+            <h2 class="text-2xl font-bold text-amber-950 dark:text-amber-50 mb-2">
+              {teaching.data.title}
+            </h2>
+            {teaching.data.pubDate && (
+              <p class="text-sm text-amber-700 dark:text-amber-300 mb-4">
+                {new Date(teaching.data.pubDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+                {teaching.data.author && ` by ${teaching.data.author}`}
+              </p>
+            )}
+            <p class="text-amber-800 dark:text-amber-200 mb-4 leading-relaxed">
+              {teaching.data.summary}
+            </p>
+            {teaching.data.content && (
+              <p class="text-amber-700 dark:text-amber-300 mb-4 italic">
+                {teaching.data.content.substring(0, 200)}...
+              </p>
+            )}
+            {teaching.data.tags && teaching.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {teaching.data.tags.map((tag) => (
+                  <span class="text-xs bg-amber-100 dark:bg-amber-800/50 text-amber-900 dark:text-amber-100 px-3 py-1 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </article>
+        ))
+      ) : (
+        <section class="text-center py-12">
+          <p class="text-lg text-amber-700 dark:text-amber-300">
+            No teachings available yet. Check back soon for wisdom and insights!
+          </p>
+        </section>
+      )}
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 dark:from-amber-700 dark:to-amber-800 p-8 text-white">
+      <h2 class="text-2xl font-bold mb-2">
+        Stay Updated
+      </h2>
+      <p class="mb-6 text-white/90">
+        Subscribe to receive new teachings and practice updates in your inbox
+      </p>
+      <form class="flex gap-2">
+        <input
+          type="email"
+          placeholder="Your email"
+          required
+          class="flex-1 px-4 py-3 rounded-lg text-amber-950 focus:outline-none focus:ring-2 focus:ring-amber-300"
+        />
+        <button
+          type="submit"
+          class="px-6 py-3 bg-white text-amber-600 rounded-lg font-semibold hover:bg-amber-50 transition-colors"
+        >
+          Subscribe
+        </button>
+      </form>
+    </section>
+  </main>
+</YogaLayout>

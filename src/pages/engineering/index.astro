@@ -1,0 +1,162 @@
+---
+import EngineeringLayout from "../../layouts/EngineeringLayout.astro";
+import { getCollection } from "astro:content";
+import profile from "../../singletons/profile/index.json";
+
+const projects = (await getCollection("projects")).filter(
+  (project) => project.data.visible,
+);
+
+const majorProjects = projects.filter((p) => p.data.isMajorProject);
+const recentProjects = projects.slice(0, 4);
+
+const engineeringProfile = profile.engineering;
+---
+
+<EngineeringLayout
+  title={`${engineeringProfile.title} - Software Engineering`}
+  description={engineeringProfile.bio}
+>
+  <main class="flex mt-8 sm:mt-0 w-full max-w-4xl flex-col gap-12">
+    <!-- Hero Section -->
+    <section class="flex flex-col gap-6 items-center text-center py-8">
+      <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-300 dark:border-blue-600">
+        <img
+          src={profile.image}
+          alt="Software Engineer"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-950 dark:text-slate-50 mb-2">
+          {engineeringProfile.title}
+        </h1>
+        <p class="text-xl text-slate-600 dark:text-slate-300 mb-4">
+          {engineeringProfile.subtitle}
+        </p>
+        <p class="text-slate-700 dark:text-slate-300 max-w-2xl">
+          {engineeringProfile.bio}
+        </p>
+      </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="grid grid-cols-3 gap-4 text-center">
+      <div class="rounded-lg bg-blue-100 dark:bg-blue-900/40 p-4">
+        <p class="text-2xl font-bold text-blue-700 dark:text-blue-300">
+          {projects.length}
+        </p>
+        <p class="text-sm text-blue-700 dark:text-blue-300">
+          Projects
+        </p>
+      </div>
+      <div class="rounded-lg bg-blue-100 dark:bg-blue-900/40 p-4">
+        <p class="text-2xl font-bold text-blue-700 dark:text-blue-300">
+          {majorProjects.length}
+        </p>
+        <p class="text-sm text-blue-700 dark:text-blue-300">
+          Major Projects
+        </p>
+      </div>
+      <div class="rounded-lg bg-blue-100 dark:bg-blue-900/40 p-4">
+        <p class="text-2xl font-bold text-blue-700 dark:text-blue-300">
+          Open Source
+        </p>
+        <p class="text-sm text-blue-700 dark:text-blue-300">
+          Contributor
+        </p>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section>
+      <h2 class="text-3xl font-bold text-slate-950 dark:text-slate-50 mb-6">
+        Featured Projects
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {majorProjects.slice(0, 2).map((project) => (
+          <a
+            href={`/engineering/projects#${project.id}`}
+            class="rounded-lg border-2 border-blue-200 dark:border-blue-700 bg-white dark:bg-blue-900/30 p-6 hover:shadow-lg transition-shadow hover:border-blue-400 dark:hover:border-blue-500"
+          >
+            <h3 class="text-lg font-bold text-slate-950 dark:text-slate-50 mb-2">
+              {project.data.title}
+            </h3>
+            <p class="text-sm text-slate-700 dark:text-slate-300 mb-4">
+              {project.data.shortDescription}
+            </p>
+            <div class="flex gap-2">
+              {project.data.githubURL && (
+                <span class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 px-2 py-1 rounded">
+                  GitHub
+                </span>
+              )}
+              {project.data.websiteURL && (
+                <span class="text-xs bg-blue-200 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">
+                  Live
+                </span>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+      <a
+        href="/engineering/projects"
+        class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+      >
+        View All Projects →
+      </a>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section>
+      <h2 class="text-3xl font-bold text-slate-950 dark:text-slate-50 mb-6">
+        Tech Stack
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          "React",
+          "TypeScript",
+          "Astro",
+          "Next.js",
+          "Tailwind CSS",
+          "Node.js",
+          "Svelte",
+          "PostgreSQL",
+        ].map((tech) => (
+          <div class="rounded-lg bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 p-4 text-center">
+            <p class="font-semibold text-slate-900 dark:text-slate-100">
+              {tech}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700 p-8 text-white text-center">
+      <h2 class="text-2xl font-bold mb-4">
+        Interested in Collaboration?
+      </h2>
+      <p class="mb-6">
+        Let's build something amazing together. Reach out to discuss your project or opportunity.
+      </p>
+      <div class="flex gap-4 justify-center">
+        <a
+          href="/contact"
+          class="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+        >
+          Get in Touch
+        </a>
+        <a
+          href={profile.githubURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-6 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
+        >
+          View on GitHub
+        </a>
+      </div>
+    </section>
+  </main>
+</EngineeringLayout>

@@ -1,0 +1,197 @@
+---
+import UnifiedLayout from "../layouts/UnifiedLayout.astro";
+import profile from "../singletons/profile/index.json";
+
+const engineeringProfile = profile.engineering;
+const yogaProfile = profile.yoga;
+---
+
+<UnifiedLayout
+  title="About Sukhpreet Singh"
+  description="Learn about the yoga teacher and software engineer behind this site"
+>
+  <main class="flex mt-8 sm:mt-0 w-full max-w-4xl flex-col gap-12">
+    <!-- Hero Section -->
+    <section class="text-center py-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-950 dark:text-slate-50 mb-4">
+        About Me
+      </h1>
+      <p class="text-xl text-slate-600 dark:text-slate-300">
+        A unique blend of technology and wellness
+      </p>
+    </section>
+
+    <!-- Two Column About -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Engineering Side -->
+      <div class="rounded-lg border-2 border-blue-200 dark:border-blue-700 bg-white dark:bg-blue-900/30 p-8">
+        <h2 class="text-2xl font-bold text-slate-950 dark:text-slate-50 mb-4">
+          As a Software Engineer
+        </h2>
+        <p class="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+          {engineeringProfile.bio}
+        </p>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+          I believe in building products that are not just functional but also beautiful and user-friendly. My approach combines technical excellence with creative problem-solving.
+        </p>
+        <div class="mt-6 pt-6 border-t border-blue-200 dark:border-blue-700">
+          <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-3">
+            Key Areas:
+          </h3>
+          <ul class="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+            <li>• Full-stack web development</li>
+            <li>• Modern JavaScript/TypeScript</li>
+            <li>• Scalable architectures</li>
+            <li>• Open source contributions</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Yoga Side -->
+      <div class="rounded-lg border-2 border-amber-200 dark:border-amber-700 bg-white dark:bg-amber-900/30 p-8">
+        <h2 class="text-2xl font-bold text-amber-950 dark:text-amber-50 mb-4">
+          As a Yoga Teacher
+        </h2>
+        <p class="text-amber-800 dark:text-amber-200 mb-4 leading-relaxed">
+          {yogaProfile.bio}
+        </p>
+        <p class="text-amber-800 dark:text-amber-200 leading-relaxed">
+          I see yoga not just as physical exercise but as a holistic practice for transformation. My classes blend traditional wisdom with contemporary understanding of wellness.
+        </p>
+        <div class="mt-6 pt-6 border-t border-amber-200 dark:border-amber-700">
+          <h3 class="font-bold text-amber-950 dark:text-amber-50 mb-3">
+            Focus Areas:
+          </h3>
+          <ul class="space-y-2 text-sm text-amber-800 dark:text-amber-200">
+            <li>• Mindfulness practices</li>
+            <li>• Community wellness</li>
+            <li>• Accessible yoga</li>
+            <li>• Holistic health</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Philosophy -->
+    <section class="rounded-lg border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/30 p-8">
+      <h2 class="text-3xl font-bold text-slate-950 dark:text-slate-50 mb-6">
+        The Integration
+      </h2>
+      <div class="space-y-4 text-slate-700 dark:text-slate-300">
+        <p>
+          These two identities aren't separate—they're deeply connected. Both software engineering and yoga practice are about:
+        </p>
+        <ul class="space-y-3 ml-4">
+          <li>
+            <strong>Mindfulness:</strong> Being fully present, whether in code or on the mat
+          </li>
+          <li>
+            <strong>Problem-solving:</strong> Finding elegant solutions in complexity
+          </li>
+          <li>
+            <strong>Continuous growth:</strong> Constantly learning and improving
+          </li>
+          <li>
+            <strong>Service:</strong> Creating value for others through my work
+          </li>
+          <li>
+            <strong>Balance:</strong> Finding harmony between action and stillness
+          </li>
+        </ul>
+        <p class="mt-4">
+          I believe that bringing awareness, intention, and compassion to our work—whether it's building technology or teaching yoga—creates a better world for everyone.
+        </p>
+      </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section>
+      <h2 class="text-3xl font-bold text-slate-950 dark:text-slate-50 mb-8">
+        My Journey
+      </h2>
+      <div class="space-y-4">
+        <div class="rounded-lg bg-slate-50 dark:bg-slate-900/30 p-6 border-l-4 border-slate-400 dark:border-slate-600">
+          <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+            The Beginning
+          </h3>
+          <p class="text-slate-700 dark:text-slate-300">
+            I started programming out of curiosity and quickly fell in love with the creative possibilities of software development. Parallel to this, I discovered yoga as a way to balance the intensity of tech work.
+          </p>
+        </div>
+        <div class="rounded-lg bg-slate-50 dark:bg-slate-900/30 p-6 border-l-4 border-slate-400 dark:border-slate-600">
+          <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+            The Integration
+          </h3>
+          <p class="text-slate-700 dark:text-slate-300">
+            Over time, I realized these practices complemented each other beautifully. The discipline, focus, and resilience I developed through yoga enhanced my work as an engineer. And the problem-solving approach from engineering influenced how I teach and guide others.
+          </p>
+        </div>
+        <div class="rounded-lg bg-slate-50 dark:bg-slate-900/30 p-6 border-l-4 border-slate-400 dark:border-slate-600">
+          <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+            Now
+          </h3>
+          <p class="text-slate-700 dark:text-slate-300">
+            I'm grateful to share both passions with the world. Whether through code or classes, my goal is always to help others grow, learn, and find their own balance and purpose.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="rounded-lg bg-gradient-to-r from-slate-700/10 to-slate-600/10 dark:from-slate-900/40 dark:to-slate-800/40 border border-slate-200 dark:border-slate-700 p-8">
+      <h2 class="text-2xl font-bold text-slate-950 dark:text-slate-50 mb-6">
+        Core Values
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+            Integrity
+          </h3>
+          <p class="text-slate-700 dark:text-slate-300 text-sm">
+            Honesty and authenticity in all interactions
+          </p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+            Excellence
+          </h3>
+          <p class="text-slate-700 dark:text-slate-300 text-sm">
+            Striving for quality in everything I do
+          </p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+            Compassion
+          </h3>
+          <p class="text-slate-700 dark:text-slate-300 text-sm">
+            Caring about others' well-being and growth
+          </p>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+            Growth
+          </h3>
+          <p class="text-slate-700 dark:text-slate-300 text-sm">
+            Continuously learning and evolving
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="rounded-lg bg-gradient-to-r from-slate-700 to-slate-800 dark:from-slate-800 dark:to-slate-900 p-8 text-white text-center">
+      <h2 class="text-2xl font-bold mb-4">
+        Let's Connect
+      </h2>
+      <p class="mb-6">
+        Whether you're interested in web development, yoga classes, or just want to chat—I'd love to hear from you.
+      </p>
+      <a
+        href="/contact"
+        class="inline-block px-6 py-3 bg-white text-slate-700 rounded-lg font-semibold hover:bg-slate-100 transition-colors"
+      >
+        Get in Touch
+      </a>
+    </section>
+  </main>
+</UnifiedLayout>

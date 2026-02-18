@@ -1,0 +1,93 @@
+---
+import { cn } from "../utils";
+import Wrapper from "./Wrapper.astro";
+import ThemeButton from "../components/ThemeButton.astro";
+import Logo from "../components/Logo.astro";
+import svgToTinyDataUri from "mini-svg-data-uri";
+
+export type Props = {
+  title?: string;
+  description?: string;
+  className?: string;
+};
+
+const { title, description, className } = Astro.props;
+
+const cream = "#faf7f2";
+const warmBrown = "#8b7355";
+
+const grid_uri = (value: string) =>
+  svgToTinyDataUri(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill-rule="evenodd"><g fill="${value}"><path opacity=".5" d="M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z"/><path d="M6 5V0H5v5H0v1h5v94h1V6h94V5H6z"/></g></g></svg>`,
+  );
+---
+
+<Wrapper
+  title={"" + title}
+  description={"" + description}
+  style={{
+    "--pattern-cream": `url("${grid_uri(warmBrown)}")`,
+  }}
+  class={cn(
+    "px-4 py-6 min-h-screen bg-amber-50 dark:bg-amber-950 [background-image:var(--pattern-cream)] text-amber-950 dark:text-amber-50 flex flex-col items-center w-full",
+    className,
+  )}
+>
+  <header
+    class="flex h-12 w-full max-w-(--breakpoint-md) items-center justify-between rounded-full px-2"
+  >
+    <div class="flex items-center gap-x-3">
+      <a href="/" class="text-amber-700 dark:text-amber-200 hover:opacity-80 transition-opacity">
+        <Logo />
+      </a>
+      <a href="/yoga" class="text-sm font-semibold text-amber-700 dark:text-amber-200 hover:opacity-80 transition-opacity">
+        Yoga & Meditation
+      </a>
+    </div>
+    <div class="flex items-center gap-x-4 sm:gap-x-6">
+      <ThemeButton />
+      <nav class="flex items-center gap-x-2">
+        <a
+          href="/yoga/classes"
+          class="text-sm font-medium text-amber-700 dark:text-amber-200 hover:opacity-80 transition-opacity"
+        >
+          Classes
+        </a>
+        <a
+          href="/yoga/practices"
+          class="text-sm font-medium text-amber-700 dark:text-amber-200 hover:opacity-80 transition-opacity"
+        >
+          Practices
+        </a>
+      </nav>
+    </div>
+  </header>
+  <slot />
+  <div class="py-20"></div>
+  <footer class="mt-auto z-10 flex gap-x-4">
+    <div
+      class="flex w-full max-w-3xl flex-col justify-between gap-4 rounded-lg bg-gradient-to-tr from-amber-700/50 to-amber-500/50 pb-4 pl-4 pr-8 pt-4 sm:flex-row dark:from-amber-900/50 dark:to-amber-700/50 dark:shadow-xs"
+    >
+      <div class="flex flex-col gap-y-4">
+        <h2 class="text-2xl font-bold text-white">Yoga & Meditation</h2>
+        <h4 class="text-lg font-semibold text-white/90">
+          With Sukhpreet Singh
+        </h4>
+      </div>
+      <div class="flex flex-col gap-y-3">
+        <a
+          href="/yoga"
+          class="text-sm font-medium text-white/80 hover:text-white transition-colors"
+        >
+          Back to Yoga Hub
+        </a>
+        <a
+          href="/"
+          class="text-sm font-medium text-white/80 hover:text-white transition-colors"
+        >
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </footer>
+</Wrapper>

@@ -1,0 +1,94 @@
+---
+import YogaLayout from "../../layouts/YogaLayout.astro";
+import ClassCard from "../../components/ClassCard.astro";
+import { getCollection } from "astro:content";
+
+const classes = (await getCollection("classes")).filter(
+  (cls) => cls.data.visible,
+);
+---
+
+<YogaLayout
+  title="Yoga Classes"
+  description="Explore our diverse yoga classes for all levels"
+>
+  <main class="flex mt-8 sm:mt-0 w-full max-w-4xl flex-col gap-8">
+    <!-- Hero Section -->
+    <section class="text-center py-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-amber-950 dark:text-amber-50 mb-4">
+        Yoga Classes
+      </h1>
+      <p class="text-lg text-amber-700 dark:text-amber-300">
+        Find the perfect class for your practice level and schedule
+      </p>
+    </section>
+
+    <!-- Class Filters Info -->
+    <section class="grid grid-cols-3 gap-4 text-center">
+      <div class="rounded-lg bg-amber-100 dark:bg-amber-900/40 p-4">
+        <p class="font-bold text-amber-700 dark:text-amber-300">
+          {classes.filter((c) => c.data.level === "beginner").length}
+        </p>
+        <p class="text-sm text-amber-700 dark:text-amber-300">
+          Beginner Classes
+        </p>
+      </div>
+      <div class="rounded-lg bg-amber-100 dark:bg-amber-900/40 p-4">
+        <p class="font-bold text-amber-700 dark:text-amber-300">
+          {classes.filter((c) => c.data.level === "intermediate").length}
+        </p>
+        <p class="text-sm text-amber-700 dark:text-amber-300">
+          Intermediate Classes
+        </p>
+      </div>
+      <div class="rounded-lg bg-amber-100 dark:bg-amber-900/40 p-4">
+        <p class="font-bold text-amber-700 dark:text-amber-300">
+          {classes.filter((c) => c.data.level === "advanced").length}
+        </p>
+        <p class="text-sm text-amber-700 dark:text-amber-300">
+          Advanced Classes
+        </p>
+      </div>
+    </section>
+
+    <!-- Classes Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {classes.map((cls) => (
+        <div id={cls.id}>
+          <ClassCard
+            title={cls.data.title}
+            description={cls.data.description}
+            duration={cls.data.duration}
+            level={cls.data.level}
+            schedule={cls.data.schedule}
+            tags={cls.data.tags}
+          />
+        </div>
+      ))}
+    </section>
+
+    {classes.length === 0 && (
+      <section class="text-center py-12">
+        <p class="text-lg text-amber-700 dark:text-amber-300">
+          No classes available at the moment. Check back soon!
+        </p>
+      </section>
+    )}
+
+    <!-- Call to Action -->
+    <section class="rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 dark:from-amber-700 dark:to-amber-800 p-8 text-white text-center">
+      <h2 class="text-2xl font-bold mb-4">
+        Interested in Attending?
+      </h2>
+      <p class="mb-6">
+        Reach out to schedule your first class or ask any questions.
+      </p>
+      <a
+        href="/contact"
+        class="inline-block px-6 py-3 bg-white text-amber-600 rounded-lg font-semibold hover:bg-amber-50 transition-colors"
+      >
+        Contact Us
+      </a>
+    </section>
+  </main>
+</YogaLayout>

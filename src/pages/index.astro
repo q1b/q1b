@@ -1,936 +1,249 @@
 ---
-import ContentViewIcon from "../assets/icons/ContentView.astro";
-import SolidjsIcon from "../assets/icons/logos/Solidjs.astro";
-import TypeScriptIcon from "../assets/icons/logos/TypeScript.astro";
-import TailwindcssIcon from "../assets/icons/logos/Tailwindcss.astro";
 import Layout from "../layouts/Layout.astro";
-import ProfileCard from "../components/ProfileCard.astro";
-import homepage from "../singletons/homepage/index.json";
 import profile from "../singletons/profile/index.json";
 import { getCollection } from "astro:content";
-import { YouTube } from "astro-embed"
-
-interface CustomDataFile {
-  default: string;
-}
 
 const projects = (await getCollection("projects")).filter(
-	(project) => project.data.visible,
+  (project) => project.data.visible,
 );
 
-const articles = (await getCollection("articles")).filter(
-	(article) => article.data.visible,
+const classes = (await getCollection("classes")).filter(
+  (cls) => cls.data.visible,
 );
 
-const youtubeVideos = (await getCollection("youtube-videos"));
-
-const resumes = import.meta.glob<CustomDataFile>("/src/assets/files/resume/*.pdf");
+const resumes = import.meta.glob("/src/assets/files/resume/*.pdf");
 if (!resumes[profile.resumePDF]) throw new Error(`"${profile.resumePDF}" does not exist in glob: "/src/assets/files/resume/*.pdf"`);
-const resume = await resumes[profile.resumePDF]()
+const resume = await resumes[profile.resumePDF]();
+
+const engineeringProfile = profile.engineering;
+const yogaProfile = profile.yoga;
 ---
 
-<Layout title={homepage.title} description={homepage.description}>
-	<!-- <MaskBackground /> -->
-	<main class="flex mt-8 sm:mt-0 w-full max-w-5xl flex-col">
-		<div class="flex flex-col relative items-center gap-y-4">
-			<ProfileCard />
-			<div class="flex flex-row items-center">
-				<div class="flex items-center">
-					<a
-						href={resume.default ?? "#"}
-						target="_blank"
-						rel="external"
-						class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
-						rounded-full border-2 border-indigo-400
-						bg-white px-3 text-sm
-						font-semibold
-						text-indigo-600
-						ring-offset-2
-						hover:bg-indigo-50
-						hover:from-indigo-100 hover:to-indigo-200
-						hover:text-indigo-700 focus:outline-hidden
-						focus:ring-2 focus:ring-indigo-500
-						dark:border-indigo-400
-						dark:bg-linear-to-tr
-						dark:from-indigo-600
-						dark:to-indigo-800
-						dark:text-white/90
-						dark:ring-offset-slate-900
-						dark:hover:from-indigo-500
-						dark:hover:to-indigo-700
-						dark:hover:text-white
-						dark:focus:ring-indigo-500"
-					>
-						<ContentViewIcon />
-						<span class="sr-only"> Link to Resume</span>
-						<span class="ml-1.5">Resume</span>
-						<svg
-							class="ml-3 overflow-visible text-indigo-300 group-hover:text-indigo-400 dark:text-indigo-500 dark:group-hover:text-indigo-400"
-							width="3"
-							height="6"
-							viewBox="0 0 3 6"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M0 0L3 3L0 6"></path>
-						</svg>
-					</a>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="3"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="block text-slate-900/40 dark:text-white/40"
-					>
-						<path d="M12 3v19"> </path>
-					</svg>
-				</div>
-				{
-					("email_address" in profile && typeof profile.email_address === 'string') && (
-						<a
-							href={profile.email_address}
-							target="_blank"
-							rel="external"
-							class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
-								rounded-full border-2 border-cyan-400
-								bg-cyan-50 px-3 text-sm
-								font-semibold
-								text-cyan-600
-								ring-offset-2
-								hover:bg-cyan-100
-								hover:from-cyan-100 hover:to-cyan-200
-								hover:text-cyan-700 focus:outline-hidden
-								focus:ring-2 focus:ring-cyan-500
-								dark:border-cyan-400
-								dark:bg-linear-to-tr
-								dark:from-cyan-600
-								dark:to-cyan-800
-								dark:text-white/90
-								dark:ring-offset-slate-900
-								dark:hover:from-cyan-500
-								dark:hover:to-cyan-700
-								dark:hover:text-white
-								dark:focus:ring-cyan-500"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								data-slot="icon"
-								class="h-5 w-5"
-							>
-								<path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
-								<path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
-							</svg>
+<Layout title="Sukhpreet Singh | Yoga Teacher & Software Engineer" description="Explore two interconnected professional identities: a yoga & meditation teacher and a software engineer.">
+  <main class="flex mt-8 sm:mt-0 w-full max-w-5xl flex-col gap-16">
+    <!-- Hero Section - Dual Identity -->
+    <section class="flex flex-col gap-8 items-center py-8">
+      <div class="text-center">
+        <h1 class="text-5xl md:text-6xl font-bold text-slate-950 dark:text-white mb-4">
+          Sukhpreet Singh
+        </h1>
+        <p class="text-2xl font-semibold text-slate-600 dark:text-slate-300">
+          Yoga Teacher & Software Engineer
+        </p>
+      </div>
 
-							<span class="sr-only"> Personal Email Address</span>
-							<svg
-								class="ml-3 overflow-visible text-cyan-300 group-hover:text-cyan-400 dark:text-cyan-500 dark:group-hover:text-cyan-400"
-								width="3"
-								height="6"
-								viewBox="0 0 3 6"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M0 0L3 3L0 6" />
-							</svg>
-						</a>
-					)
-				}
-				{
-					profile?.linkedInURL && (
-						<a
-							href={profile.linkedInURL}
-							target="_blank"
-							rel="external"
-							class="mr-2 tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
-								rounded-full border-2 border-blue-400
-								bg-blue-50 px-3 text-sm
-								font-semibold
-								text-blue-600
-								ring-offset-2
-								hover:bg-blue-100
-								hover:from-blue-100 hover:to-blue-200
-								hover:text-blue-700 focus:outline-hidden
-								focus:ring-2 focus:ring-blue-500
-								dark:border-blue-400
-								dark:bg-linear-to-tr
-								dark:from-blue-600
-								dark:to-blue-800
-								dark:text-white/90
-								dark:ring-offset-slate-900
-								dark:hover:from-blue-500
-								dark:hover:to-blue-700
-								dark:hover:text-white
-								dark:focus:ring-blue-500"
-						>
-							<svg
-								width="20"
-								height="20"
-								viewBox="0 0 15 15"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M2 1C1.44772 1 1 1.44772 1 2V13C1 13.5523 1.44772 14 2 14H13C13.5523 14 14 13.5523 14 13V2C14 1.44772 13.5523 1 13 1H2ZM3.05 6H4.95V12H3.05V6ZM5.075 4.005C5.075 4.59871 4.59371 5.08 4 5.08C3.4063 5.08 2.925 4.59871 2.925 4.005C2.925 3.41129 3.4063 2.93 4 2.93C4.59371 2.93 5.075 3.41129 5.075 4.005ZM12 8.35713C12 6.55208 10.8334 5.85033 9.67449 5.85033C9.29502 5.83163 8.91721 5.91119 8.57874 6.08107C8.32172 6.21007 8.05265 6.50523 7.84516 7.01853H7.79179V6.00044H6V12.0047H7.90616V8.8112C7.8786 8.48413 7.98327 8.06142 8.19741 7.80987C8.41156 7.55832 8.71789 7.49825 8.95015 7.46774H9.02258C9.62874 7.46774 10.0786 7.84301 10.0786 8.78868V12.0047H11.9847L12 8.35713Z"
-									fill="currentColor"
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-								/>
-							</svg>
-							<span class="sr-only"> Link to Linkedin</span>
-							<svg
-								class="ml-3 overflow-visible text-blue-300 group-hover:text-blue-400 dark:text-blue-500 dark:group-hover:text-blue-400"
-								width="3"
-								height="6"
-								viewBox="0 0 3 6"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M0 0L3 3L0 6" />
-							</svg>
-						</a>
-					)
-				}
-				{
-					"xURL" in profile && typeof profile.xURL === 'string' && (
-						<a
-							href={profile.xURL}
-							target="_blank"
-							rel="external"
-							class="mr-2 tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
-									rounded-full border-2 border-slate-500
-									bg-slate-50 px-3 text-sm
-									font-semibold
-									text-slate-800
-									ring-offset-2
-									hover:bg-slate-200/90
-									hover:from-blue-100 hover:to-blue-200
-									hover:text-slate-950 focus:outline-hidden
-									focus:ring-2 focus:ring-slate-700
-									dark:border-slate-400
-									dark:bg-linear-to-tr
-									dark:from-slate-800
-									dark:to-slate-950
-									dark:text-white/90
-									dark:ring-offset-slate-900
-									dark:hover:from-slate-700
-									dark:hover:to-slate-900
-									dark:hover:text-white
-									dark:focus:ring-slate-700"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								viewBox="0 0 512 512"
-							>
-								<path
-									fill="currentColor"
-									d="M389.2 48h70.6L305.6 224.2L487 464H345L233.7 318.6L106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"
-								/>
-							</svg>
-							<span class="sr-only"> Link to X</span>
-							<svg
-								class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-400 dark:group-hover:text-slate-200"
-								width="3"
-								height="6"
-								viewBox="0 0 3 6"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M0 0L3 3L0 6" />
-							</svg>
-						</a>
-					)
-				}
-				{
-					profile?.githubURL && (
-						<a
-							href={profile.githubURL}
-							target="_blank"
-							rel="external"
-							class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
-										rounded-full border-2 border-slate-400
-										bg-slate-100 px-3 text-sm
-										font-semibold
-										text-slate-600
-										ring-offset-2
-										hover:bg-slate-200
-										hover:text-slate-700
-										focus:outline-hidden
-										focus:ring-2
-										focus:ring-slate-500
-										dark:border-slate-400
-										dark:bg-slate-700
-										dark:text-white/90
-										dark:ring-offset-slate-900
-										dark:hover:bg-slate-600
-										dark:hover:text-white
-										dark:focus:ring-slate-500"
-						>
-							<svg
-								viewBox="0 0 28 28"
-								fill="#0F172A"
-								xmlns="http://www.w3.org/2000/svg"
-								class="fill-slate-1000 h-4 w-4 dark:fill-slate-200"
-							>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
-								/>
-							</svg>
-							<span class="sr-only">Github Profile LinK</span>
-							<svg
-								class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400"
-								width="3"
-								height="6"
-								viewBox="0 0 3 6"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M0 0L3 3L0 6" />
-							</svg>
-						</a>
-					)
-				}
-			</div>
+      <!-- Dual Identity Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl mt-6">
+        <!-- Yoga Card -->
+        <a
+          href="/yoga"
+          class="rounded-lg border-2 border-amber-300 dark:border-amber-600 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/40 dark:to-amber-800/40 p-8 hover:shadow-lg transition-all hover:scale-105"
+        >
+          <div class="flex flex-col gap-3 items-center text-center">
+            <div class="text-4xl">🧘</div>
+            <h2 class="text-2xl font-bold text-amber-950 dark:text-amber-50">
+              Yoga & Meditation
+            </h2>
+            <p class="text-sm text-amber-800 dark:text-amber-200">
+              {yogaProfile.subtitle}
+            </p>
+            <span class="mt-4 inline-block text-amber-700 dark:text-amber-300 font-semibold">
+              Explore Yoga →
+            </span>
+          </div>
+        </a>
 
-			<!-- <div class="flex flex-row gap-x-4">
-				<a
-					href="#"
-					target="_blank"
-					rel="external"
-					class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
-							rounded-full border-2 border-violet-400
-							bg-white px-3 text-sm
-							font-semibold
-							text-violet-600
-							ring-offset-2
-							hover:bg-violet-50
-							hover:from-violet-100 hover:to-violet-200
-							hover:text-violet-700 focus:outline-hidden
-							focus:ring-2 focus:ring-violet-500
-							dark:border-violet-400
-							dark:bg-linear-to-tr
-							dark:from-violet-600
-							dark:to-violet-800
-							dark:text-white/90
-							dark:ring-offset-slate-900
-							dark:hover:from-violet-500
-							dark:hover:to-violet-700
-							dark:hover:text-white
-							dark:focus:ring-violet-500"
-				>
-					<PencilIcon />
-					<span class="sr-only"> Link to Articles</span>
-					<span class="ml-1.5">Articles</span>
-					<svg
-						class="ml-3 overflow-visible text-violet-300 group-hover:text-violet-400 dark:text-violet-500 dark:group-hover:text-violet-400"
-						width="3"
-						height="6"
-						viewBox="0 0 3 6"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<path d="M0 0L3 3L0 6"></path>
-					</svg>
-				</a>
-			</div> -->
-		</div>
-		<!--
-			<div class="mt-24 flex flex-col items-center">
-				<h2 class="text-4xl max-w-xl text-center dark:text-slate-100 text-blue-700">Best place to discover personal projects, is to check my recent contributions and projects on Github.</h2>
-			</div>
-		-->
-		<div
-			id="projects-container"
-			class="mt-12 flex z-10 flex-col items-center w-full p-2"
-		>
-			<h2
-				id="projects"
-				class="text-4xl font-bold dark:text-slate-100 text-blue-700 font-cursive [text-shadow:0px_2px_4px_#008FFF44,0px_2px_8px_#fffa] dark:[text-shadow:0px_2px_4px_#fff1,0px_0px_8px_#fff2]"
-			>
-				Projects
-			</h2>
-			<!-- <div class="flex gap-x-4 mt-4">
-				<button class="px-2 rounded-full py-0.5 bg-blue-700 dark:bg-blue-600 text-white">Large</button>
-				<button class="px-2 rounded-full py-0.5 bg-blue-100 text-blue-700 dark:bg-slate-400 dark:text-white">Small</button>
-			</div> -->
-			<ul class="flex flex-col items-center gap-y-6 mt-8 max-w-xl">
-				{
-					projects.map(({ data: project }) => (
-						<li class="">
-							<div>
-								<h2 class="text-slate-700 dark:text-white text-2xl font-medium">
-									{project.title}
-								</h2>
-							</div>
-							<p class="text-slate-600 mt-2 dark:text-slate-300">
-								{project.shortDescription}
-							</p>
-							<div class="flex flex-wrap w-full dark:text-white text-slate-700 gap-3 items-center mt-4">
-								{project.githubURL && (
-									<a
-										href={project.githubURL}
-										target="_blank"
-										class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
-										tab-highlight-none box-border whitespace-nowrap
-											rounded-full px-1
-											ring-offset-2 focus:outline-hidden
-											focus:ring-2 focus:ring-slate-200
-											dark:ring-offset-slate-900
-											dark:focus:ring-slate-200"
-									>
-										<svg
-											viewBox="0 0 28 28"
-											fill="#0F172A"
-											xmlns="http://www.w3.org/2000/svg"
-											class="fill-slate-900 h-4 w-4 dark:fill-slate-200"
-										>
-											<path
-												fill-rule="evenodd"
-												clip-rule="evenodd"
-												d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
-											/>
-										</svg>
-										<span>Github Repo</span>
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 16 16"
-											fill="currentColor"
-											class="size-4"
-										>
-											<path
-												fill-rule="evenodd"
-												d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
-												clip-rule="evenodd"
-											/>
-										</svg>
-									</a>
-								)}
-								{project.websiteURL && (
-									<a
-										href={project.websiteURL}
-										target="_blank"
-										class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
-										tab-highlight-none box-border whitespace-nowrap
-											rounded-full px-1
-											ring-offset-2 focus:outline-hidden
-											focus:ring-2 focus:ring-slate-200
-											dark:ring-offset-slate-900
-											dark:focus:ring-slate-200"
-									>
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 16 16"
-											fill="currentColor"
-											class="size-4"
-										>
-											<path
-												fill-rule="evenodd"
-												d="M8.914 6.025a.75.75 0 0 1 1.06 0 3.5 3.5 0 0 1 0 4.95l-2 2a3.5 3.5 0 0 1-5.396-4.402.75.75 0 0 1 1.251.827 2 2 0 0 0 3.085 2.514l2-2a2 2 0 0 0 0-2.828.75.75 0 0 1 0-1.06Z"
-												clip-rule="evenodd"
-											/>
-											<path
-												fill-rule="evenodd"
-												d="M7.086 9.975a.75.75 0 0 1-1.06 0 3.5 3.5 0 0 1 0-4.95l2-2a3.5 3.5 0 0 1 5.396 4.402.75.75 0 0 1-1.251-.827 2 2 0 0 0-3.085-2.514l-2 2a2 2 0 0 0 0 2.828.75.75 0 0 1 0 1.06Z"
-												clip-rule="evenodd"
-											/>
-										</svg>
+        <!-- Engineering Card -->
+        <a
+          href="/engineering"
+          class="rounded-lg border-2 border-blue-400 dark:border-blue-600 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 p-8 hover:shadow-lg transition-all hover:scale-105"
+        >
+          <div class="flex flex-col gap-3 items-center text-center">
+            <div class="text-4xl">💻</div>
+            <h2 class="text-2xl font-bold text-blue-950 dark:text-blue-50">
+              Software Engineering
+            </h2>
+            <p class="text-sm text-blue-800 dark:text-blue-200">
+              {engineeringProfile.subtitle}
+            </p>
+            <span class="mt-4 inline-block text-blue-700 dark:text-blue-300 font-semibold">
+              View Portfolio →
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
 
-										<span>
-											{project.websiteURL.replace(
-												"https://",
-												"",
-											)}
-										</span>
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 16 16"
-											fill="currentColor"
-											class="size-4"
-										>
-											<path
-												fill-rule="evenodd"
-												d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
-												clip-rule="evenodd"
-											/>
-										</svg>
-									</a>
-								)}
-							</div>
-						</li>
-					))
-				}
-			</ul>
-			<!-- <ul class="flex flex-col max-w-xl gap-y-2 mt-4 w-full">
-				<li class="relative text-slate-950 dark:text-slate-100 aspect-square rounded-2xl sm:aspect-video w-full h-full bg-slate-100/50 dark:bg-slate-900/50 dark:backdrop-contrast-125 backdrop-blur-xs border border-white dark:border-cyan-300/20 shadow-2xl shadow-indigo-600/40 dark:shadow-slate-500/40">
-					<img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-full object-cover absolute inset-0" />
-				</li>
-				<li class="text-slate-950 dark:text-slate-100">
-					Project 2
-				</li>
-				<li class="text-slate-950 dark:text-slate-100">
-					Project 3
-				</li>
-			</ul> -->
-		</div>
-		<script>
-			import { inView } from "motion";
-			import { annotate } from "rough-notation";
-			const e = document.querySelector("#projects") as HTMLElement;
-			inView("#projects-container", () => {
-				const annotation = annotate(e, {
-					type: "underline",
-					color: "#008FFF",
-				});
-				annotation.show();
-			});
-		</script>
-		<div
-			id="work-experience-container"
-			class="mt-12 flex z-10 flex-col items-center w-full p-2"
-		>
-			<h2
-				id="work-experience"
-				class="text-4xl font-bold dark:text-slate-100 text-blue-700 font-cursive [text-shadow:0px_2px_4px_#008FFF44,0px_2px_8px_#fffa] dark:[text-shadow:0px_2px_4px_#fff1,0px_0px_8px_#fff2]"
-			>
-				Prior Jobs
-			</h2>
-			<!-- <div class="flex gap-x-4 mt-4">
-				<button class="px-2 rounded-full py-0.5 bg-blue-700 dark:bg-blue-600 text-white">Large</button>
-				<button class="px-2 rounded-full py-0.5 bg-blue-100 text-blue-700 dark:bg-slate-400 dark:text-white">Small</button>
-			</div> -->
-			<ul class="flex flex-col items-center gap-y-6 sm:gap-y-4 mt-8 max-w-xl">
-				<li class="">
-					<div>
-						<h2
-							class="text-slate-700 dark:text-white text-2xl font-medium w-full flex justify-between items-center relative"
-						>
-							<span>Founding Software Developer</span>
-							<span class="flex gap-x-2 items-center absolute right-0 top-9 min-[488px]:top-1">
-								<SolidjsIcon height={24} />
-								<TypeScriptIcon height={24} />
-								<TailwindcssIcon height={16} />
-							</span>
-						</h2>
-						<div class="flex flex-col gap-y-1 mt-1 pl-0.5">
-							<span
-								class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2"
-							>
-								<span title="Company Name">Bhuman</span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="6"
-									height="6"
-									viewBox="0 0 24 24"
-									fill="currentColor"
-									stroke="currentColor"
-									><circle cx="12" cy="12" r="10"
-									></circle></svg
-								>
-								<span title="Employment Type">Full-time</span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="6"
-									height="6"
-									viewBox="0 0 24 24"
-									fill="currentColor"
-									stroke="currentColor"
-									><circle cx="12" cy="12" r="10"
-									></circle></svg
-								>
-								<span title="Location Type">Remote Work</span>
-							</span>
-							<span
-								class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2"
-							>
-								<span>March 2022 - July 2022</span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="6"
-									height="6"
-									viewBox="0 0 24 24"
-									fill="currentColor"
-									stroke="currentColor"
-									><circle cx="12" cy="12" r="10"
-									></circle></svg
-								>
-								<span>5 Months</span>
-							</span>
-						</div>
-					</div>
-					<p class="text-slate-600 mt-2 dark:text-slate-300 font-medium">
-						During my time at Bhuman, I was responsible for the front-end development of the application.
-						Working within a remote startup environment was an enriching experience.
-						The task Assigned to me was aimed to create multiple clones from one video to personalize it for their audience,
-						making them feel like it's just recorded for them, and improving engagement and retention.
-						For Which in-built video editor, CSV editor and integrating them with Rest APIs are all done by us.
-					</p>
-					<div
-						class="flex flex-wrap w-full dark:text-white text-slate-700 gap-3 items-center mt-4"
-					>
-						<a
-							href="#"
-							class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
-							tab-highlight-none box-border whitespace-nowrap
-								rounded-full px-1
-								ring-offset-2 focus:outline-hidden
-								focus:ring-2 focus:ring-slate-200
-								dark:ring-offset-slate-900
-								dark:focus:ring-slate-200"
-						>
-							<svg
-								viewBox="0 0 28 28"
-								fill="#0F172A"
-								xmlns="http://www.w3.org/2000/svg"
-								class="fill-slate-900 h-4 w-4 dark:fill-slate-200"
-							>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
-								></path>
-							</svg>
-							<span>Github Repo</span>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								class="size-4"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
-									clip-rule="evenodd"></path>
-							</svg>
-						</a>
-						<a
-							href="https://bhuman.ai"
-							target="_blank"
-							class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
-							tab-highlight-none box-border whitespace-nowrap
-								rounded-full px-1
-								ring-offset-2 focus:outline-hidden
-								focus:ring-2 focus:ring-slate-200
-								dark:ring-offset-slate-900
-								dark:focus:ring-slate-200"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								class="size-4"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M8.914 6.025a.75.75 0 0 1 1.06 0 3.5 3.5 0 0 1 0 4.95l-2 2a3.5 3.5 0 0 1-5.396-4.402.75.75 0 0 1 1.251.827 2 2 0 0 0 3.085 2.514l2-2a2 2 0 0 0 0-2.828.75.75 0 0 1 0-1.06Z"
-									clip-rule="evenodd"></path>
-								<path
-									fill-rule="evenodd"
-									d="M7.086 9.975a.75.75 0 0 1-1.06 0 3.5 3.5 0 0 1 0-4.95l2-2a3.5 3.5 0 0 1 5.396 4.402.75.75 0 0 1-1.251-.827 2 2 0 0 0-3.085-2.514l-2 2a2 2 0 0 0 0 2.828.75.75 0 0 1 0 1.06Z"
-									clip-rule="evenodd"></path>
-							</svg>
-							<span> Bhuman.ai </span>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								class="size-4"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
-									clip-rule="evenodd"></path>
-							</svg>
-						</a>
-					</div>
-				</li>
-			</ul>
-			<!-- <ul class="flex flex-col max-w-xl gap-y-2 mt-4 w-full">
-				<li class="relative text-slate-950 dark:text-slate-100 aspect-square rounded-2xl sm:aspect-video w-full h-full bg-slate-100/50 dark:bg-slate-900/50 dark:backdrop-contrast-125 backdrop-blur-xs border border-white dark:border-cyan-300/20 shadow-2xl shadow-indigo-600/40 dark:shadow-slate-500/40">
-					<img src="https://via.placeholder.com/300" alt="Project 1" class="w-full h-full object-cover absolute inset-0" />
-				</li>
-				<li class="text-slate-950 dark:text-slate-100">
-					Project 2
-				</li>
-				<li class="text-slate-950 dark:text-slate-100">
-					Project 3
-				</li>
-			</ul> -->
-		</div>
-		<script>
-			import { inView } from "motion";
-			import { annotate } from "rough-notation";
-			const e = document.querySelector("#work-experience") as HTMLElement;
-			inView("#work-experience-container", () => {
-				setTimeout(() => {
-					const annotation = annotate(e, {
-						type: "underline",
-						color: "#008FFF",
-					});
-					annotation.show();
-				},200)
-			}, {
-				// top/right/bottom/left.
-				margin: "0px 0px -100px 0px"
-			});
-		</script>
-		{youtubeVideos.length !== 0 && (
-			<div
-				id="youtube-videos-container"
-				class="mt-12 flex z-10 flex-col items-center w-full p-2"
-			>
-				<h2
-					id="youtube-videos"
-					class="text-4xl font-bold dark:text-slate-100 text-blue-700 font-cursive [text-shadow:0px_2px_4px_#008FFF44,0px_2px_8px_#fffa] dark:[text-shadow:0px_2px_4px_#fff1,0px_0px_8px_#fff2]"
-				>
-					YouTube Videos
-				</h2>
-				<!-- <ul class="flex flex-col items-center gap-y-6 sm:gap-y-4 mt-8 max-w-xl">
-					<li class="">
-						<div>
-							<h2
-								class="text-slate-700 dark:text-white text-2xl font-bold w-full flex justify-between items-center relative"
-							>
-								<span>Learning</span>
-								<span class="flex gap-x-2 items-center absolute right-0 top-9 min-[488px]:top-1">
-									<SvelteIcon height={24} />
-								</span>
-							</h2>
-							<div class="flex flex-col gap-y-1 mt-1 pl-0.5">
-								<span
-									class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2"
-								>
-									<span title="Company Name">Bhuman</span>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="6"
-										height="6"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-										stroke="currentColor"
-										><circle cx="12" cy="12" r="10"
-										></circle></svg
-									>
-									<span title="Employment Type">Full-time</span>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="6"
-										height="6"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-										stroke="currentColor"
-										><circle cx="12" cy="12" r="10"
-										></circle></svg
-									>
-									<span title="Location Type">Remote Work</span>
-								</span>
-								<span
-									class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2"
-								>
-									<span>March 2022 - July 2022</span>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="6"
-										height="6"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-										stroke="currentColor"
-										><circle cx="12" cy="12" r="10"
-										></circle></svg
-									>
-									<span>5 Months</span>
-								</span>
-							</div>
-						</div>
-						<p class="text-slate-600 mt-2 dark:text-slate-300 font-medium">
-							During my time at Bhuman, I was responsible for the front-end development of the application.
-							Working within a remote startup environment was an enriching experience.
-							The task Assigned to me was aimed to create multiple clones from one video to personalize it for their audience,
-							making them feel like it's just recorded for them, and improving engagement and retention.
-							For Which in-built video editor, CSV editor and integrating them with Rest APIs are all done by us.
-						</p>
-						<div
-							class="flex flex-wrap w-full dark:text-white text-slate-700 gap-3 items-center mt-4"
-						>
-							<a
-								href="#"
-								class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
-								tab-highlight-none box-border whitespace-nowrap
-									rounded-full px-1
-									ring-offset-2 focus:outline-hidden
-									focus:ring-2 focus:ring-slate-200
-									dark:ring-offset-slate-900
-									dark:focus:ring-slate-200"
-							>
-								<svg
-									viewBox="0 0 28 28"
-									fill="#0F172A"
-									xmlns="http://www.w3.org/2000/svg"
-									class="fill-slate-900 h-4 w-4 dark:fill-slate-200"
-								>
-									<path
-										fill-rule="evenodd"
-										clip-rule="evenodd"
-										d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"
-									></path>
-								</svg>
-								<span>Github Repo</span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 16 16"
-									fill="currentColor"
-									class="size-4"
-								>
-									<path
-										fill-rule="evenodd"
-										d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
-										clip-rule="evenodd"></path>
-								</svg>
-							</a>
-							<a
-								href="https://bhuman.ai"
-								target="_blank"
-								class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
-								tab-highlight-none box-border whitespace-nowrap
-									rounded-full px-1
-									ring-offset-2 focus:outline-hidden
-									focus:ring-2 focus:ring-slate-200
-									dark:ring-offset-slate-900
-									dark:focus:ring-slate-200"
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 16 16"
-									fill="currentColor"
-									class="size-4"
-								>
-									<path
-										fill-rule="evenodd"
-										d="M8.914 6.025a.75.75 0 0 1 1.06 0 3.5 3.5 0 0 1 0 4.95l-2 2a3.5 3.5 0 0 1-5.396-4.402.75.75 0 0 1 1.251.827 2 2 0 0 0 3.085 2.514l2-2a2 2 0 0 0 0-2.828.75.75 0 0 1 0-1.06Z"
-										clip-rule="evenodd"></path>
-									<path
-										fill-rule="evenodd"
-										d="M7.086 9.975a.75.75 0 0 1-1.06 0 3.5 3.5 0 0 1 0-4.95l2-2a3.5 3.5 0 0 1 5.396 4.402.75.75 0 0 1-1.251-.827 2 2 0 0 0-3.085-2.514l-2 2a2 2 0 0 0 0 2.828.75.75 0 0 1 0 1.06Z"
-										clip-rule="evenodd"></path>
-								</svg>
-								<span> Bhuman.ai </span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 16 16"
-									fill="currentColor"
-									class="size-4"
-								>
-									<path
-										fill-rule="evenodd"
-										d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
-										clip-rule="evenodd"></path>
-								</svg>
-							</a>
-						</div>
-					</li>
-				</ul> -->
-				<ul class="flex flex-col max-w-xl gap-y-2 mt-12 w-full">
-				{youtubeVideos.map(({data: youTubeVideo}) => (
-					<li class="relative text-slate-950 dark:text-slate-100 rounded-2xl aspect-video w-full h-full bg-slate-100/50 dark:bg-slate-900/50 dark:backdrop-contrast-125 backdrop-blur-xs border border-white dark:border-cyan-300/20 shadow-2xl shadow-indigo-600/40 dark:shadow-slate-500/40">
-						<YouTube id={youTubeVideo.URL} class="w-full h-full object-cover absolute inset-0" />
-					</li>
-				))}
-				</ul>
-			</div>
-		)}
-		<script>
-			import { inView } from "motion";
-			import { annotate } from "rough-notation";
-			const e = document.querySelector("#youtube-videos") as HTMLElement;
-			inView("#youtube-videos-container", () => {
-				setTimeout(() => {
-					const annotation = annotate(e, {
-						type: "underline",
-						color: "#008FFF",
-					});
-					annotation.show();
-				},200)
-			}, {
-				margin: "0px 0px -100px 0px"
-			});
-		</script>
-		<div id="articles-container" class="mt-24 flex z-10 flex-col items-center w-full p-2">
-			<h2
-				id="articles"
-				class="text-4xl font-bold dark:text-slate-100 text-blue-700 font-cursive [text-shadow:0px_2px_4px_#008FFF44,0px_2px_8px_#fffa] dark:[text-shadow:0px_2px_4px_#fff1,0px_0px_8px_#fff2]"
-			>
-				Articles
-			</h2>
-			<!-- <div class="flex gap-4 items-center justify-center mt-4 flex-wrap">
-				<button class="px-2 rounded-full py-0.5 bg-blue-700 dark:bg-sky-500 text-white">Large</button>
-				<button class="px-2 rounded-full py-0.5 bg-blue-100 text-blue-700 dark:bg-slate-400 dark:text-white">Small</button>
-			</div> -->
-			<ul class="flex flex-col items-center gap-y-6 sm:gap-y-4 mt-8 max-w-xl">
-				{
-					articles.map(({ data: article }) => (
-						<li class="">
-							<div>
-								<h2 class="text-slate-700 hover:underline decoration-wavy underline-offset-4 dark:text-white text-2xl font-medium">
-									{article.title}
-								</h2>
-							</div>
-							<p class="text-slate-600 mt-2 dark:text-slate-300 line-clamp-3">
-								{article.summary}
-							</p>
-						</li>
-					))
-				}
-			</ul>
-		</div>
-		<script>
-			import { inView } from "motion";
-			import { annotate } from "rough-notation";
-			const e = document.querySelector("#articles") as HTMLElement;
-			inView("#articles-container", () => {
-				setTimeout(() => {
-					const annotation = annotate(e, {
-						type: "underline",
-						color: "#008FFF",
-					});
-					annotation.show();
-				},200)
-			}, {
-				// top/right/bottom/left.
-				margin: "0px 0px -100px 0px"
-			});
-		</script>
-	</main>
-	<a href="https://github.com/q1b/q1b/edit/main/src/pages/index.astro" target="_blank" class="group dark:text-white text-blue-500 fixed bottom-4 right-4 astro-YIKFTCY4">
-                    <span class="relative">
-    <svg shape-rendering="geometricPrecision" class="w-5 h-5 group-focus-visible:opacity-0 group-hover:opacity-0 group-focus-visible:duration-300 group-focus-visible:scale-95 group-hover:scale-95 will-change-[opacity,transform] transition-[opacity,transform] duration-100 group-hover:duration-300 astro-YIKFTCY4" viewBox="0 0 48 48" width="1.2em" height="1.2em"><path fill="currentColor" d="M41.974 6.025a6.907 6.907 0 0 0-9.768 0L8.038 30.197a6.007 6.007 0 0 0-1.572 2.758L4.039 42.44a1.25 1.25 0 0 0 1.52 1.52l9.487-2.424a6.006 6.006 0 0 0 2.76-1.572l20.165-20.168l.88.94a1.75 1.75 0 0 1-.039 2.434l-3.446 3.446a1.25 1.25 0 0 0 1.768 1.768l3.446-3.447a4.25 4.25 0 0 0 .095-5.912l-.935-.997l2.234-2.236a6.907 6.907 0 0 0 0-9.767Zm-8 1.768a4.407 4.407 0 0 1 6.233 6.232l-24.169 24.17a3.507 3.507 0 0 1-1.611.919l-7.443 1.902l1.904-7.441c.156-.61.473-1.166.917-1.61L33.974 7.792Z"></path></svg>
-    <svg shape-rendering="geometricPrecision" class="w-5 h-5 absolute opacity-0 group-focus-visible:opacity-100 group-hover:opacity-100 -translate-y-full scale-100 group-active:scale-90 group-focus-visible:scale-95 group-hover:scale-95 transition-[opacity,transform] duration-100 astro-YIKFTCY4" viewBox="0 0 48 48" width="1.2em" height="1.2em"><path fill="currentColor" d="M32.206 6.025a6.907 6.907 0 1 1 9.768 9.767l-2.234 2.236l.935.998a4.25 4.25 0 0 1-.095 5.912l-3.446 3.446a1.25 1.25 0 0 1-1.768-1.768l3.446-3.446a1.75 1.75 0 0 0 .04-2.435l-.881-.939l-20.165 20.168a6.006 6.006 0 0 1-2.76 1.572L5.56 43.961a1.25 1.25 0 0 1-1.521-1.521l2.427-9.485a6.007 6.007 0 0 1 1.572-2.758L32.206 6.025Z"></path></svg>
-</span>
+    <!-- Quick Links Section -->
+    <section class="flex flex-col gap-8">
+      <h2 class="text-3xl font-bold text-slate-950 dark:text-white text-center">
+        Quick Access
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Yoga Quick Links -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-amber-700 dark:text-amber-300 flex items-center gap-2">
+            <span>🌿</span> Latest Classes
+          </h3>
+          <ul class="space-y-2">
+            {classes.slice(0, 3).map((cls) => (
+              <li>
+                <a
+                  href="/yoga/classes"
+                  class="flex items-center justify-between p-3 rounded-lg border border-amber-200 dark:border-amber-700 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors"
+                >
+                  <span class="text-amber-900 dark:text-amber-100 font-medium">
+                    {cls.data.title}
+                  </span>
+                  <span class="text-xs text-amber-700 dark:text-amber-300">
+                    {cls.data.duration}m
+                  </span>
                 </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/yoga"
+            class="inline-block text-amber-600 dark:text-amber-300 hover:underline font-semibold text-sm mt-2"
+          >
+            Explore Yoga Hub →
+          </a>
+        </div>
+
+        <!-- Engineering Quick Links -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-blue-700 dark:text-blue-300 flex items-center gap-2">
+            <span>⚡</span> Recent Projects
+          </h3>
+          <ul class="space-y-2">
+            {projects.slice(0, 3).map((project) => (
+              <li>
+                <a
+                  href="/engineering/projects"
+                  class="flex items-center justify-between p-3 rounded-lg border border-blue-200 dark:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                >
+                  <span class="text-blue-900 dark:text-blue-100 font-medium truncate">
+                    {project.data.title}
+                  </span>
+                  {project.data.isMajorProject && (
+                    <span class="text-xs bg-blue-200 dark:bg-blue-800 text-blue-900 dark:text-blue-100 px-2 py-1 rounded">
+                      Featured
+                    </span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/engineering"
+            class="inline-block text-blue-600 dark:text-blue-300 hover:underline font-semibold text-sm mt-2"
+          >
+            View All Projects →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="rounded-lg bg-slate-100 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-700 p-8">
+      <h2 class="text-3xl font-bold text-slate-950 dark:text-white mb-6">
+        About This Site
+      </h2>
+      <p class="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+        This website showcases two interconnected yet distinct professional identities. The Yoga & Meditation section highlights teaching practices, guided meditations, and wellness wisdom. The Software Engineering section displays technical projects, work experience, and development expertise.
+      </p>
+      <p class="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+        Both sections embody the same core values: mindfulness, excellence, continuous growth, and creating meaningful value. Navigate between them to explore the full picture of my professional journey.
+      </p>
+      <a
+        href="/about"
+        class="inline-block px-6 py-3 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-colors dark:bg-slate-700 dark:hover:bg-slate-600"
+      >
+        Learn More About Me
+      </a>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Resume CTA -->
+      <a
+        href={resume.default ?? "#"}
+        target="_blank"
+        rel="external"
+        class="rounded-lg border-2 border-indigo-400 bg-white dark:bg-indigo-900/30 dark:border-indigo-600 p-6 hover:shadow-lg transition-all hover:scale-105 text-center"
+      >
+        <div class="text-3xl mb-3">📄</div>
+        <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+          Download Resume
+        </h3>
+        <p class="text-sm text-slate-700 dark:text-slate-300 mb-4">
+          Get my full CV and qualifications
+        </p>
+        <span class="text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+          View Resume →
+        </span>
+      </a>
+
+      <!-- Contact CTA -->
+      <a
+        href="/contact"
+        class="rounded-lg border-2 border-cyan-400 bg-white dark:bg-cyan-900/30 dark:border-cyan-600 p-6 hover:shadow-lg transition-all hover:scale-105 text-center"
+      >
+        <div class="text-3xl mb-3">💬</div>
+        <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+          Get in Touch
+        </h3>
+        <p class="text-sm text-slate-700 dark:text-slate-300 mb-4">
+          Inquiries about yoga or development
+        </p>
+        <span class="text-cyan-600 dark:text-cyan-300 font-semibold text-sm">
+          Contact Me →
+        </span>
+      </a>
+
+      <!-- GitHub CTA -->
+      <a
+        href={profile.githubURL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-lg border-2 border-slate-400 bg-white dark:bg-slate-900/30 dark:border-slate-600 p-6 hover:shadow-lg transition-all hover:scale-105 text-center"
+      >
+        <div class="text-3xl mb-3">🐙</div>
+        <h3 class="font-bold text-slate-950 dark:text-slate-50 mb-2">
+          GitHub Profile
+        </h3>
+        <p class="text-sm text-slate-700 dark:text-slate-300 mb-4">
+          Explore my open source work
+        </p>
+        <span class="text-slate-600 dark:text-slate-300 font-semibold text-sm">
+          View GitHub →
+        </span>
+      </a>
+    </section>
+
+    <!-- Navigation Info -->
+    <section class="text-center py-8 border-t border-slate-200 dark:border-slate-700">
+      <h2 class="text-2xl font-bold text-slate-950 dark:text-white mb-4">
+        Navigate Between Worlds
+      </h2>
+      <p class="text-slate-700 dark:text-slate-300 mb-6">
+        Use the header navigation to seamlessly switch between the Yoga & Meditation and Software Engineering sections, or explore shared pages like About and Contact.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/yoga" class="px-4 py-2 rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 font-semibold hover:bg-amber-200 dark:hover:bg-amber-900/50 transition-colors text-sm">
+          Yoga Hub
+        </a>
+        <a href="/engineering" class="px-4 py-2 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-semibold hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors text-sm">
+          Engineering Hub
+        </a>
+        <a href="/about" class="px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors text-sm">
+          About
+        </a>
+        <a href="/contact" class="px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors text-sm">
+          Contact
+        </a>
+      </div>
+    </section>
+  </main>
 </Layout>

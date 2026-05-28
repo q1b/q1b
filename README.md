@@ -1,43 +1,47 @@
-# Astro Starter Kit: Minimal
+<div id="top"></div>
 
-```sh
-npm create astro@latest -- --template minimal
-```
+<div align="center">
+<span> <img src="https://api.iconify.design/fluent-emoji:smiling-face-with-sunglasses.svg?color=%23ffffff" height="42" >  <h1> Sukhpreet Singh  </h1> </span>
+<p>  Software Engineer </p>
+</div>
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+-   👀 I’m in [Software development](https://en.wikipedia.org/wiki/Software_development)
+-   🌱 I’m currently learning FullStack Web Development
+-   📫 Skilled in TypeScript, Tailwindcss, Sveltekit, Vuejs, Reactjs
 
-## 🚀 Project Structure
+<br>
 
-Inside of your Astro project, you'll see the following folders and files:
+<details>
+     <summary> You can Contact and Connect with me here : </summary>
+<br>
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+<br>
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+<div align="center">
+     <table>
+  <tr>
+    <td>
+      <a href="https://www.linkedin.com/in/q1b/">
+        <img height="30" src="https://img.shields.io/badge/linkedin-blue.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/q1b">
+        <img height="30" src="https://img.shields.io/badge/Github-%23000000.svg?&style=for-the-badge&logo=github&logoColor=white"/>
+      </a>
+    </td>
+    <td>
+      <a href="https://twitter.com/_q1b_">
+        <img height="30" src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white">
+      </a>
+    </td>
+    <td>
+      <a href="https://www.instagram.com/vishnuans/">
+        <img height="30" src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+</details>

@@ -8,11 +8,14 @@
   "isCurrent": true,
   "duration": "+1 year",
   "description": "worked on several, impactful projects like Online Follow Up, helping teacher to conduct follow ups securely through online portal, Unsung Heroes Award Portal and IntuitionFest.",
+  "githubURL": "https://github.com/theartofliving",
+  "websiteURL": "https://artofliving.org/",
   "certificates": [],
   "technologies": [
-    "astro",
     "tailwindcss",
+    "drizzle",
     "typescript",
-    "vitejs"
+    "tanstack-start",
+    "shadcn-ui"
   ]
 }

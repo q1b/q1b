@@ -1,8 +1,13 @@
 {
   "title": "Ashtavakra Gita",
   "start_date": "2026-06-15",
-  "end_date": null,
+  "end_date": "2026-01-27",
   "description": "A deep dive into the Ashtavakra Gita, exploring its teachings on non-duality and self-realization, commentary by Sri Sri Ravi Shankar.",
-  "topics": ["Non-duality", "Self-realization", "Philosophy", "Meditation"],
+  "topics": [
+    "Non-duality",
+    "Self-realization",
+    "Philosophy",
+    "Meditation"
+  ],
   "join_url": "https://chat.whatsapp.com/LfT1luKOe2JGoQEK7Bco9z"
 }

@@ -1,21 +1,23 @@
 ---
 export type Props = {
-  height?: number;
+	height?: number;
 };
+
 const { height = 32 } = Astro.props;
 ---
+
 <svg
-  xmlns="http://www.w3.org/2000/svg"
-  width={height}
-  height={height}
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
+	xmlns="http://www.w3.org/2000/svg"
+	width={height}
+	height={height}
+	viewBox="0 0 24 24"
+	fill="none"
+	stroke="currentColor"
+	stroke-width="2"
+	stroke-linecap="round"
+	stroke-linejoin="round"
 >
-  <rect x="3" y="3" width="18" height="18" rx="3" />
-  <path d="M3 9h18" />
-  <path d="M9 21V9" />
+	<rect x="3" y="3" width="18" height="18" rx="3" />
+	<path d="M3 9h18" />
+	<path d="M9 21V9" />
 </svg>

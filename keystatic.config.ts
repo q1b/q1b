@@ -1,13 +1,16 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
 
 export default config({
-  storage: {
-		kind: 'github',
-		repo: {
-			name: "q1b",
-			owner: "q1b"
-		}
-  },
+	storage: {
+		kind:"local"
+},
+  // storage: {
+	// 	kind: 'github',
+	// 	repo: {
+	// 		name: "q1b",
+	// 		owner: "q1b"
+	// 	}
+  // },
   singletons: {
     profile: singleton({
       label: 'Profile',
@@ -277,10 +280,70 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         start_date: fields.date({ label: 'Start Date' }),
+        end_date: fields.date({ label: 'End Date' }),
         description: fields.text({ label: 'Description', multiline: true }),
         topics: fields.array(
           fields.text({ label: 'Topic' }),
           { label: 'Topics', itemLabel: (props) => props.value }
+        ),
+        join_url: fields.url({ label: 'Join URL' }),
+      },
+    }),
+
+    'yoga-sessions': collection({
+      label: 'Yoga Sessions',
+      slugField: 'title',
+      path: 'src/data/yoga-sessions/*',
+      format: { data: 'json' },
+      schema: {
+        title: fields.slug({ name: { label: 'Title' } }),
+        style: fields.select({
+          label: 'Style',
+          options: [
+            { label: 'Hatha', value: 'Hatha' },
+            { label: 'Pranayama', value: 'Pranayama' },
+            { label: 'Vinyasa', value: 'Vinyasa' },
+            { label: 'Ashtanga', value: 'Ashtanga' },
+            { label: 'Yin', value: 'Yin' },
+            { label: 'Kundalini', value: 'Kundalini' },
+            { label: 'Restorative', value: 'Restorative' },
+            { label: 'Mixed', value: 'Mixed' },
+            { label: 'Other', value: 'Other' },
+          ],
+          defaultValue: 'Hatha',
+        }),
+        level: fields.select({
+          label: 'Level',
+          options: [
+            { label: 'Beginner', value: 'Beginner' },
+            { label: 'Intermediate', value: 'Intermediate' },
+            { label: 'Advanced', value: 'Advanced' },
+            { label: 'All Levels', value: 'All Levels' },
+          ],
+          defaultValue: 'All Levels',
+        }),
+        location_type: fields.select({
+          label: 'Location Type',
+          options: [
+            { label: 'Online', value: 'Online' },
+            { label: 'In-person', value: 'In-person' },
+            { label: 'Hybrid', value: 'Hybrid' },
+          ],
+          defaultValue: 'Online',
+        }),
+        venue: fields.text({ label: 'Venue (for In-person / Hybrid)' }),
+        schedule: fields.text({ label: 'Schedule (e.g. Daily · 6:00 AM IST)' }),
+        duration: fields.text({ label: 'Duration (e.g. 60 min)' }),
+        start_date: fields.date({ label: 'Start Date' }),
+        end_date: fields.date({ label: 'End Date' }),
+        description: fields.text({ label: 'Description', multiline: true }),
+        practices: fields.array(
+          fields.text({ label: 'Practice' }),
+          { label: 'Practices', itemLabel: (props) => props.value }
+        ),
+        instructors: fields.array(
+          fields.text({ label: 'Instructor name' }),
+          { label: 'Co-instructors', itemLabel: (props) => props.value }
         ),
         join_url: fields.url({ label: 'Join URL' }),
       },

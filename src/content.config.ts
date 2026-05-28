@@ -102,6 +102,37 @@ const workExperience = defineCollection({
   }),
 });
 
+const knowledgeSeries = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/knowledge-series" }),
+  schema: z.object({
+    title: z.string(),
+    start_date: z.coerce.date(),
+    end_date: z.coerce.date().optional().nullable(),
+    description: z.string(),
+    topics: z.array(z.string()),
+    join_url: z.string().optional().nullable(),
+  }),
+});
+
+const yogaSessions = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/yoga-sessions" }),
+  schema: z.object({
+    title: z.string(),
+    style: z.enum(["Hatha", "Pranayama", "Vinyasa", "Ashtanga", "Yin", "Kundalini", "Restorative", "Mixed", "Other"]),
+    level: z.enum(["Beginner", "Intermediate", "Advanced", "All Levels"]),
+    location_type: z.enum(["Online", "In-person", "Hybrid"]),
+    venue: z.string().optional().nullable(),
+    schedule: z.string(),
+    duration: z.string(),
+    start_date: z.coerce.date(),
+    end_date: z.coerce.date().optional().nullable(),
+    description: z.string(),
+    practices: z.array(z.string()),
+    instructors: z.array(z.string()).optional().nullable(),
+    join_url: z.string().optional().nullable(),
+  }),
+});
+
 export const collections = {
   tags,
 	photos,
@@ -111,4 +142,6 @@ export const collections = {
   categories,
   certificates,
   workExperience,
+  knowledgeSeries,
+  yogaSessions,
 };

@@ -1,18 +1,19 @@
 ---
-import RollingBlock from "../components/web-components/rolling-block.astro";
-import TimeBlock from "../components/web-components/time-block.astro";
-import profile from "../singletons/profile/index.json";
-import homepage from "../singletons/homepage/index.json";
+import RollingBlock from "../web-components/rolling-block.astro";
+import TimeBlock from "../web-components/time-block.astro";
+import profile from "../data/profile.json";
+import homepage from "../data/homepage.json";
 
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/images/profile/*.{jpeg,jpg,png,gif,webp}");
 if (!images[profile.image]) throw new Error(`"${profile.image}" does not exist in glob: "/src/assets/images/profile/*.{jpeg,jpg,png,gif,webp}"`);
 const image = await images[profile.image]()
+const currentPage = Astro.url.pathname;
 ---
 
 <div
 	transition:name="profile-card"
 	inert
-	class="z-10 flex items-center rounded-full border border-slate-400 bg-white/10 backdrop-contrast-125 supports-backdrop-blur:backdrop-blur-xs py-2 px-2 shadow-inner shadow-slate-200 dark:border-slate-500/50 dark:bg-slate-500/10 dark:shadow-slate-700"
+	class="z-10 flex items-center rounded-full border border-slate-400 bg-white/10 supports-backdrop-blur:backdrop-blur-xs py-2 px-2 shadow-inner shadow-slate-200 dark:border-slate-500/50 dark:bg-slate-500/10 dark:shadow-slate-700"
 >
 	<div
 		transition:name="photo"
@@ -44,7 +45,7 @@ const image = await images[profile.image]()
 		>
 			Sukhpreet Singh
 		</h2>
-		<RollingBlock list={homepage.highlights} sm />
+		<RollingBlock list={homepage.highlights} sm/>
 		<div>
 			<span
 				class="rounded-full border text-slate-950 dark:text-white border-slate-500/50 bg-slate-100 px-1 py-0.5 dark:border-slate-500 dark:bg-slate-800"

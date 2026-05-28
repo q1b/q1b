@@ -1,0 +1,13 @@
+---
+const currentPage = Astro.url.pathname;
+---
+<div class="flex items-center sm:gap-x-2 p-1 rounded-full dark:bg-white/20 bg-blue-500/20">
+	<a aria-current={currentPage === "/" ? "true" : "false"} href="/" class="inert relative px-2 text-sm sm:text-base rounded-full hover:underline aria-current:no-underline aria-current:dark:text-slate-500 aria-current:text-white">
+		{currentPage === "/" && <div transition:name="nav-indicator" class="absolute rounded-full z-0 bg-indigo-500 dark:bg-white inset-0"></div>}
+		<span transition:name="nav-item-1" class="z-10 relative">Software Enginner</span>
+	</a>
+	<a aria-current={currentPage === "/yoga-meditation" || currentPage === '/yoga-meditation/' ? "true" : "false"} href="/yoga-meditation" class="inert relative px-2 text-sm sm:text-base rounded-full hover:underline aria-current:no-underline aria-current:dark:text-slate-500 aria-current:text-white">
+		{(currentPage === "/yoga-meditation" || currentPage === '/yoga-meditation/') && <div transition:name="nav-indicator" class="absolute rounded-full z-0 bg-indigo-500 dark:bg-white inset-0"></div>}
+		<span transition:name="nav-item-2" class="z-10 relative">Yoga & Meditation</span>
+	</a>
+</div>

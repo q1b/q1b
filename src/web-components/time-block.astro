@@ -1,0 +1,32 @@
+<!-- Wrap the component elements in our custom element “time-block”. -->
+<time-block transition:name="time-block"
+	transition:persist="time-block-presist">
+	{
+		new Date().toLocaleTimeString("en", {
+			timeZone: "Asia/Kolkata",
+			hour12: false,
+		})
+	}
+</time-block>
+
+<script>
+	if (!customElements.get("time-block")) {
+	class TimeBlock extends HTMLElement {
+		constructor() {
+			super();
+			this.innerText = new Date().toLocaleTimeString("en", {
+					timeZone: "Asia/Kolkata",
+					hour12: false,
+			});
+			setInterval(() => {
+				this.innerText = new Date().toLocaleTimeString("en", {
+					timeZone: "Asia/Kolkata",
+					hour12: false,
+				});
+			}, 1000);
+		}
+	}
+	// Tell the browser to use our AstroHeart class for <time-block> elements.
+	customElements.define("time-block", TimeBlock);
+	}
+</script>

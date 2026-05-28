@@ -1,0 +1,130 @@
+---
+import MaskBackground from "../components/Backgrounds/MaskBackground.astro";
+import Layout from "../layouts/Layout.astro";
+import homepage from "../data/homepage.json";
+import { getCollection } from "astro:content";
+import ProfileCard from "../components/ProfileCard.astro";
+import Navbar from "../components/Navbar.astro";
+
+const yogaCertificates = (await getCollection("certificates")).filter((data) => data.data.related === "yoga");
+const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/images/poster.png");
+const image = await images["/src/assets/images/poster.png"]();
+---
+
+<Layout title={homepage.title} description={homepage.description}>
+	<MaskBackground />
+	<main class="flex mt-8 sm:mt-0 w-full max-w-5xl flex-col">
+		<div class="flex flex-col relative items-center gap-y-4">
+			<ProfileCard />
+			<Navbar/>
+		</div>
+		<div
+			id="yoga-certificates"
+			class="mt-12 flex z-10 flex-col items-center w-full p-2"
+		>
+			<h2
+				id="yoga-certificates-heading"
+				class="text-4xl font-bold dark:text-slate-100 text-blue-700 font-cursive [text-shadow:0px_2px_4px_#008FFF44,0px_2px_8px_#fffa] dark:[text-shadow:0px_2px_4px_#fff1,0px_0px_8px_#fff2]"
+			>
+				Knowledge Series
+			</h2>
+			<ul class="flex flex-col items-center gap-y-6 mt-8 max-w-xl w-full">
+				<li class="relative text-slate-950 dark:text-slate-100 aspect-square rounded-2xl sm:aspect-video w-full h-full bg-slate-100/50 dark:bg-slate-900/50 dark:backdrop-contrast-125 backdrop-blur-xs border border-white dark:border-cyan-300/20 shadow-2xl shadow-amber-600/40 dark:shadow-slate-500/40">
+					<div class="text-xl z-10 rounded-b-2xl absolute bottom-0 bg-amber-50/80 dark:bg-slate-900/80 w-full p-4 backdrop-blur-sm">
+						<h2 >Ashtavakra Gita</h2>
+						<div class="flex justify-between">
+							<p>Start on: 8th Jan, 2026 | Daily 9:30 PM</p>
+							<a target="_blank" class="flex items-center hover:text-blue-500 gap-x-2" href="https://chat.whatsapp.com/LfT1luKOe2JGoQEK7Bco9z">
+								Join
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-6">
+  <path d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z" />
+  <path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z" />
+</svg>
+							</a>
+						</div>
+					</div>
+					<img src={image.default.src} alt="Project 1" class="w-full h-full absolute object-cover inset-0 rounded-2xl" />
+				</li>
+			</ul>
+		</div>
+		<div
+			id="yoga-certificates"
+			class="mt-12 flex z-10 flex-col items-center w-full p-2"
+		>
+			<h2
+				id="yoga-certificates-heading"
+				class="text-4xl font-bold dark:text-slate-100 text-blue-700 font-cursive [text-shadow:0px_2px_4px_#008FFF44,0px_2px_8px_#fffa] dark:[text-shadow:0px_2px_4px_#fff1,0px_0px_8px_#fff2]"
+			>
+				Certificates
+			</h2>
+			<ul class="flex flex-col items-center gap-y-6 mt-8 max-w-xl">
+				{
+					yogaCertificates.map(({ data: certificate }) => (
+						<li>
+							<div>
+								<h2 class="text-slate-700 dark:text-white text-2xl font-medium">
+									{certificate.title}
+								</h2>
+							</div>
+							<p class="text-slate-600 mt-2 dark:text-slate-300">
+								{certificate.issuedBy}
+							</p>
+							<p class="text-slate-600 mt-1 dark:text-slate-300">
+								Issued on {certificate.issueDate}
+							</p>
+							<div	 class="flex flex-wrap w-full dark:text-white text-slate-700 gap-3 items-center mt-4">
+								{certificate.credentialID && certificate.certificateURL && (
+									<a
+										href={certificate.certificateURL}
+										target="_blank"
+										class="inline-flex gap-x-1 items-center hover:underline decoration-wavy underline-offset-4
+										tab-highlight-none box-border whitespace-nowrap
+											rounded-full px-1
+											ring-offset-2 focus:outline-hidden
+											focus:ring-2 focus:ring-slate-200
+											dark:ring-offset-slate-900
+											dark:focus:ring-slate-200"
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 16 16"
+											fill="currentColor"
+											class="size-4"
+										>
+											<path
+												fill-rule="evenodd"
+												d="M8.914 6.025a.75.75 0 0 1 1.06 0 3.5 3.5 0 0 1 0 4.95l-2 2a3.5 3.5 0 0 1-5.396-4.402.75.75 0 0 1 1.251.827 2 2 0 0 0 3.085 2.514l2-2a2 2 0 0 0 0-2.828.75.75 0 0 1 0-1.06Z"
+												clip-rule="evenodd"
+											/>
+											<path
+												fill-rule="evenodd"
+												d="M7.086 9.975a.75.75 0 0 1-1.06 0 3.5 3.5 0 0 1 0-4.95l2-2a3.5 3.5 0 0 1 5.396 4.402.75.75 0 0 1-1.251-.827 2 2 0 0 0-3.085-2.514l-2 2a2 2 0 0 0 0 2.828.75.75 0 0 1 0 1.06Z"
+												clip-rule="evenodd"
+											/>
+										</svg>
+
+										<span>
+											{certificate.credentialID}
+										</span>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 16 16"
+											fill="currentColor"
+											class="size-4"
+										>
+											<path
+												fill-rule="evenodd"
+												d="M4.22 11.78a.75.75 0 0 1 0-1.06L9.44 5.5H5.75a.75.75 0 0 1 0-1.5h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V6.56l-5.22 5.22a.75.75 0 0 1-1.06 0Z"
+												clip-rule="evenodd"
+											/>
+										</svg>
+									</a>
+								)}
+							</div>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</main>
+</Layout>

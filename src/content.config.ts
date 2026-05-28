@@ -14,13 +14,25 @@ const articles = defineCollection({
   }),
 });
 
-const youTubeVideos = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/youtube_videos" }),
+const photos = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/photos" }),
   schema: z.object({
     label: z.string(),
     summary: z.string().optional(),
     URL: z.string(),
-    tags: z.array(z.string()).optional(),
+		tags: z.array(z.string()).optional(),
+		related: z.enum(["yoga", "engineering", "other"]).optional(),
+  }),
+});
+
+const videos = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/videos" }),
+  schema: z.object({
+    label: z.string(),
+    summary: z.string().optional(),
+    URL: z.string(),
+		tags: z.array(z.string()).optional(),
+		related: z.enum(["yoga", "engineering", "other"]).optional(),
   }),
 });
 
@@ -51,54 +63,52 @@ const projects = defineCollection({
   }),
 });
 
-const classes = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.mdoc", base: "./src/data/classes" }),
+const certificates = defineCollection({
+  loader: glob({
+    pattern: "**/[^_]*.json",
+    base: "./src/data/certificates",
+  }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
-    duration: z.number(), // minutes
-    level: z.enum(["beginner", "intermediate", "advanced"]),
-    schedule: z.string().optional(), // e.g., "Monday & Wednesday 6pm"
-    tags: z.array(z.string()).optional(),
-    visible: z.boolean().default(true),
+		issuedBy: z.string(),
+		issuerURL: z.string().optional(),
+    issueDate: z.string(),
+    certificateURL: z.string().optional(),
+		credentialID: z.string().optional(),
+		related: z.enum(["yoga", "engineering", "other"]).optional(),
   }),
 });
 
-const practices = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.mdoc", base: "./src/data/practices" }),
+const workExperience = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/work-experience" }),
   schema: z.object({
     title: z.string(),
+    company: z.string(),
+    companyURL: z.string().optional(),
+    employmentType: z.enum(["Full-time", "Part-time", "Contract", "Freelance", "Internship"]),
+    locationType: z.enum(["Remote", "On-site", "Hybrid"]),
+    startDate: z.coerce.date(),
+    endDate: z.coerce.date().optional(),
+    isCurrent: z.boolean().default(false),
+    duration: z.string(),
     description: z.string(),
-    duration: z.number(), // minutes
-    type: z.string(), // e.g., "meditation", "breathwork", "yoga nidra"
-    difficulty: z.enum(["easy", "moderate", "challenging"]),
-    audioUrl: z.string().optional(),
-    videoUrl: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    visible: z.boolean().default(true),
-  }),
-});
-
-const teachings = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.mdoc", base: "./src/data/teachings" }),
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    content: z.string(),
-    pubDate: z.coerce.date().optional(),
-    author: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    visible: z.boolean().default(true),
+    githubURL: z.string().optional(),
+    websiteURL: z.string().optional(),
+    technologies: z.array(z.string()),
+    certificates: z.array(z.object({
+      label: z.string(),
+      file: z.string(),
+    })).optional(),
   }),
 });
 
 export const collections = {
-  articles,
   tags,
-  categories,
+	photos,
+	videos,
+  articles,
   projects,
-  "youtube-videos": youTubeVideos,
-  classes,
-  practices,
-  teachings,
+  categories,
+  certificates,
+  workExperience,
 };

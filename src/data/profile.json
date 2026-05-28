@@ -1,0 +1,20 @@
+{
+  "name": "Sukhpreet Singh",
+  "image": "/src/assets/images/profile/image.webp",
+  "worksFor": {
+    "discriminant": true,
+    "value": {
+      "name": "Art Of Living",
+      "URL": "https://www.artofliving.org/i"
+    }
+  },
+  "knowsAbout": [
+    {
+      "name": "web development",
+      "public": true
+    }
+  ],
+  "githubURL": "https://github.com/q1b",
+  "linkedInURL": "https://linkedin.com/in/q1b",
+  "resumePDF": "/src/assets/files/resume/resumePDF.pdf"
+}

@@ -7,5 +7,5 @@ declare namespace App {
 }
 
 interface Window {
-  animate: typeof import("motion").animate;
+  animate: import("motion").animate;
 }

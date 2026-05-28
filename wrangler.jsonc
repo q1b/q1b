@@ -1,0 +1,17 @@
+{
+	"main": "dist/_worker.js/index.js",
+	"name": "sukhpreet",
+	// Update to today's date
+	"compatibility_date": "2026-05-28",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist"
+	},
+	"observability": {
+		"enabled": true
+	}
+}

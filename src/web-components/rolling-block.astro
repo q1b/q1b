@@ -1,0 +1,75 @@
+---
+import { cn } from "../utils/cn";
+
+export type Props = {
+	sm?: boolean;
+	xs?: boolean;
+	list: string[];
+};
+
+const { sm, xs, list } = Astro.props;
+---
+
+<div
+	class={cn(
+		"bg-white border border-slate-300 dark:border-slate-500 dark:bg-slate-600 shadow-md shadow-slate-200 dark:shadow-slate-600/40 text-center overflow-hidden relative rounded-full",
+		"w-44 h-8",
+		sm && "text-sm w-40 h-6",
+		xs && "text-xs w-40 h-5",
+	)}
+	data-list={JSON.stringify(list)}
+	id="rolling-container-root"
+	transition:name="rolling-block"
+	transition:persist="rolling-block-persist"
+>
+	<div id="rolling-container" class="w-full h-full absolute">
+		<strong
+			class="top-[-100%] tracking-wider font-semibold select-none dark:text-white text-slate-950 absolute flex items-center justify-center w-full h-full text-sm"
+			aria-hidden="true">{list[Math.floor(1)]}</strong
+		>
+		<strong
+			class="dark:text-white text-slate-950 tracking-wider font-semibold absolute flex items-center justify-center w-full h-full text-sm"
+			>{list[Math.floor(0)]}</strong
+		>
+	</div>
+</div>
+
+<script>
+	const root = document.querySelector("#rolling-container-root") as HTMLElement;
+	const container = root.querySelector("#rolling-container");
+	let first = container?.querySelector("strong:nth-child(1)");
+	let second = container?.querySelector("strong:nth-child(2)");
+	const list = JSON.parse(root.dataset.list || "[]");
+	let current_count = 1;
+	let previous_count = 0;
+
+	async function animateText() {
+		previous_count = current_count;
+		current_count = current_count + 1;
+		// @ts-ignore
+		first.innerText = list[current_count % list.length];
+		// @ts-ignore
+		second.innerText = list[previous_count % list.length];
+		window.animate(
+			"#rolling-container",
+			{
+				transform: ["translateY(0)", "translateY(100%)"],
+			},
+			{
+				duration: 1,
+				endDelay: 1,
+			},
+		).finished.then(() => animateText());
+	}
+	console.log("Starting animation");
+	window.animate(
+		"#rolling-container",
+		{
+			transform: ["translateY(0)", "translateY(100%)"],
+		},
+		{
+			duration: 1,
+			endDelay: 1,
+		},
+	).finished.then(() => animateText());
+</script>

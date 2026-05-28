@@ -1,0 +1,27 @@
+---
+import AstroIcon from '../icons/logos/AstroIcon.astro';
+import LibSqlIcon from '../icons/logos/LibSql.astro';
+import SolidjsIcon from '../icons/logos/Solidjs.astro';
+import SqliteIcon from '../icons/logos/Sqlite.astro';
+import SvelteIcon from '../icons/logos/Svelte.astro';
+import SvelteKitIcon from '../icons/logos/SvelteKit.astro';
+import TailwindcssIcon from '../icons/logos/Tailwindcss.astro';
+import TypeScriptIcon from '../icons/logos/TypeScript.astro';
+import VitejsIcon from '../icons/logos/Vitejs.astro';
+
+interface Props {
+  tech: string;
+  height?: number;
+}
+
+const { tech, height = 24 } = Astro.props;
+---
+{tech === 'astro' && <AstroIcon height={height} />}
+{tech === 'libsql' && <LibSqlIcon height={height} />}
+{tech === 'solidjs' && <SolidjsIcon height={height} />}
+{tech === 'sqlite' && <SqliteIcon height={height} />}
+{tech === 'svelte' && <SvelteIcon height={height} />}
+{tech === 'sveltekit' && <SvelteKitIcon height={height} />}
+{tech === 'tailwindcss' && <TailwindcssIcon height={height} />}
+{tech === 'typescript' && <TypeScriptIcon height={height} />}
+{tech === 'vitejs' && <VitejsIcon height={height} />}

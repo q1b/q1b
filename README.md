@@ -1,47 +1,40 @@
 <div id="top"></div>
 
 <div align="center">
-<span> <img src="https://api.iconify.design/fluent-emoji:smiling-face-with-sunglasses.svg?color=%23ffffff" height="42" >  <h1> Sukhpreet Singh  </h1> </span>
-<p>  Software Engineer </p>
+  <img src="https://api.iconify.design/fluent-emoji:smiling-face-with-sunglasses.svg" height="40" />
+  <h1>Sukhpreet Singh</h1>
+  <p>Software Engineer · TypeScript · SvelteKit · Astro · React</p>
+
+  <a href="https://linkedin.com/in/q1b"><img height="24" src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
+  &nbsp;
+  <a href="https://github.com/q1b"><img height="24" src="https://img.shields.io/badge/GitHub-171515?style=flat-square&logo=github&logoColor=white"/></a>
+  &nbsp;
+  <a href="https://twitter.com/_q1b_"><img height="24" src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat-square&logo=twitter&logoColor=white"/></a>
 </div>
 
--   👀 I’m in [Software development](https://en.wikipedia.org/wiki/Software_development)
--   🌱 I’m currently learning FullStack Web Development
--   📫 Skilled in TypeScript, Tailwindcss, Sveltekit, Vuejs, Reactjs
+<br>
+
+## Work Experience
+
+| Role | Company | Period |
+|------|---------|--------|
+| Software Developer | [Art of Living](https://www.artofliving.org) | Current |
+| Founding Software Developer | [Bhuman](https://bhuman.ai) | Mar – Jul 2022 |
+
+**Bhuman** — Built the front-end of a personalised video platform (in-browser video editor, CSV editor, REST API integrations) using SolidJS, TypeScript, and Tailwind CSS in a remote startup.
 
 <br>
 
-<details>
-     <summary> You can Contact and Connect with me here : </summary>
-<br>
+## Projects
+
+**[Appointment Scheduling Web App](https://osteopaths.in)** · [github](https://github.com/osteopathy/osteopaths.in)
+Paperless clinic scheduling for medical students — personalised profiles, open availability, and a clean self-service booking flow.
+
+**[Academic Management System](https://github.com/q1b/academic-erp-mvp)**
+Full-stack Next.js MVP extending Google Classroom for university needs — attendance, assignments, and faculty management.
 
 <br>
 
-<div align="center">
-     <table>
-  <tr>
-    <td>
-      <a href="https://www.linkedin.com/in/q1b/">
-        <img height="30" src="https://img.shields.io/badge/linkedin-blue.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-      </a>
-    </td>
-    <td>
-      <a href="https://github.com/q1b">
-        <img height="30" src="https://img.shields.io/badge/Github-%23000000.svg?&style=for-the-badge&logo=github&logoColor=white"/>
-      </a>
-    </td>
-    <td>
-      <a href="https://twitter.com/_q1b_">
-        <img height="30" src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white">
-      </a>
-    </td>
-    <td>
-      <a href="https://www.instagram.com/vishnuans/">
-        <img height="30" src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
-      </a>
-    </td>
-  </tr>
-</table>
-</div>
+## Stack
 
-</details>
+`TypeScript` `SvelteKit` `Astro` `React` `SolidJS` `Tailwind CSS` `Next.js`

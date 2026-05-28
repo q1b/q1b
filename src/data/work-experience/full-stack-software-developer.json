@@ -1,0 +1,18 @@
+{
+  "title": "Full Stack Software Developer",
+  "company": "Art Of Living",
+  "companyURL": "https://artofliving.org/",
+  "employmentType": "Full-time",
+  "locationType": "On-site",
+  "startDate": "2025-05-05",
+  "isCurrent": true,
+  "duration": "+1 year",
+  "description": "worked on several, impactful projects like Online Follow Up, helping teacher to conduct follow ups securely through online portal, Unsung Heroes Award Portal and IntuitionFest.",
+  "certificates": [],
+  "technologies": [
+    "astro",
+    "tailwindcss",
+    "typescript",
+    "vitejs"
+  ]
+}

@@ -83,8 +83,8 @@ export default config({
           publicPath: '/src/assets/images/articles/',
         }),
         tags: fields.array(
-          fields.text({ label: 'Tag' }),
-          { label: 'Tags', itemLabel: (props) => props.value }
+          fields.relationship({ label: 'Tag', collection: 'tags' }),
+          { label: 'Tags', itemLabel: (props) => props.value ?? 'Tag' }
         ),
         content: fields.markdoc({ label: 'Content' }),
       },
@@ -147,8 +147,8 @@ export default config({
         summary: fields.text({ label: 'Summary', multiline: true }),
         URL: fields.url({ label: 'URL' }),
         tags: fields.array(
-          fields.text({ label: 'Tag' }),
-          { label: 'Tags', itemLabel: (props) => props.value }
+          fields.relationship({ label: 'Tag', collection: 'tags' }),
+          { label: 'Tags', itemLabel: (props) => props.value ?? 'Tag' }
         ),
         related: fields.select({
           label: 'Related',
@@ -172,8 +172,8 @@ export default config({
         summary: fields.text({ label: 'Summary', multiline: true }),
         URL: fields.url({ label: 'URL' }),
         tags: fields.array(
-          fields.text({ label: 'Tag' }),
-          { label: 'Tags', itemLabel: (props) => props.value }
+          fields.relationship({ label: 'Tag', collection: 'tags' }),
+          { label: 'Tags', itemLabel: (props) => props.value ?? 'Tag' }
         ),
         related: fields.select({
           label: 'Related',

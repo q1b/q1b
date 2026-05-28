@@ -8,6 +8,11 @@ import SvelteKitIcon from '../icons/logos/SvelteKit.astro';
 import TailwindcssIcon from '../icons/logos/Tailwindcss.astro';
 import TypeScriptIcon from '../icons/logos/TypeScript.astro';
 import VitejsIcon from '../icons/logos/Vitejs.astro';
+import ReactIcon from '../icons/logos/React.astro';
+import TanstackStartIcon from '../icons/logos/TanstackStart.astro';
+import PostgresIcon from '../icons/logos/Postgres.astro';
+import ShadcnUIIcon from '../icons/logos/ShadcnUI.astro';
+import DrizzleIcon from '../icons/logos/Drizzle.astro';
 
 interface Props {
   tech: string;
@@ -25,3 +30,8 @@ const { tech, height = 24 } = Astro.props;
 {tech === 'tailwindcss' && <TailwindcssIcon height={height} />}
 {tech === 'typescript' && <TypeScriptIcon height={height} />}
 {tech === 'vitejs' && <VitejsIcon height={height} />}
+{tech === 'react' && <ReactIcon height={height} />}
+{tech === 'tanstack-start' && <TanstackStartIcon height={height} />}
+{tech === 'postgres' && <PostgresIcon height={height} />}
+{tech === 'shadcn-ui' && <ShadcnUIIcon height={height} />}
+{tech === 'drizzle' && <DrizzleIcon height={height} />}

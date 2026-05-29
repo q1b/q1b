@@ -4,10 +4,11 @@ import { cn } from "../utils/cn";
 export type Props = {
 	sm?: boolean;
 	xs?: boolean;
+	xxs?: boolean;
 	list: string[];
 };
 
-const { sm, xs, list } = Astro.props;
+const { sm, xs, list, xxs } = Astro.props;
 ---
 
 <div
@@ -15,7 +16,8 @@ const { sm, xs, list } = Astro.props;
 		"bg-white border border-slate-300 dark:border-slate-500 dark:bg-slate-600 shadow-md shadow-slate-200 dark:shadow-slate-600/40 text-center overflow-hidden relative rounded-full",
 		"w-44 h-8",
 		sm && "text-sm w-40 h-6",
-		xs && "text-xs w-40 h-5",
+		xs && "text-xs sm:text-sm sm:w-40 sm:h-6 w-36 h-5",
+		xxs && "text-[0.625rem] w-30 h-4",
 	)}
 	data-list={JSON.stringify(list)}
 	id="rolling-container-root"
@@ -24,11 +26,11 @@ const { sm, xs, list } = Astro.props;
 >
 	<div id="rolling-container" class="w-full h-full absolute">
 		<strong
-			class="top-[-100%] tracking-wider font-semibold select-none dark:text-white text-slate-950 absolute flex items-center justify-center w-full h-full text-sm"
+			class="top-[-100%] tracking-wider font-semibold select-none dark:text-white text-slate-950 absolute flex items-center justify-center w-full h-full"
 			aria-hidden="true">{list[Math.floor(1)]}</strong
 		>
 		<strong
-			class="dark:text-white text-slate-950 tracking-wider font-semibold absolute flex items-center justify-center w-full h-full text-sm"
+			class="dark:text-white text-slate-950 tracking-wider font-semibold absolute flex items-center justify-center w-full h-full"
 			>{list[Math.floor(0)]}</strong
 		>
 	</div>

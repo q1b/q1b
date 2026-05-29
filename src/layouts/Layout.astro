@@ -45,7 +45,7 @@ const currentPage = Astro.url.pathname;
 	<!-- <GradientBackground /> -->
 	 <!-- max-w-(--breakpoint-xl) -->
 	<header
-		class="flex h-12 w-full max-w-xl items-center justify-between rounded-full px-2 z-10"
+		class="flex h-12 w-full max-w-xl items-center justify-between rounded-full px-1 z-10"
 	>
 		<div class="flex items-center gap-x-3">
 			{currentPage !== "/about" ? (
@@ -92,10 +92,10 @@ const currentPage = Astro.url.pathname;
 			) : (
 				<Navbar />)}
 </div>
-		<div class="flex items-center gap-x-4 sm:gap-x-6">
-			<ThemeButton />
-			<nav class="flex items-center gap-x-2">
-				<!-- <a
+<ThemeButton />
+
+		<!--<div class="flex items-center gap-x-4 sm:gap-x-6"> <nav class="flex items-center gap-x-2">
+				<a
 					aria-current={currentPage === "/" ? "true" : "false"}
 					href="/"
 					class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap
@@ -140,9 +140,8 @@ const currentPage = Astro.url.pathname;
 					>
 						<path d="M0 0L3 3L0 6"></path>
 					</svg>
-				</a> -->
-			</nav>
-		</div>
+				</a>
+			</nav></div>  -->
 	</header>
 	<div class="py-2 sm:py-6"></div>
 	<slot />

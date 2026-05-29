@@ -26,11 +26,11 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
-    // resolve: {
-    //   alias: {
-    //     "react-dom/server": "react-dom/server.edge",
-    //   },
-    // },
+    resolve: {
+      alias: {
+        "react-dom/server": "react-dom/server.edge",
+      },
+    },
   },
   integrations: [sitemap(), markdoc(),  react(), keystatic(), ],
 });

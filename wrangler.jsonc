@@ -1,5 +1,5 @@
 {
-	"main": "dist/_worker.js/index.js",
+	"main": "@astrojs/cloudflare/entrypoints/server",
 	"name": "sukhpreet",
 	// Update to today's date
 	"compatibility_date": "2026-05-28",
@@ -9,7 +9,10 @@
 	],
 	"assets": {
 		"binding": "ASSETS",
-		"directory": "./dist"
+		"directory": "./dist",
+		"run_worker_first": [
+			"/api/*"
+		]
 	},
 	"observability": {
 		"enabled": true

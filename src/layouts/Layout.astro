@@ -15,14 +15,17 @@ export type Props = {
 	title?: string;
 	description?: string;
 	className?: string;
+	jsonLD?: string;
+	resumeURL?: string;
 };
 
-const { title, description, className } = Astro.props;
+const { title, description, className, jsonLD, resumeURL } = Astro.props;
 ---
 
 <Wrapper
 	title={"" + title}
 	description={"" + description}
+	jsonLD={jsonLD}
 	style={{
 		'--pattern-slate-200': `url("${grid_uri(slate200)}")`,
 		'--pattern-slate-800': `url("${grid_uri(slate800)}")`
@@ -129,15 +132,19 @@ const { title, description, className } = Astro.props;
 								Writings
 							</a>
 						</li>
-						<li>
-							<a
-								href="/resume"
-								class="xs:gap-x-2 group inline-flex items-center justify-center gap-x-1"
-								title="Link to Resume"
-							>
-								Resume
-							</a>
-						</li>
+						{resumeURL && (
+							<li>
+								<a
+									href={resumeURL}
+									target="_blank"
+									rel="external"
+									class="xs:gap-x-2 group inline-flex items-center justify-center gap-x-1"
+									title="Link to Resume PDF"
+								>
+									Resume
+								</a>
+							</li>
+						)}
 					</ul>
 				</div>
 				<div class="font-robotic max-[332px]:hidden">

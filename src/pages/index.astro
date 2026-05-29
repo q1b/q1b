@@ -27,9 +27,28 @@ const resume = await resumes[profile.resumePDF]()
 
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric", timeZone: "UTC" }).format(date);
+
+const personSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": profile.name,
+  "url": "https://q1b.dev",
+  "sameAs": [
+    profile.githubURL,
+    profile.linkedInURL,
+    "https://instagram.com/vishnuans",
+  ].filter(Boolean),
+  "jobTitle": "Software Developer",
+  "worksFor": profile.worksFor.discriminant ? {
+    "@type": "Organization",
+    "name": profile.worksFor.value.name,
+    "url": profile.worksFor.value.URL,
+  } : undefined,
+  "knowsAbout": ["Web Development", "Open Source", "SriSri Yoga", "Basketball"],
+});
 ---
 
-<Layout title={homepage.title} description={homepage.description}>
+<Layout title={homepage.title} description={homepage.description} jsonLD={personSchema} resumeURL={resume.default}>
 	<MaskBackground />
 	<main class="flex mt-8 sm:mt-0 w-full max-w-5xl flex-col">
 		<div class="flex flex-col relative items-center gap-y-4">

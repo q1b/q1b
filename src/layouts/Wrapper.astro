@@ -8,11 +8,14 @@ export type Props = {
 	description: string;
 	class?: string;
 	ogImageURL?: string;
+	jsonLD?: string;
 	style?: Record<string, string>;
 };
 
-const { title, description, ogImageURL, class: className = "", style = {} } = Astro.props;
+const { title, description, ogImageURL, jsonLD, class: className = "", style = {} } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const defaultOGImage = new URL('/logo/pwa-512x512.png', Astro.site).href;
+const resolvedOGImage = ogImageURL ?? defaultOGImage;
 ---
 
 <!doctype html>
@@ -21,14 +24,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<meta charset="UTF-8" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="Sukhpreet Singh" />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 
 		<link rel="icon" href="/logo/favicon.ico" sizes="48x48">
 		<link rel="icon" href="/logo/favicon.svg" sizes="any" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="/logo/apple-touch-icon-180x180.png" />
 		<link rel="mask-icon" href="/logo/maskable-icon-512x512.png" color="#000000" />
-
-		<meta name="generator" content={Astro.generator} />
 
 		{canonicalURL && <link rel="canonical" href={canonicalURL} />}
 		<title>{title}</title>
@@ -39,14 +43,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		{ogImageURL && <meta property="og:image" content={ogImageURL} />}
+		<meta property="og:image" content={resolvedOGImage} />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={canonicalURL} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		{ogImageURL && <meta property="twitter:image" content={ogImageURL} />}
+		<meta property="twitter:image" content={resolvedOGImage} />
+
+		{jsonLD && <script is:inline type="application/ld+json" set:html={jsonLD} />}
 		<ClientRouter />
 		<!-- On page load or when changing themes, best to add inline in `head` to avoid FOUC -->
 		<script is:inline>

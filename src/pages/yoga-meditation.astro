@@ -214,7 +214,7 @@ const knowledgeFirst =
   </p>
   <ul class="flex flex-col items-center gap-y-6 mt-8 max-w-xl w-full">
     {yogaSessions.map(({ data: session, status }) => (
-      <li class="w-full">
+      <li class="w-full flex flex-col gap-y-2">
         <div>
           <h2 class="text-slate-700 dark:text-white text-2xl font-medium w-full flex justify-between items-center gap-x-2">
             <span>{session.title}</span>
@@ -228,20 +228,20 @@ const knowledgeFirst =
               {status}
             </span>
           </h2>
-          <div class="flex flex-col gap-y-1 mt-1 pl-0.5">
-            <span class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2">
-              <span>{session.style}</span>
+          <div class="flex flex-col gap-y-1.5 mt-1 pl-0.5">
+            <span class="text-slate-600 text-sm dark:text-blue-300 inline-flex flex-wrap items-center font-medium gap-x-2">
+              <span class="whitespace-nowrap">{session.style}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"><circle cx="12" cy="12" r="10" /></svg>
-              <span>{session.level}</span>
+              <span class="whitespace-nowrap">{session.level}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"><circle cx="12" cy="12" r="10" /></svg>
-              <span>{session.location_type}{session.venue ? ` · ${session.venue}` : ""}</span>
+              <span class="whitespace-nowrap">{session.location_type}{session.venue ? ` · ${session.venue}` : ""}</span>
             </span>
-            <span class="text-slate-600 text-sm dark:text-blue-300 inline-flex items-center font-medium gap-x-2">
-              <span>{session.schedule}</span>
+            <span class="text-slate-600 text-sm dark:text-blue-300 inline-flex flex-wrap items-center font-medium gap-x-2">
+              <span class="whitespace-nowrap">{session.schedule}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"><circle cx="12" cy="12" r="10" /></svg>
-              <span>{session.duration}</span>
+              <span class="whitespace-nowrap">{session.duration}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"><circle cx="12" cy="12" r="10" /></svg>
-              <span>
+              <span class="whitespace-nowrap">
                 {formatDateRange(session.start_date, session.end_date)}
               </span>
             </span>
@@ -253,11 +253,11 @@ const knowledgeFirst =
           </div>
         </div>
         {session.description && (
-          <p class="text-slate-600 mt-2 dark:text-slate-300 font-medium">{session.description}</p>
+          <p class="text-slate-600 dark:text-slate-300 font-medium">{session.description}</p>
         )}
-				<div class:list={{"-mt-3": !session.description}} class="flex h-11 justify-between items-center w-full">
+				<div class="flex justify-between flex-wrap gap-2 items-center w-full">
 					{session.practices.length > 0 && (
-          <div class="flex flex-wrap gap-2 mt-3">
+          <div class="flex flex-wrap gap-2">
             {session.practices.map((practice) => (
               <span class="text-xs px-2 py-0.5 rounded-full border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400">
                 {practice}
@@ -268,7 +268,7 @@ const knowledgeFirst =
         {session.join_url && status !== "Ongoing" && (() => {
           const platform = getJoinPlatform(session.join_url);
           return (
-            <div class="flex flex-wrap dark:text-white text-slate-700 gap-3 items-center mt-4">
+            <div class="flex flex-wrap dark:text-white text-slate-700 gap-3 items-center">
 							<a
 						href={session.join_url}
 						target="_blank"

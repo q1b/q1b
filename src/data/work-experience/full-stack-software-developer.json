@@ -13,7 +13,6 @@
   "technologies": [
     "tailwindcss",
     "typescript",
-    "react",
-    "astro"
+    "react"
   ]
 }

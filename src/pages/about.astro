@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import MaskBackground from "../components/Backgrounds/MaskBackground.astro";
+import ProfileCard from "../components/ProfileCard.astro";
+import profile from "../data/profile.json";
+import homepage from "../data/homepage.json";
+---
+<Layout>
+	<MaskBackground />
+	<main class="flex mt-8 sm:mt-0 w-full max-w-xl flex-col items-center">
+		<div class="flex flex-col relative items-center gap-y-6 w-full">
+			<ProfileCard />
+
+			<!-- Description -->
+			<p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed font-medium text-center px-1">
+				{homepage.description}
+			</p>
+
+			<!-- Mentions -->
+			<div class="flex flex-wrap justify-center gap-2">
+				{homepage.highlights.map((label) => (
+					<span class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/60 px-3 py-1 text-sm font-medium text-slate-700 dark:text-slate-300">
+						{label}
+					</span>
+				))}
+				{profile.worksFor.discriminant && (
+					<a
+						href={profile.worksFor.value.URL}
+						target="_blank"
+						rel="external"
+						class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/60 px-3 py-1 text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-500 transition-colors"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3.5 shrink-0 text-slate-500 dark:text-slate-400">
+							<path fill-rule="evenodd" d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z" clip-rule="evenodd"/>
+						</svg>
+						{profile.worksFor.value.name}
+					</a>
+				)}
+			</div>
+
+			<!-- Social links -->
+			<div class="flex flex-wrap justify-center gap-3">
+				{profile.linkedInURL && (
+					<a
+						href={profile.linkedInURL}
+						target="_blank"
+						rel="external"
+						class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap rounded-full border-2 border-blue-400 bg-blue-50 px-3 text-sm hover:scale-105 hover:-rotate-5 transition-transform font-semibold text-blue-600 ring-offset-2 hover:bg-blue-100 hover:text-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-blue-400 dark:bg-linear-to-tr dark:from-blue-600 dark:to-blue-800 dark:text-white/90 dark:ring-offset-slate-900 dark:hover:from-blue-500 dark:hover:to-blue-700 dark:hover:text-white dark:focus:ring-blue-500"
+					>
+						<svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M2 1C1.44772 1 1 1.44772 1 2V13C1 13.5523 1.44772 14 2 14H13C13.5523 14 14 13.5523 14 13V2C14 1.44772 13.5523 1 13 1H2ZM3.05 6H4.95V12H3.05V6ZM5.075 4.005C5.075 4.59871 4.59371 5.08 4 5.08C3.4063 5.08 2.925 4.59871 2.925 4.005C2.925 3.41129 3.4063 2.93 4 2.93C4.59371 2.93 5.075 3.41129 5.075 4.005ZM12 8.35713C12 6.55208 10.8334 5.85033 9.67449 5.85033C9.29502 5.83163 8.91721 5.91119 8.57874 6.08107C8.32172 6.21007 8.05265 6.50523 7.84516 7.01853H7.79179V6.00044H6V12.0047H7.90616V8.8112C7.8786 8.48413 7.98327 8.06142 8.19741 7.80987C8.41156 7.55832 8.71789 7.49825 8.95015 7.46774H9.02258C9.62874 7.46774 10.0786 7.84301 10.0786 8.78868V12.0047H11.9847L12 8.35713Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"/>
+						</svg>
+						<span class="ml-1.5">LinkedIn</span>
+						<svg class="ml-3 overflow-visible text-blue-300 group-hover:text-blue-400 dark:text-blue-500 dark:group-hover:text-blue-400 group-hover:translate-x-px transition-transform" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M0 0L3 3L0 6" />
+						</svg>
+					</a>
+				)}
+				{profile.githubURL && (
+					<a
+						href={profile.githubURL}
+						target="_blank"
+						rel="external"
+						class="tab-highlight-none group box-border inline-flex h-9 items-center whitespace-nowrap rounded-full border-2 border-slate-400 bg-slate-100 px-3 text-sm hover:scale-105 hover:-rotate-5 transition-transform font-semibold text-slate-600 ring-offset-2 hover:bg-slate-200 hover:text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-slate-500 dark:border-slate-400 dark:bg-slate-700 dark:text-white/90 dark:ring-offset-slate-900 dark:hover:bg-slate-600 dark:hover:text-white dark:focus:ring-slate-500"
+					>
+						<svg viewBox="0 0 28 28" fill="#0F172A" xmlns="http://www.w3.org/2000/svg" class="fill-slate-1000 h-4 w-4 dark:fill-slate-200">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M14 0C6.265 0 0 6.265 0 14c0 6.195 4.008 11.427 9.572 13.282.7.123.963-.297.963-.665 0-.332-.018-1.434-.018-2.607-3.517.647-4.427-.858-4.707-1.645-.157-.402-.84-1.645-1.435-1.977-.49-.263-1.19-.91-.018-.928 1.103-.018 1.89 1.015 2.153 1.435 1.26 2.117 3.273 1.523 4.078 1.155.122-.91.49-1.523.892-1.873-3.115-.35-6.37-1.557-6.37-6.912 0-1.523.542-2.783 1.435-3.763-.14-.35-.63-1.785.14-3.71 0 0 1.173-.367 3.85 1.436a12.99 12.99 0 013.5-.473c1.19 0 2.38.157 3.5.473 2.677-1.82 3.85-1.435 3.85-1.435.77 1.925.28 3.36.14 3.71.893.98 1.435 2.222 1.435 3.762 0 5.372-3.273 6.563-6.387 6.912.507.438.944 1.278.944 2.59 0 1.873-.017 3.378-.017 3.85 0 .368.262.805.962.665A14.022 14.022 0 0028 14c0-7.735-6.265-14-14-14z"/>
+						</svg>
+						<span class="ml-1.5">GitHub</span>
+						<svg class="ml-3 overflow-visible text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400 group-hover:translate-x-px transition-transform" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M0 0L3 3L0 6" />
+						</svg>
+					</a>
+				)}
+			</div>
+		</div>
+	</main>
+</Layout>

@@ -126,7 +126,7 @@ const yogaSessions = defineCollection({
     duration: z.string(),
     start_date: z.coerce.date(),
     end_date: z.coerce.date().optional().nullable(),
-    description: z.string(),
+    description: z.string().optional(),
     practices: z.array(z.string()),
     instructors: z.array(z.string()).optional().nullable(),
     join_url: z.string().optional().nullable(),

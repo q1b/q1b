@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, svgoOptimizer } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
@@ -11,10 +11,12 @@ import react from "@astrojs/react";
 export default defineConfig({
 	site: "https://q1b.dev",
 	output: "server",
-  adapter: cloudflare(),
+	adapter: cloudflare(),
   experimental: {
     contentIntellisense: true,
-    clientPrerender: true,
+		clientPrerender: true,
+		svgOptimizer: svgoOptimizer(),
+		 advancedRouting: true,
   },
   devToolbar: {
     enabled: true,

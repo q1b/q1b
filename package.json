@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+		 "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/logo.webp"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -27,5 +28,8 @@
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@vite-pwa/assets-generator": "^1.0.2"
   }
 }

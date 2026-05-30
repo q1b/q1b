@@ -1,5 +1,5 @@
 ---
-import { YouTube } from "astro-embed"
+// import { YouTube } from "astro-embed"
 import { getCollection } from "astro:content";
 import MaskBackground from "../../components/Backgrounds/MaskBackground.astro";
 import Layout from "../../layouts/Layout.astro";
@@ -65,7 +65,7 @@ const videos = (await getCollection("videos")).filter(
 				margin: "0px 0px -100px 0px"
 			});
 		</script>
-		{videos.length !== 0 && (
+		<!-- {videos.length !== 0 && (
 			<div
 				id="videos-container"
 				class="mt-12 flex z-10 flex-col items-center w-full p-2"
@@ -76,7 +76,7 @@ const videos = (await getCollection("videos")).filter(
 				>
 					Videos
 				</h2>
-				<!-- <ul class="flex flex-col items-center gap-y-6 sm:gap-y-4 mt-8 max-w-xl">
+				<ul class="flex flex-col items-center gap-y-6 sm:gap-y-4 mt-8 max-w-xl">
 					<li class="">
 						<div>
 							<h2
@@ -219,7 +219,7 @@ const videos = (await getCollection("videos")).filter(
 							</a>
 						</div>
 					</li>
-				</ul> -->
+				</ul>
 				<ul class="flex flex-col max-w-xl gap-y-2 mt-12 w-full">
 				{videos.map(({data: video}) => (
 					<li class="relative text-slate-950 dark:text-slate-100 rounded-2xl aspect-video w-full h-full bg-slate-100/50 dark:bg-slate-900/50 dark:backdrop-contrast-125 backdrop-blur-xs border border-white dark:border-cyan-300/20 shadow-2xl shadow-indigo-600/40 dark:shadow-slate-500/40">
@@ -228,7 +228,7 @@ const videos = (await getCollection("videos")).filter(
 				))}
 				</ul>
 			</div>
-		)}
+		)} -->
 		<script>
 			import { inView } from "motion";
 			import { annotate } from "rough-notation";

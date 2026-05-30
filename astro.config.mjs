@@ -15,7 +15,6 @@ export default defineConfig({
   experimental: {
     contentIntellisense: true,
     clientPrerender: true,
-    svgo: true,
   },
   devToolbar: {
     enabled: true,
@@ -30,7 +29,16 @@ export default defineConfig({
       alias: {
         "react-dom/server": "react-dom/server.edge",
       },
+		},
+	optimizeDeps: {
+      exclude: ['@keystatic/astro'],
     },
-  },
+    build: {
+      rollupOptions: {
+        // 2. Prevent Rollup from treating the virtual module as a missing physical file
+        external: ['virtual:keystatic-config'],
+      },
+    },
+	},
   integrations: [sitemap(), markdoc(),  react(), keystatic(), ],
 });

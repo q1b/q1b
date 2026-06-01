@@ -10,14 +10,14 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://q1b.dev",
-	output: "server",
+	output: "static",
 	adapter: cloudflare(),
   experimental: {
     contentIntellisense: true,
 		clientPrerender: true,
 		svgOptimizer: svgoOptimizer(),
-		 advancedRouting: true,
-  },
+		advancedRouting: true,
+	},
   devToolbar: {
     enabled: true,
   },
@@ -31,11 +31,11 @@ export default defineConfig({
       alias: {
         "react-dom/server": "react-dom/server.edge",
       },
-		},
-	optimizeDeps: {
-      exclude: ['@keystatic/astro'],
     },
-    build: {
+		optimizeDeps: {
+      exclude: ['@keystatic/astro'],
+		},
+		build: {
       rollupOptions: {
         // 2. Prevent Rollup from treating the virtual module as a missing physical file
         external: ['virtual:keystatic-config'],

@@ -48,7 +48,7 @@ const currentPage = Astro.url.pathname;
 		class="flex h-12 w-full max-w-xl items-center justify-between rounded-full px-1 pb-1 pt-2 z-10"
 	>
 		<div class="flex items-center gap-x-3">
-			{currentPage !== "/about" ? (
+			{currentPage !== "/about" && currentPage !== "/about/" ? (
 				<a href="/about">
 				<div
 	transition:name="profile-card"

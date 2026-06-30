@@ -265,7 +265,7 @@ const knowledgeFirst =
             ))}
           </div>
         )}
-        {session.join_url && status !== "Ongoing" && (() => {
+        {session.join_url && status !== "Ongoing" && status !== "Completed" && (() => {
           const platform = getJoinPlatform(session.join_url);
           return (
             <div class="flex flex-wrap dark:text-white text-slate-700 gap-3 items-center">

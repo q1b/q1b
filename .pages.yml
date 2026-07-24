@@ -149,8 +149,11 @@ content:
           path: photos # Saves uploads to src/assets/images/photos
       - name: tags
         label: Tags
-        type: string
+        type: reference
         list: true
+        options:
+          collection: tags
+          value: name
       - name: related
         label: Related
         type: select

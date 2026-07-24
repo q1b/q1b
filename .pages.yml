@@ -173,6 +173,9 @@ content:
     type: collection
     path: src/data/certificates
     format: json
+    filename: "{primary}.json"
+    view:
+      primary: title
     fields:
       - name: title
         label: Title
@@ -208,6 +211,9 @@ content:
     type: collection
     path: src/data/work-experience
     format: json
+    filename: "{primary}.json"
+    view:
+      primary: title
     fields:
       - name: title
         label: Job Title
@@ -265,13 +271,13 @@ content:
         type: string
       - name: technologies
         label: Technologies
-        type: list
+        type: string
+        list: true
         required: true
-        field:
-          type: string
       - name: certificates
         label: Certificates
-        type: list
+        type: object
+        list: true
         fields:
           - name: label
             label: Label
@@ -285,6 +291,9 @@ content:
     type: collection
     path: src/data/knowledge-series
     format: json
+    filename: "{primary}.json"
+    view:
+      primary: title
     fields:
       - name: title
         label: Title
@@ -303,10 +312,9 @@ content:
         required: true
       - name: topics
         label: Topics
-        type: list
+        type: string
+        list: true
         required: true
-        field:
-          type: string
       - name: join_url
         label: Join URL
         type: string
@@ -316,6 +324,9 @@ content:
     type: collection
     path: src/data/yoga-sessions
     format: json
+    filename: "{primary}.json"
+    view:
+      primary: title
     fields:
       - name: title
         label: Title
@@ -375,15 +386,13 @@ content:
         type: text
       - name: practices
         label: Practices
-        type: list
+        type: string
+        list: true
         required: true
-        field:
-          type: string
       - name: instructors
         label: Instructors
-        type: list
-        field:
-          type: string
+        type: string
+        list: true
       - name: join_url
         label: Join URL
         type: string

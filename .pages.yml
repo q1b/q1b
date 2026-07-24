@@ -119,7 +119,10 @@ content:
         required: true
       - name: category
         label: Category
-        type: string
+        type: reference
+        options:
+          collection: categories
+          value: name # Stores the category's 'name' property in the JSON
 
   - name: photos
     label: Photos

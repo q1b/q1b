@@ -457,15 +457,16 @@ content:
         type: select
         required: true
         options:
-          - Hatha
-          - Pranayama
-          - Vinyasa
-          - Ashtanga
-          - Yin
-          - Kundalini
-          - Restorative
-          - Mixed
-          - Other
+          values:
+            - Hatha
+            - Pranayama
+            - Vinyasa
+            - Ashtanga
+            - Yin
+            - Kundalini
+            - Restorative
+            - Mixed
+            - Other
       - name: level
         label: Level
         type: select

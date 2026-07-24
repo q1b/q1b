@@ -184,9 +184,11 @@ content:
         required: true
       - name: tags
         label: Tags
-        type: list
-        field:
-          type: string
+        type: reference
+        list: true
+        options:
+          collection: tags
+          value: name
       - name: related
         label: Related
         type: select

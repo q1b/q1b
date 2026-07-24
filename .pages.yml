@@ -222,10 +222,12 @@ content:
           path: articles
       - name: tags
         label: Tags
-        type: list
+        type: reference
+        list: true
         required: true
-        field:
-          type: string
+        options:
+          collection: tags
+          value: name
       - name: body
         label: Content Body
         type: rich-text

@@ -1,0 +1,373 @@
+content:
+  - name: tags
+    label: Tags
+    type: collection
+    path: src/data/tags
+    format: json
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: category
+        label: Category
+        type: string
+
+  - name: photos
+    label: Photos
+    type: collection
+    path: src/data/photos
+    format: json
+    fields:
+      - name: label
+        label: Label
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+      - name: URL
+        label: URL
+        type: string
+        required: true
+      - name: tags
+        label: Tags
+        type: list
+        field:
+          type: string
+      - name: related
+        label: Related
+        type: select
+        options:
+          - yoga
+          - engineering
+          - other
+
+  - name: videos
+    label: Videos
+    type: collection
+    path: src/data/videos
+    format: json
+    fields:
+      - name: label
+        label: Label
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+      - name: URL
+        label: URL
+        type: string
+        required: true
+      - name: tags
+        label: Tags
+        type: list
+        field:
+          type: string
+      - name: related
+        label: Related
+        type: select
+        options:
+          - yoga
+          - engineering
+          - other
+
+  - name: articles
+    label: Articles
+    type: collection
+    path: src/data/articles
+    extension: mdoc
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+      - name: visible
+        label: Visible
+        type: boolean
+        default: true
+      - name: pubDate
+        label: Publication Date
+        type: date
+      - name: thumbnail
+        label: Thumbnail
+        type: image
+      - name: tags
+        label: Tags
+        type: list
+        required: true
+        field:
+          type: string
+      - name: body
+        label: Content Body
+        type: rich-text
+
+  - name: categories
+    label: Categories
+    type: collection
+    path: src/data/categories
+    format: json
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+
+  - name: projects
+    label: Projects
+    type: collection
+    path: src/data/projects
+    extension: mdoc
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: shortDescription
+        label: Short Description
+        type: text
+        required: true
+      - name: visible
+        label: Visible
+        type: boolean
+        default: false
+      - name: isMajorProject
+        label: Is Major Project
+        type: boolean
+        default: false
+      - name: githubURL
+        label: GitHub URL
+        type: string
+      - name: websiteURL
+        label: Website URL
+        type: string
+      - name: body
+        label: Content Body
+        type: rich-text
+
+  - name: certificates
+    label: Certificates
+    type: collection
+    path: src/data/certificates
+    format: json
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: issuedBy
+        label: Issued By
+        type: string
+        required: true
+      - name: issuerURL
+        label: Issuer URL
+        type: string
+      - name: issueDate
+        label: Issue Date
+        type: date
+        required: true
+      - name: certificateURL
+        label: Certificate URL
+        type: string
+      - name: credentialID
+        label: Credential ID
+        type: string
+      - name: related
+        label: Related
+        type: select
+        options:
+          - yoga
+          - engineering
+          - other
+
+  - name: workExperience
+    label: Work Experience
+    type: collection
+    path: src/data/work-experience
+    format: json
+    fields:
+      - name: title
+        label: Job Title
+        type: string
+        required: true
+      - name: company
+        label: Company
+        type: string
+        required: true
+      - name: companyURL
+        label: Company URL
+        type: string
+      - name: employmentType
+        label: Employment Type
+        type: select
+        required: true
+        options:
+          - Full-time
+          - Part-time
+          - Contract
+          - Freelance
+          - Internship
+      - name: locationType
+        label: Location Type
+        type: select
+        required: true
+        options:
+          - Remote
+          - On-site
+          - Hybrid
+      - name: startDate
+        label: Start Date
+        type: date
+        required: true
+      - name: endDate
+        label: End Date
+        type: date
+      - name: isCurrent
+        label: Is Current Role
+        type: boolean
+        default: false
+      - name: duration
+        label: Duration
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: text
+        required: true
+      - name: githubURL
+        label: GitHub URL
+        type: string
+      - name: websiteURL
+        label: Website URL
+        type: string
+      - name: technologies
+        label: Technologies
+        type: list
+        required: true
+        field:
+          type: string
+      - name: certificates
+        label: Certificates
+        type: list
+        fields:
+          - name: label
+            label: Label
+            type: string
+          - name: file
+            label: File
+            type: string
+
+  - name: knowledgeSeries
+    label: Knowledge Series
+    type: collection
+    path: src/data/knowledge-series
+    format: json
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: start_date
+        label: Start Date
+        type: date
+        required: true
+      - name: end_date
+        label: End Date
+        type: date
+      - name: description
+        label: Description
+        type: text
+        required: true
+      - name: topics
+        label: Topics
+        type: list
+        required: true
+        field:
+          type: string
+      - name: join_url
+        label: Join URL
+        type: string
+
+  - name: yogaSessions
+    label: Yoga Sessions
+    type: collection
+    path: src/data/yoga-sessions
+    format: json
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: style
+        label: Style
+        type: select
+        required: true
+        options:
+          - Hatha
+          - Pranayama
+          - Vinyasa
+          - Ashtanga
+          - Yin
+          - Kundalini
+          - Restorative
+          - Mixed
+          - Other
+      - name: level
+        label: Level
+        type: select
+        required: true
+        options:
+          - Beginner
+          - Intermediate
+          - Advanced
+          - All Levels
+      - name: location_type
+        label: Location Type
+        type: select
+        required: true
+        options:
+          - Online
+          - In-person
+          - Hybrid
+      - name: venue
+        label: Venue
+        type: string
+      - name: schedule
+        label: Schedule
+        type: string
+        required: true
+      - name: duration
+        label: Duration
+        type: string
+        required: true
+      - name: start_date
+        label: Start Date
+        type: date
+        required: true
+      - name: end_date
+        label: End Date
+        type: date
+      - name: description
+        label: Description
+        type: text
+      - name: practices
+        label: Practices
+        type: list
+        required: true
+        field:
+          type: string
+      - name: instructors
+        label: Instructors
+        type: list
+        field:
+          type: string
+      - name: join_url
+        label: Join URL
+        type: string

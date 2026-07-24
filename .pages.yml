@@ -77,8 +77,8 @@ content:
     label: Articles
     type: collection
     path: src/data/articles
-    extension: mdoc
     format: yaml-frontmatter
+    filename: "{primary}.mdoc"
     fields:
       - name: title
         label: Title
@@ -107,6 +107,8 @@ content:
       - name: body
         label: Content Body
         type: rich-text
+        options:
+          format: markdown
 
   - name: categories
     label: Categories
@@ -123,8 +125,8 @@ content:
     label: Projects
     type: collection
     path: src/data/projects
-    extension: mdoc
     format: yaml-frontmatter
+    filename: "{primary}.mdoc"
     fields:
       - name: title
         label: Title
@@ -151,6 +153,8 @@ content:
       - name: body
         label: Content Body
         type: rich-text
+        options:
+          format: markdown
 
   - name: certificates
     label: Certificates

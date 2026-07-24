@@ -89,25 +89,21 @@ content:
     path: src/data/homepage.json
     format: json
     fields:
-      - name: heroTitle
-        label: Hero Title
+      - name: title
+        label: Page Title
         type: string
         required: true
-      - name: heroSubtitle
-        label: Hero Subtitle
-        type: text
-      - name: headline
-        label: Headline
-        type: string
+
       - name: description
-        label: Description
+        label: Meta / Hero Description
         type: text
-      - name: seoTitle
-        label: SEO Title
+        required: true
+
+      - name: highlights
+        label: Highlights
         type: string
-      - name: seoDescription
-        label: SEO Description
-        type: text
+        list: true
+        required: true
   - name: tags
     label: Tags
     type: collection

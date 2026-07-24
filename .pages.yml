@@ -21,6 +21,9 @@ content:
     type: collection
     path: src/data/photos
     format: json
+    filename: "{label}.json"
+    view:
+      primary: label
     fields:
       - name: label
         label: Label
@@ -51,6 +54,9 @@ content:
     type: collection
     path: src/data/videos
     format: json
+    filename: "{label}.json"
+    view:
+      primary: label
     fields:
       - name: label
         label: Label

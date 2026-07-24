@@ -158,9 +158,10 @@ content:
         label: Related
         type: select
         options:
-          - yoga
-          - engineering
-          - other
+          values:
+            - yoga
+            - engineering
+            - other
 
   - name: videos
     label: Videos
@@ -193,9 +194,10 @@ content:
         label: Related
         type: select
         options:
-          - yoga
-          - engineering
-          - other
+          values:
+            - yoga
+            - engineering
+            - other
 
   - name: articles
     label: Articles
@@ -322,9 +324,10 @@ content:
         label: Related
         type: select
         options:
-          - yoga
-          - engineering
-          - other
+          values:
+            - yoga
+            - engineering
+            - other
 
   - name: workExperience
     label: Work Experience
@@ -351,19 +354,21 @@ content:
         type: select
         required: true
         options:
-          - Full-time
-          - Part-time
-          - Contract
-          - Freelance
-          - Internship
+          values:
+            - Full-time
+            - Part-time
+            - Contract
+            - Freelance
+            - Internship
       - name: locationType
         label: Location Type
         type: select
         required: true
         options:
-          - Remote
-          - On-site
-          - Hybrid
+          values:
+            - Remote
+            - On-site
+            - Hybrid
       - name: startDate
         label: Start Date
         type: date

@@ -112,9 +112,10 @@ content:
 
   - name: categories
     label: Categories
-    type: collection
-    path: src/data/categories
+    type: file
+    path: src/data/categories.json
     format: json
+    list: true
     fields:
       - name: name
         label: Name

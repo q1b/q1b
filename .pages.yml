@@ -4,6 +4,9 @@ content:
     type: collection
     path: src/data/tags
     format: json
+    filename: "{name}.json"
+    view:
+      primary: name
     fields:
       - name: name
         label: Name

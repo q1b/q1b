@@ -9,30 +9,46 @@ content:
         label: Name
         type: string
         required: true
-      - name: bio
-        label: Bio
-        type: text
-      - name: avatar
-        label: Avatar Image
+      - name: image
+        label: Profile Image
         type: image
-      - name: location
-        label: Location
-        type: string
-      - name: email
-        label: Email
-        type: string
-      - name: socialLinks
-        label: Social Links
+      - name: worksFor
+        label: Works For
+        type: object
+        fields:
+          - name: discriminant
+            label: Enable Employer Info
+            type: boolean
+          - name: value
+            label: Employer Details
+            type: object
+            fields:
+              - name: name
+                label: Employer Name
+                type: string
+              - name: URL
+                label: Employer URL
+                type: string
+      - name: knowsAbout
+        label: Knows About
         type: object
         list: true
         fields:
-          - name: platform
-            label: Platform
+          - name: name
+            label: Skill / Topic
             type: string
-          - name: url
-            label: URL
-            type: string
-
+          - name: public
+            label: Publicly Visible
+            type: boolean
+      - name: githubURL
+        label: GitHub URL
+        type: string
+      - name: linkedInURL
+        label: LinkedIn URL
+        type: string
+      - name: resumePDF
+        label: Resume PDF
+        type: file
   - name: homepage
     label: Homepage
     type: file
